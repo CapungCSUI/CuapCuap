@@ -6,10 +6,21 @@ php:
   - hhvm
   - nightly
 
+env:
+  global:
+    - APP_ENV=staging
+    - APP_DEBUG=true
+    - APP_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    - CACHE_DRIVER=file
+    - SESSION_DRIVER=file
+    - QUEUE_DRIVER=sync
+
 # Commands to be run before your environment runs.
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
+
+
 
 # Commands you want to run that will verify your build.
 script: phpunit
