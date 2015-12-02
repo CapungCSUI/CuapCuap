@@ -1,0 +1,30 @@
+{
+  "name": "CuapCuap",
+  "scripts": {
+    "postdeploy": "bin/setup",
+    "pr-predestroy": "bin/teardown"
+  },
+  "env": {
+    "APP_KEY": {
+      "generator": "secret"
+    },
+    "APP_DEBUG": "true",
+    "CACHE_DRIVER": {
+      "required": true
+    },
+    "DB_DATABASE": {
+      "required": true
+    },
+    "QUEUE_DRIVER": {
+      "required": true
+    },
+    "SESSION_DRIVER": {
+      "required": true
+    }
+  },
+  "addons": [
+    "cleardb",
+    "librato",
+    "papertrail"
+  ]
+}
