@@ -19,10 +19,11 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
 
-
-
 # Commands you want to run that will verify your build.
-script: phpunit
+script: phpunit --coverage-clover build/logs/clover.xml
+
+after_script:
+  - vendor/bin/test-reporter
 
 # allow_failures: Allow this build to fail under the specified environments.
 # fast_finish: If your build fails do not continue trying to build, just stop.
@@ -37,3 +38,7 @@ notifications:
   email:
     on_success: never
     on_failure: always
+
+addons:
+    code_climate:
+        repo_token: 061323f9e397567cd68c2cd9a4dd504813984c3a719b0d1db93142810794952e

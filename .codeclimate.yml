@@ -1,0 +1,23 @@
+---
+engines:
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  phpcodesniffer:
+    enabled: true
+  phpmd:
+    enabled: true
+ratings:
+  paths:
+  - "**.js"
+  - "**.jsx"
+  - "**.php"
+  - "**.module"
+  - "**.inc"
+exclude_paths:
+- config/**/*
+- tests/**/*
+- bootstrap/**/*
+- app/Console/**/*
+- app/Exceptions/**/*
