@@ -2,6 +2,7 @@
   "name": "CuapCuap",
   "scripts": {},
   "env": {
+    "APP_ENV": "staging",
     "APP_KEY": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "APP_DEBUG": "true",
     "CACHE_DRIVER": {

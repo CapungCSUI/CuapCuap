@@ -5,6 +5,9 @@ php:
   - hhvm
   - nightly
 
+services:
+  - mysql
+
 env:
   global:
     - APP_ENV=staging
@@ -13,11 +16,16 @@ env:
     - CACHE_DRIVER=file
     - SESSION_DRIVER=file
     - QUEUE_DRIVER=sync
+    - DB_HOST=127.0.0.1
+    - DB_DATABASE=cuapcuap
+    - DB_USERNAME=root
+    - DB_PASSWORD=
 
 # Commands to be run before your environment runs.
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
+  - mysql -e 'create database cuapcuap;'
 
 # Commands you want to run that will verify your build.
 script: phpunit --coverage-clover build/logs/clover.xml
