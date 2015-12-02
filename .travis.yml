@@ -30,3 +30,10 @@ matrix:
   allow_failures:
     - php: nightly
   fast_finish: true
+
+# Notifications
+notifications:
+  slack: sbfpti2015:8ScIb4Oc8NEbzQJG2NezAUQv
+  email:
+    on_success: never
+    on_failure: always
