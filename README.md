@@ -4,6 +4,8 @@
 
 Forum for Capung (CSUI 2015)
 
+Powered by Laravel Framework
+
 ## Official Documentation
 
 No official documentation (yet.)
