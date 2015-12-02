@@ -22,6 +22,11 @@
       "required": true
     }
   },
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    }
+  ],
   "addons": [
     "cleardb",
     "librato",
