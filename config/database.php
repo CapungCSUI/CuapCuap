@@ -1,7 +1,7 @@
 <?php
 
 // Customizing when using CLEARDB (Heroku)
-if (getenv("CLEARDB_DATABASE_URL") !== false) {
+if (getenv("CLEARDB_DATABASE_URL") !== false && filter_var(getenv("CLEARDB_DATABASE_URL"), FILTER_VALIDATE_URL) === TRUE) {
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $dbhost = $url["host"];
     $dbusername = $url["user"];
