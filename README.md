@@ -1,5 +1,6 @@
-## CuapCuap Capung
 [![Build Status](https://travis-ci.org/CAPUNG2015/CuapCuap.svg)](https://travis-ci.org/CAPUNG2015/CuapCuap)
+
+## CuapCuap Capung
 
 Forum for Capung (CSUI 2015)
 
