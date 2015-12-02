@@ -1,4 +1,3 @@
 #!/bin/sh
-heroku buildpacks:set heroku/php
-php -f setup.php
+php setup.php
 php artisan migrate
