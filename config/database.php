@@ -1,5 +1,20 @@
 <?php
 
+// Customizing when using CLEARDB (Heroku)
+if (getenv("CLEARDB_DATABASE_URL") !== false && filter_var(getenv("CLEARDB_DATABASE_URL"), FILTER_VALIDATE_URL) === TRUE) {
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    $dbhost = $url["host"];
+    $dbusername = $url["user"];
+    $dbpassword = $url["pass"];
+    $dbname = substr($url["path"], 1);
+}
+else {
+    $dbhost = 'localhost';
+    $dbusername = 'forge';
+    $dbpassword = '';
+    $dbname = 'forge';
+}
+
 return [
 
     /*
@@ -54,10 +69,10 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'forge'),
-            'username'  => env('DB_USERNAME', 'forge'),
-            'password'  => env('DB_PASSWORD', ''),
+            'host'      => env('DB_HOST', $dbhost),
+            'database'  => env('DB_DATABASE', $dbname),
+            'username'  => env('DB_USERNAME', $dbusername),
+            'password'  => env('DB_PASSWORD', $dbpassword),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

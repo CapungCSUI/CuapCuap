@@ -1,18 +1,10 @@
 {
   "name": "CuapCuap",
-  "scripts": {
-    "postdeploy": "bin/setup",
-    "pr-predestroy": "bin/teardown"
-  },
+  "scripts": {},
   "env": {
-    "APP_KEY": {
-      "generator": "secret"
-    },
+    "APP_KEY": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "APP_DEBUG": "true",
     "CACHE_DRIVER": {
-      "required": true
-    },
-    "DB_DATABASE": {
       "required": true
     },
     "QUEUE_DRIVER": {
