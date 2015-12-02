@@ -1,3 +1,2 @@
 #!/bin/sh
 php setup.php
-php artisan migrate
