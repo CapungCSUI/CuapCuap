@@ -14,7 +14,7 @@ class CreateAnnouncementsTable extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title',140);
+            $table->string('title', 140);
             $table->string('content');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });

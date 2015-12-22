@@ -21,13 +21,13 @@ class CreateThreadsTable extends Migration
             $table->integer('author_id')->unsigned();
             $table->foreign('author_id')->references('id')->on('users');
 
-            $table->string('title',140);
+            $table->string('title', 140);
             $table->string('content');
-            $table->string('tags',1000)->nullable();
+            $table->string('tags', 1000)->nullable();
             $table->integer('upvote')->default(0);
             $table->integer('comment_count')->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->boolean('sticky')->default(false);
 
         });
