@@ -1,6 +1,8 @@
 {
   "name": "CuapCuap",
-  "scripts": {},
+  "scripts": {
+    "predeploy": "php artisan migrate:reset; php artisan migrate"
+    },
   "env": {
     "APP_ENV": "staging",
     "APP_KEY": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
