@@ -86,7 +86,7 @@ class UserController extends Controller
         return view('edit_profile', [
             'birthday' => Auth::user()->birthday,
             'email' => Auth::user()->email,
-            'profile_picture' => Auth::user()->profile_picture,
+            'profile_picture' => '',
         ]);
     }
 
@@ -104,7 +104,7 @@ class UserController extends Controller
         $birthday = date('Y-m-d', strtotime($birthday));
         $email = $request->input('email');
 
-        if ($request->has('profile_picture') && $request->isValid()) {
+        if ($request->hasFile('profile_picture') && $request->file('profile_picture')->isValid()) {
             $image = $request->file('profile_picture');
             if (isset($user->profile_picture)) {
                 Storage::delete('users/'.$user->id.'/'.$user->profile_picture);
