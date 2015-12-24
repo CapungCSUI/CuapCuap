@@ -24,32 +24,32 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show user related resources.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getResource($id = 0, $filename)
     {
-        //
-    }
+        if ($id == 0) {
+            $id = $user->id;
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-         $username = $request->input('username');
-         $birthday = $request->input('birthday');
-         $profile_picture = $request->$file('profile_picture');
+        if (DB::table('users')->where('id',$id)->first() == null) {
+            return response('Unauthorized', 401);
+        }
+        $file = 'users/' . $id . '/' . $filename;
 
-        DB::table('users')->insert([
-            'username' => $username, 
-            'birthday' => $birthday,
-            'profile_picture' =>  $profile_picture
-        ]);
+        if (!Storage::has($file)) {
+            return response('Unauthorized', 401);
+        }
+
+        $mimeType = Storage::mimeType($file);
+        $file = Storage::get($file);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $mimeType);
+
+        return $response;
     }
 
     /**
@@ -58,9 +58,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id = 0)
     {
-        //
+        if ($id == 0) {
+            $id = Auth::user()->id;
+        }
+
+        $user = DB::table('users')->where('id', $id)->first();
+
+        $profile_picture = 'users/'.$id.'/'.$user->profile_picture;
+
+        return view('show_profile', [
+            'username' => $user->username,
+            'birthday' => $user->birthday,
+            'email' => $user->email,
+            'profile_picture' => url($profile_picture),
+        ]);
     }
 
     /**
@@ -91,8 +104,8 @@ class UserController extends Controller
         $birthday = date('Y-m-d', strtotime($birthday));
         $email = $request->input('email');
 
-        $image = $request->file('profile_picture');
-        if ($image->isValid()) {
+        if ($request->has('profile_picture') && $request->isValid()) {
+            $image = $request->file('profile_picture');
             if (isset($user->profile_picture)) {
                 Storage::delete('users/'.$user->id.'/'.$user->profile_picture);
             }
