@@ -26,7 +26,6 @@ class SSOAuthenticate
         else if (SSO::check()) {
             $userData = SSO::getUser();
             if (substr($userData->npm, 0, 2) === "15" && $userData->faculty === "ILMU KOMPUTER") {
-                // die('asdfasdf');
                 $request->session()->put('sso', json_encode(SSO::getUser()));
 
                 if (Auth::guard($guard)->attempt(['username' => $userData->username, 'password' => ''])) {
