@@ -33,4 +33,8 @@ Route::group(['middleware' => 'web'], function () {
 	});
 
     Route::get('/home', 'HomeController@index');
+
+    Route::get('/profile/edit', 'UserController@edit');
+    Route::post('/profile/edit', 'UserController@update');
+
 });

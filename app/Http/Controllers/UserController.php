@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use SSO\SSO;
+use Auth;
+use DB;
+use Storage;
 
 class UserController extends Controller
 {
@@ -42,7 +45,6 @@ class UserController extends Controller
          $birthday = $request->input('birthday');
          $profile_picture = $request->$file('profile_picture');
 
-
         DB::table('users')->insert([
             'username' => $username, 
             'birthday' => $birthday,
@@ -64,34 +66,52 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('edit_profile', [
+            'birthday' => Auth::user()->birthday,
+            'email' => Auth::user()->email,
+            'profile_picture' => Auth::user()->profile_picture,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $username = $request->input('username');
+        $user = Auth::user();
+
         $birthday = $request->input('birthday');
-        $profile_picture = $request->$file('profile_picture');
+        $birthday = date('Y-m-d', strtotime($birthday));
+        $email = $request->input('email');
+
+        $image = $request->file('profile_picture');
+        if ($image->isValid()) {
+            if (isset($user->profile_picture)) {
+                Storage::delete('users/'.$user->id.'/'.$user->profile_picture);
+            }
+            $image->move(storage_path().'/app/users/'.$user->id, $image->getClientOriginalName());
+            $profile_picture = $image->getClientOriginalName();
+        }
+        else {
+            $profile_picture = $user->profile_picture;
+        }
 
         DB::table('users')
-            ->where('id', $id)
+            ->where('id', $user->id)
             ->update([
-                'username' => $username,
+                'email' => $email,
                 'birthday' => $birthday,  
-                'profile_picture' =>  $profile_picture  
+                'profile_picture' =>  $profile_picture,
             ]);
+
+        return redirect('/home');
     }
 
     /**
@@ -103,7 +123,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         DB::table('users')->where('id', $id)->delete();
-
     }
 
     /**

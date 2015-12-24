@@ -33,6 +33,7 @@ database structure:
 		users:
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
 			username (varchar(255), NOT NULL, unique)
+			email (varchar(255))
 			birthday (DATE)
 			profile_picture (varchar(255)) // Referens ke jpeg ato apalah
 			exp (int, default 0)
