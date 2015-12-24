@@ -1,7 +1,7 @@
 <?php
 
-// Customizing when using CLEARDB (Heroku)
-if (getenv("CLEARDB_DATABASE_URL") !== false && filter_var(getenv("CLEARDB_DATABASE_URL"), FILTER_VALIDATE_URL) === TRUE) {
+// Customizing when using CLEARDB
+if (getenv("CLEARDB_DATABASE_URL") != false && filter_var(getenv("CLEARDB_DATABASE_URL"), FILTER_VALIDATE_URL) == TRUE) {
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $dbhost = $url["host"];
     $dbusername = $url["user"];
@@ -131,8 +131,9 @@ return [
         'cluster' => false,
 
         'default' => [
-            'host'     => '127.0.0.1',
-            'port'     => 6379,
+            'host'     => env('REDIS_HOST', 'localhost'),
+            'password' => env('REDIS_PASSWORD', null),
+            'port'     => env('REDIS_PORT', 6379),
             'database' => 0,
         ],
 

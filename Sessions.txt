@@ -1,0 +1,2 @@
+sso:
+    Contains all data from sso-authentication
