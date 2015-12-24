@@ -6,27 +6,22 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Display a listing of the resource.
      *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        session()->put('sso','asdfasdfasdf');
-        return view('home');
+        if (Auth::user()) {
+            return view('home');
+        }
+        else {
+            return view('welcome');
+        }
     }
 }

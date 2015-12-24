@@ -10,6 +10,7 @@ use SSO\SSO;
 use Auth;
 use DB;
 use Storage;
+use Response;
 
 class UserController extends Controller
 {
@@ -31,16 +32,16 @@ class UserController extends Controller
     public function getResource($id = 0, $filename)
     {
         if ($id == 0) {
-            $id = $user->id;
+            $id = Auth::user()->id;
         }
 
         if (DB::table('users')->where('id',$id)->first() == null) {
-            return response('Unauthorized', 401);
+            return abort(401);
         }
         $file = 'users/' . $id . '/' . $filename;
 
         if (!Storage::has($file)) {
-            return response('Unauthorized', 401);
+            return abort(404);
         }
 
         $mimeType = Storage::mimeType($file);
@@ -66,13 +67,19 @@ class UserController extends Controller
 
         $user = DB::table('users')->where('id', $id)->first();
 
-        $profile_picture = 'users/'.$id.'/'.$user->profile_picture;
+        if ($user->profile_picture !== null) {
+            $profile_picture = 'users/'.$id.'/'.$user->profile_picture;
+            $profile_picture = url($profile_picture);
+        }
+        else {
+            $profile_picture = null;
+        }
 
         return view('show_profile', [
             'username' => $user->username,
             'birthday' => $user->birthday,
             'email' => $user->email,
-            'profile_picture' => url($profile_picture),
+            'profile_picture' => $profile_picture,
         ]);
     }
 
@@ -139,6 +146,17 @@ class UserController extends Controller
     }
 
     /**
+     * Login the user.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function login(Request $request)
+    {
+        return redirect('/home');
+    }
+
+    /**
      * Logout the user and delete all sessions.
      * 
      * @param  \Illuminate\Http\Request  $request
@@ -152,6 +170,6 @@ class UserController extends Controller
         
         $request->session()->flush();
         
-        return redirect('logout');
+        return redirect('/logout');
     }
 }

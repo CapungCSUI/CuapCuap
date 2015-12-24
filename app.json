@@ -1,7 +1,7 @@
 {
   "name": "CuapCuap",
   "scripts": {
-    "postdeploy": "php artisan migrate:reset; php artisan migrate"
+    "postdeploy": "php artisan migrate:refresh"
     },
   "env": {
     "APP_ENV": "staging",

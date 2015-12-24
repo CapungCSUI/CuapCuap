@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Profile picture: <img src = "{{ $profile_picture }}"></label>
+                            <label class="col-md-4 control-label">Profile picture: <img style="max-width:100px;" src="{{ $profile_picture }}"></label>
                         </div>
                 </div>
             </div>

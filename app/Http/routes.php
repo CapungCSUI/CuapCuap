@@ -15,6 +15,8 @@ use \GuzzleHttp\Mimetypes;
 */
 
 Route::get('/logout', 'UserController@logout');
+Route::get('/login', 'UserController@login');
+Route::get('/', 'HomeController@index');
 
 /*
 |--------------------------------------------------------------------------
@@ -28,33 +30,9 @@ Route::get('/logout', 'UserController@logout');
 */
 
 Route::group(['middleware' => 'web'], function () {
-	
-	Route::get('/', function () {
-	    return view('welcome');
-	});
 
-	Route::get('/users/{id}/{filename}', function ($id, $filename)
-	{
-		if (DB::table('users')->where('id',$id)->first() == null) {
-			return response('Unauthorized', 401);
-		}
-	    $file = 'users/' . $id . '/' . $filename;
-
-	    if (!Storage::has($file)) {
-	    	return response('Unauthorized', 401);
-	    }
-
-		$mimeType = Storage::mimeType($file);
-	    $file = Storage::get($file);
-
-	    $response = Response::make($file, 200);
-	    $response->header("Content-Type", $mimeType);
-
-	    return $response;
-	});
-
-    Route::get('/home', 'HomeController@index');
-
+	Route::get('/home', 'HomeController@index');
+	Route::get('/users/{id}/{filename}', 'UserController@getResource');
     Route::get('/profile/edit', 'UserController@edit');
     Route::post('/profile/edit', 'UserController@update');
     Route::get('/profile', 'UserController@show');

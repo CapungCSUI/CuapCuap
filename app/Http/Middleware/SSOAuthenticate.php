@@ -48,7 +48,7 @@ class SSOAuthenticate
                 }
             }
 
-            return response('Unauthorized.', 401);
+            return abort(401);
         }
         else {
             SSO::authenticate();

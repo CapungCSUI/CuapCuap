@@ -8,7 +8,19 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    You are logged in!<br />
+                    <br />
+                    This is for development purposes, <br />
+                    available routes: <br />
+                        /profile/{id} <br />
+                        /profile <br />
+                        /profile/edit <br />
+                        /home <br />
+                        /logout <br />
+                        / <br />
+                    <br />
+
+
                 </div>
             </div>
         </div>
