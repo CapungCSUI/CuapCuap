@@ -1,0 +1,62 @@
+database structure:
+	CuapCuap:
+		// 7 tables
+		Categories:
+			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
+			name (varchar(64), NOT NULL)
+		
+		Threads:
+			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
+			category_id (int, NOT NULL, FOREIGN_KEY)
+			author_id (int, NOT NULL, FOREIGN_KEY)
+			title (varchar(140), NOT NULL)
+			content (varchar(255), NOT NULL) //referens ke file yang mengandung contentnya
+			tags (varchar(1000))
+			upvotes (int, DEFAULT 0)
+			comment_count (int, DEFAULT 0)
+			created_at (DATE, DEFAULT)
+			updated_at (DATE, DEFAULT==CreatedAt)
+			sticky (boolean, NOT NULL) // True jika sticky, False jika nonsticky
+		
+		Replies:
+			// create dummy as head reply
+			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
+			thread_id (int, NOT NULL, FOREIGN_KEY)
+			user_id (int, NOT NULL, FOREIGN_KEY)
+			content (varchar(255), NOT NULL) //referens ke file
+			upvote (int, DEFAULT 0)
+			created_at (DATE, DEFAULT)
+			updated_at (DATE, DEFAULT==CreatedAt)
+			parent_id (int)
+			child_replies (varchar(255)) //langsung string isi list reply_id comma separated yang merupakan childnya
+		
+		Users:
+			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
+			username (varchar(255), NOT NULL)
+			birthday (DATE)
+			profile_picture (varchar(255)) // Referens ke jpeg ato apalah
+			exp (int, default 0)
+			voted_threads (varchar(255), NOT NULL) // Referens ke file yang mengandung list thread, per line : "thread_id: 1/-1" (kalau 1 upvote, kalau -1 downvote)
+			voted_replies (varchar(255), NOT NULL) // Referens ke file yang mengandung list reply, per line : "reply_id: 1/-1" (kalau 1 upvote, kalau -1 downvote)
+
+		Notifications:
+			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
+			user_id (int, NOT NULL, FOREIGN_KEY)
+			type (int, NOT NULL) //untuk sementara 0: messaging, 1:thread_owner reply
+			content_id (int, NOT NULL) // id message/reply
+			link (varchar(255)) //link ke thread / message
+			created_at(DATE, DEFAULT)
+			is_read (boolean, DEFAULT FALSE)
+
+		Messages:
+			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
+			sender_id (int, NOT NULL, FOREGIN_KEY)
+			receiver_id (int, NOT NULL, FOREIGN_KEY)
+			content (varchar(255)) // referens ke file
+			created_at(DATE, DEFAULT)
+
+		Announcements:
+			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
+			title (varchar(140), NOT NULL)
+			content (varchar(255)) // referens ke file
+			created_at(DATE, DEFAULT)			
