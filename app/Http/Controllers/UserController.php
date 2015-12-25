@@ -47,7 +47,7 @@ class UserController extends Controller
             $id = Auth::user()->id;
         }
 
-        if (DB::table('users')->where('id',$id)->first() == null) {
+        if (DB::table('users')->where('id', $id)->first() == null) {
             return abort(401);
         }
         $file = 'users/' . $id . '/' . $filename;

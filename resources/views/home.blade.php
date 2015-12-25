@@ -18,6 +18,7 @@
                         /profile/edit <br />
                         /home <br />
                         /logout <br />
+                        /login <br />
                         / <br />
                     <br />
 

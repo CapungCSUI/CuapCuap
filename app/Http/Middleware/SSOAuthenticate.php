@@ -39,10 +39,6 @@ class SSOAuthenticate
                     // Create folder for user
                     Storage::makeDirectory('users/'.$id);
 
-                    // Create voted_threads and voted_replies
-                    Storage::put('users/'.$id.'/voted_threads.txt','');
-                    Storage::put('users/'.$id.'/voted_replies.txt','');
-
                     Auth::guard($guard)->loginUsingId($id);
                     return $next($request);
                 }

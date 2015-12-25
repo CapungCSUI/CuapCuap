@@ -10,20 +10,20 @@ database structure:
 			category_id (int, NOT NULL, FOREIGN_KEY)
 			author_id (int, NOT NULL, FOREIGN_KEY)
 			title (varchar(140), NOT NULL)
-			content (varchar(255), NOT NULL) //referens ke file yang mengandung contentnya
 			tags (varchar(1000))
+			content(text, NOT NULL)
 			upvotes (int, DEFAULT 0)
 			comment_count (int, DEFAULT 0)
 			created_at (DATE, DEFAULT)
 			updated_at (DATE, DEFAULT==CreatedAt)
-			sticky (boolean, NOT NULL) // True jika sticky, False jika nonsticky
+			sticky (boolean, NOT NULL) default FALSE // True jika sticky, False jika nonsticky
 		
 		replies:
 			// create dummy as head reply
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
 			thread_id (int, NOT NULL, FOREIGN_KEY)
 			user_id (int, NOT NULL, FOREIGN_KEY)
-			content (varchar(255), NOT NULL) //referens ke file
+			content(text, NOT NULL)
 			upvote (int, DEFAULT 0)
 			created_at (DATE, DEFAULT)
 			updated_at (DATE, DEFAULT==CreatedAt)
@@ -33,12 +33,13 @@ database structure:
 		users:
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
 			username (varchar(255), NOT NULL, unique)
+			password (varchar(255) ,bcrypt hash, default bcrypt(''))
 			email (varchar(255))
 			birthday (DATE)
 			profile_picture (varchar(255)) // Referens ke jpeg ato apalah
 			exp (int, default 0)
-			voted_threads (varchar(255)) // Referens ke file yang mengandung list thread, per line : "thread_id: 1/-1" (kalau 1 upvote, kalau -1 downvote)
-			voted_replies (varchar(255)) // Referens ke file yang mengandung list reply, per line : "reply_id: 1/-1" (kalau 1 upvote, kalau -1 downvote)
+			voted_threads(text)
+			voted_replies(text)
 
 		notifications:
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
@@ -53,11 +54,11 @@ database structure:
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
 			sender_id (int, NOT NULL, FOREGIN_KEY)
 			receiver_id (int, NOT NULL, FOREIGN_KEY)
-			content (varchar(255)) // referens ke file
+			content(text, NOT NULL)
 			created_at(DATE, DEFAULT)
 
 		announcements:
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
 			title (varchar(140), NOT NULL)
-			content (varchar(255)) // referens ke file
-			created_at(DATE, DEFAULT)			
+			content(text, NOT NULL)
+			created_at(DATE, DEFAULT)	
