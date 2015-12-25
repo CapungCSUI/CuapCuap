@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            @foreach ($users as $user)
             <div class="panel panel-default">
                 <div class="panel-heading">Profile {{ $user->id }}</div>
                 <div class="panel-body">
@@ -24,6 +25,7 @@
                         </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </div>

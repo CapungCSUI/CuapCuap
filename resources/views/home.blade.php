@@ -14,6 +14,7 @@
                     available routes: <br />
                         /profile/{id} <br />
                         /profile <br />
+                        /profiles <br />
                         /profile/edit <br />
                         /home <br />
                         /logout <br />

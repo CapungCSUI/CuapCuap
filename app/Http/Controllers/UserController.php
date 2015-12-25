@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Helpers\Helper;
 use SSO\SSO;
 use Auth;
 use DB;
@@ -21,7 +22,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = DB::table('users')->get();
+
+        foreach ($users as &$user) {
+            if ($user->profile_picture !== null) {
+                $user->profile_picture = 'users/'.$user->id.'/'.$user->profile_picture;
+                $user->profile_picture = url($user->profile_picture);
+            }
+        }
+
+        return view('show_profiles', [
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -45,6 +57,10 @@ class UserController extends Controller
         }
 
         $mimeType = Storage::mimeType($file);
+        if (!Helper::startsWith($mimeType, 'image/')) {
+            return abort(404);
+        }
+
         $file = Storage::get($file);
 
         $response = Response::make($file, 200);
@@ -66,20 +82,20 @@ class UserController extends Controller
         }
 
         $user = DB::table('users')->where('id', $id)->first();
+        if ($user == null) {
+            return abort(401);
+        }
 
         if ($user->profile_picture !== null) {
-            $profile_picture = 'users/'.$id.'/'.$user->profile_picture;
-            $profile_picture = url($profile_picture);
+            $user->profile_picture = 'users/'.$id.'/'.$user->profile_picture;
+            $user->profile_picture = url($user->profile_picture);
         }
         else {
-            $profile_picture = null;
+            $user->profile_picture = null;
         }
 
         return view('show_profile', [
-            'username' => $user->username,
-            'birthday' => $user->birthday,
-            'email' => $user->email,
-            'profile_picture' => $profile_picture,
+            'user' => $user,
         ]);
     }
 
@@ -90,10 +106,11 @@ class UserController extends Controller
      */
     public function edit()
     {
+        $user = Auth::user();
+
         return view('edit_profile', [
-            'birthday' => Auth::user()->birthday,
-            'email' => Auth::user()->email,
-            'profile_picture' => '',
+            'birthday' => $user->birthday,
+            'email' => $user->email,
         ]);
     }
 
@@ -107,8 +124,15 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
+        $this->validate($request, [
+            'email' => 'email',
+            'birthday' => 'date',
+            'profile_picture' => 'image|max:10000',
+        ]);
+
         $birthday = $request->input('birthday');
         $birthday = date('Y-m-d', strtotime($birthday));
+
         $email = $request->input('email');
 
         if ($request->hasFile('profile_picture') && $request->file('profile_picture')->isValid()) {
@@ -116,8 +140,9 @@ class UserController extends Controller
             if (isset($user->profile_picture)) {
                 Storage::delete('users/'.$user->id.'/'.$user->profile_picture);
             }
-            $image->move(storage_path().'/app/users/'.$user->id, $image->getClientOriginalName());
+
             $profile_picture = $image->getClientOriginalName();
+            $image->move(storage_path().'/app/users/'.$user->id, $profile_picture);
         }
         else {
             $profile_picture = $user->profile_picture;

@@ -37,5 +37,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/profile/edit', 'UserController@update');
     Route::get('/profile', 'UserController@show');
     Route::get('/profile/{id}', 'UserController@show');
+    Route::get('/profiles', 'UserController@index');
 
 });

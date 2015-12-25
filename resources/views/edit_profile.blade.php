@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Edit Profile</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/profile/edit') }}" enctype="multipart/form-data" >
                         {!! csrf_field() !!}
@@ -24,7 +24,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
