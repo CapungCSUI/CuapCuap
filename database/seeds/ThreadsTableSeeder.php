@@ -11,7 +11,7 @@ class ThreadsTableSeeder extends Seeder
      */
     public function run()
     {
-    	for ($count = 1; $count <= 50; $count++) {
+    	for ($count = 1; $count <= 5; $count++) {
         	DB::table('threads')->insert([
 	            'category_id' => rand(1, DB::table('categories')->count()),
 	            'author_id' => rand(1, DB::table('users')->count()),

@@ -11,7 +11,7 @@ class MessagesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($count = 1; $count <= 100; $count++) {
+        for ($count = 1; $count <= 10; $count++) {
         	$receiver_id = (rand(0, 1) == 1 ? rand(1, DB::table('users')->count()) : 1);
 
         	DB::table('messages')->insert([

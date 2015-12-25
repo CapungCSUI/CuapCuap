@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'birthday' => '1997-09-08',
         ]);
 
-    	for ($count = 0; $count < 49; $count++) {
+    	for ($count = 0; $count < 5; $count++) {
         	DB::table('users')->insert([
 	            'username' => str_random(10).$count,
 	            'email' => str_random(10).'@gmail.com',

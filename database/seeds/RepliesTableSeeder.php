@@ -11,7 +11,7 @@ class RepliesTableSeeder extends Seeder
      */
     public function run()
     {
-    	for ($count = 1; $count <= 20; $count++) {
+    	for ($count = 1; $count <= 10; $count++) {
     		$thread_id = rand(1, DB::table('threads')->count());
 
     		DB::table('replies')->insert([
@@ -28,7 +28,7 @@ class RepliesTableSeeder extends Seeder
 	        ]);
     	}
 
-        for ($count = 21; $count <= 200; $count++) {
+        for ($count = 11; $count <= 30; $count++) {
         	$parent_id = rand(1, DB::table('replies')->count());
         	$parent = DB::table('replies')->where('id', $parent_id)->first();
         	$parent_child_replies = $parent->child_replies;
