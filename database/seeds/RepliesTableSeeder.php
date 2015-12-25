@@ -20,6 +20,8 @@ class RepliesTableSeeder extends Seeder
                 'content' => str_random(100),
 	        ]);
 
+            DB::table('threads')->where('id', $thread_id)->increment('comment_count');
+
        		$author_id = DB::table('threads')->where('id', $thread_id)->first()->author_id;
 	        DB::table('notifications')->insert([
 	            'type' => 1,
@@ -52,6 +54,8 @@ class RepliesTableSeeder extends Seeder
 	            'parent_id' => $parent_id,
                 'content' => str_random(100),
 	        ]);
+
+            DB::table('threads')->where('id', $thread_id)->increment('comment_count');
 
 	        $author_id = DB::table('threads')->where('id', $thread_id)->first()->author_id;
 	        DB::table('notifications')->insert([

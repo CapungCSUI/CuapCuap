@@ -16,6 +16,7 @@
                         /profile <br />
                         /profiles <br />
                         /profile/edit <br />
+                        /thread/{id} <br />
                         /home <br />
                         /logout <br />
                         /login <br />

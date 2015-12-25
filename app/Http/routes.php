@@ -38,5 +38,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/profile', 'UserController@show');
     Route::get('/profile/{id}', 'UserController@show');
     Route::get('/profiles', 'UserController@index');
+    Route::get('/thread/{id}', 'ThreadController@show');
 
 });
