@@ -14,7 +14,7 @@
                             <label class="col-md-4 control-label">Birthday</label>
 
                             <div class="col-md-6">
-                                <input type="date" class="form-control" name="birthday" value="{{ $birthday }}">
+                                <input type="date" class="form-control" name="birthday" value="{{ $user->birthday }}">
 
                                 @if ($errors->has('birthday'))
                                     <span class="help-block">
@@ -28,7 +28,7 @@
                             <label class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ $email }}">
+                                <input type="email" class="form-control" name="email" value="{{ $user->email }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">

@@ -1,7 +1,6 @@
 <?php
 
 use SSO\SSO;
-use \GuzzleHttp\Mimetypes;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +31,20 @@ Route::get('/', 'HomeController@index');
 Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/home', 'HomeController@index');
+	
 	Route::get('/users/{id}/{filename}', 'UserController@getResource');
+    
     Route::get('/profile/edit', 'UserController@edit');
     Route::post('/profile/edit', 'UserController@update');
-    Route::get('/profile', 'UserController@show');
-    Route::get('/profile/{id}', 'UserController@show');
+    Route::get('/profile/{id?}', 'UserController@show');
     Route::get('/profiles', 'UserController@index');
+    
+    Route::get('/threads/{category?}', 'ThreadController@index');
+    Route::get('/thread/new', 'ThreadController@create');
+    Route::post('/thread/new', 'ThreadController@store');
+    Route::get('/thread/edit/{id}', 'ThreadController@edit');
+    Route::post('/thread/edit/{id}', 'ThreadController@update');
+    Route::get('/thread/delete/{id}', 'ThreadController@destroy');
     Route::get('/thread/{id}', 'ThreadController@show');
 
 });

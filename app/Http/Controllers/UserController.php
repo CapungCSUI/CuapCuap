@@ -109,8 +109,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         return view('edit_profile', [
-            'birthday' => $user->birthday,
-            'email' => $user->email,
+            'user' => $user,
         ]);
     }
 
@@ -168,6 +167,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         DB::table('users')->where('id', $id)->delete();
+
+        return redirect('/home');
     }
 
     /**
@@ -189,10 +190,11 @@ class UserController extends Controller
      */
     public function logout(Request $request)
     {
-        if (!$request->session()->has('sso')) {
+        if (!$request->session()->has('sso') && !Auth::check()) {
             SSO::logout();
         }
         
+        Auth::logout();
         $request->session()->flush();
         
         return redirect('/logout');

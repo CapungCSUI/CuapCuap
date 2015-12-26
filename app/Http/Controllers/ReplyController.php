@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
+use DB;
 
 class ReplyController extends Controller
 {
@@ -33,17 +35,15 @@ class ReplyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $thread_id
+     * @param  int  $parent_id
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $thread_id, $parent_id = 0)
     {
-        //
-        $thread_id = $request->input('thread_id');
-        $user_id = $request->input('user_id');
-        $parent_id = $request->input('parent_id');
+        $user = Auth::user();
         $child_replies = $request->input('child_replies');
         $content = $request->$file('content');
-
 
         DB::table('replies')->insert([
             'parent_id' => $parent_id, 

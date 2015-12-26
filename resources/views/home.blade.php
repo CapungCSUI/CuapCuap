@@ -22,8 +22,27 @@
                         /login <br />
                         / <br />
                     <br />
-
-
+                    <br />
+                    Complete Route:
+                    Route::get('/home', 'HomeController@index');<br/>    
+                    Route::get('/users/{id}/{filename}', 'UserController@getResource');<br/>
+                    <br/>
+                    Route::get('/profile/edit', 'UserController@edit');<br/>
+                    Route::post('/profile/edit', 'UserController@update');<br/>
+                    Route::get('/profile', 'UserController@show');<br/>
+                    Route::get('/profile/{id}', 'UserController@show');<br/>
+                    Route::get('/profiles', 'UserController@index');<br/>
+                    <br/>
+                    Route::get('/threads', 'ThreadController@index');<br/>
+                    Route::get('/threads/{$category}', 'ThreadController@index');<br/>
+                    Route::get('/thread/new', 'ThreadController@create');<br/>
+                    Route::post('/thread/new', 'ThreadController@store');<br/>
+                    Route::get('/thread/edit/{id}', 'ThreadController@edit');<br/>
+                    Route::post('/thread/edit/{id}', 'ThreadController@update');<br/>
+                    Route::get('/thread/delete/{id}', 'ThreadController@destroy');<br/>
+                    Route::get('/thread/{id}', 'ThreadController@show');<br/>
+                    <br/>
+                    <br/>
                 </div>
             </div>
         </div>

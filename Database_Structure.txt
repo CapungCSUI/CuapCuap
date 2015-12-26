@@ -3,7 +3,7 @@ database structure:
 		// 7 tables
 		categories:
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
-			name (varchar(64), NOT NULL)
+			name (varchar(64), NOT NULL, unique)
 
 		threads:
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
@@ -12,7 +12,7 @@ database structure:
 			title (varchar(140), NOT NULL)
 			tags (varchar(1000))
 			content(text, NOT NULL)
-			upvotes (int, DEFAULT 0)
+			upvote (int, DEFAULT 0)
 			comment_count (int, DEFAULT 0)
 			created_at (DATE, DEFAULT)
 			updated_at (DATE, DEFAULT==CreatedAt)
