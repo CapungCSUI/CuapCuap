@@ -18,6 +18,8 @@ class RepliesTableSeeder extends Seeder
 	            'thread_id' => $thread_id,
 	            'user_id' => rand(1, DB::table('users')->count()),
                 'content' => str_random(100),
+                'position' => $count.',',
+                'depth' => 0,
 	        ]);
 
             DB::table('threads')->where('id', $thread_id)->increment('comment_count');
@@ -33,26 +35,17 @@ class RepliesTableSeeder extends Seeder
         for ($count = 11; $count <= 30; $count++) {
         	$parent_id = rand(1, DB::table('replies')->count());
         	$parent = DB::table('replies')->where('id', $parent_id)->first();
-        	$parent_child_replies = $parent->child_replies;
+        	$position = $parent->position.$count.',';
 
         	$thread_id = $parent->thread_id;
-
-        	if (empty($parent_child_replies)) {
-        		$parent_child_replies = $count;
-        	}
-        	else {
-        		$parent_child_replies = $parent_child_replies . ',' . $count;
-        	}
-
-        	DB::table('replies')->where('id', $parent_id)->update([
-        		'child_replies' => $parent_child_replies,
-        	]);
         	
         	DB::table('replies')->insert([
 	            'thread_id' => $thread_id,
 	            'user_id' => rand(1, DB::table('users')->count()),
-	            'parent_id' => $parent_id,
                 'content' => str_random(100),
+                'parent_id' => $parent_id,
+                'depth' => $parent->depth + 1,
+                'position' => $position,
 	        ]);
 
             DB::table('threads')->where('id', $thread_id)->increment('comment_count');

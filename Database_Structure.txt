@@ -24,11 +24,12 @@ database structure:
 			thread_id (int, NOT NULL, FOREIGN_KEY)
 			user_id (int, NOT NULL, FOREIGN_KEY)
 			content(text, NOT NULL)
+			parent_id (int)
+			position (varchar(255), NOT NULL) //langsung string isi list reply_id comma separated yang merupakan urutan nestednya
+			depth (int)
 			upvote (int, DEFAULT 0)
 			created_at (DATE, DEFAULT)
 			updated_at (DATE, DEFAULT==CreatedAt)
-			parent_id (int)
-			child_replies (varchar(255)) //langsung string isi list reply_id comma separated yang merupakan childnya
 		
 		users:
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)

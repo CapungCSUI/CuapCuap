@@ -11,7 +11,7 @@
             </div>
             @foreach ($replies as $reply)
             <div class="panel panel-default">
-                <div class="panel-heading">Reply {{ $reply->id }}, thread: {{ $reply->thread_id }}, parent: {{ $reply->parent_id }}<br />child: {{ $reply->child_replies }}</div>
+                <div class="panel-heading">Reply {{ $reply->id }}, thread: {{ $reply->thread_id }}, parent: {{ $reply->parent_id }}<br />pos: {{ $reply->position }}</div>
                 <div class="panel-body">
                         <div class="form-group">
                             <label class="col-md-4 control-label">By: {{ $reply->user_id }}</label>
