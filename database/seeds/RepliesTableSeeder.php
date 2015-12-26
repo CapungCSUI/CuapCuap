@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Helpers\Helper;
 
 class RepliesTableSeeder extends Seeder
 {
@@ -13,12 +14,13 @@ class RepliesTableSeeder extends Seeder
     {
     	for ($count = 1; $count <= 10; $count++) {
     		$thread_id = rand(1, DB::table('threads')->count());
+            $position = Helper::appendZero($count, 5);
 
     		DB::table('replies')->insert([
 	            'thread_id' => $thread_id,
 	            'user_id' => rand(1, DB::table('users')->count()),
                 'content' => str_random(100),
-                'position' => $count.',',
+                'position' => $position.',',
                 'depth' => 0,
 	        ]);
 
@@ -35,7 +37,7 @@ class RepliesTableSeeder extends Seeder
         for ($count = 11; $count <= 30; $count++) {
         	$parent_id = rand(1, DB::table('replies')->count());
         	$parent = DB::table('replies')->where('id', $parent_id)->first();
-        	$position = $parent->position.$count.',';
+        	$position = $parent->position.Helper::appendZero($count, 5).',';
 
         	$thread_id = $parent->thread_id;
         	
