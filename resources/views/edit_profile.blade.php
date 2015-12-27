@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Edit Profile</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/profile/edit') }}" enctype="multipart/form-data" >
+                    <form class="form-horizontal" role="form" method="POST" action="{{ Request::url() }}" enctype="multipart/form-data" >
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">

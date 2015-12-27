@@ -20,14 +20,34 @@ class ThreadController extends Controller
     public function index($category = 'new')
     {
         if ($category === 'hot') {
-            $threads = DB::table('threads')->orderBy('upvote', 'desc')->orderBy('updated_at', 'desc')->get();
+            $threads = DB::table('threads')
+                ->orderBy('sticky', 'desc')
+                ->orderBy('upvote', 'desc')
+                ->orderBy('updated_at', 'desc')
+                ->get();
         }
         else if ($category === 'new') {
-            $threads = DB::table('threads')->orderBy('updated_at', 'desc')->get();
+            $threads = DB::table('threads')
+                ->orderBy('sticky', 'desc')
+                ->orderBy('updated_at', 'desc')
+                ->get();
         }
         else {
-            $category_id = DB::table('categories')->where('name', $category)->first()->id;
-            $threads = DB::table('threads')->where('category_id', $category_id)->get();
+            $category = DB::table('categories')
+                ->where('name', $category)
+                ->first();
+
+            if ($category == null) {
+                abort(404);
+            }
+
+            $category_id = $category->id;
+
+            $threads = DB::table('threads')
+                ->where('category_id', $category_id)
+                ->orderBy('sticky', 'desc')
+                ->orderBy('updated_at', 'desc')
+                ->get();
         }
         
         return view('show_threads', [
@@ -58,13 +78,14 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
+        // Validation
         $categoriesCount = DB::table('categories')->count();
         $this->validate($request, [
-            'category_id' => 'between:1,'.$categoriesCount,
-            'title' => 'string',
-            'content' => 'string',
+            'category_id' => 'between:1,'.$categoriesCount.'|required',
+            'title' => 'string|required',
+            'content' => 'string|required',
             'tags' => 'string',
-            'sticky' => 'boolean',
+            'sticky' => 'boolean|required',
         ]);
 
         $author_id = Auth::user()->id;
@@ -95,10 +116,15 @@ class ThreadController extends Controller
     public function show($id)
     {
         $thread = DB::table('threads')->where('id', $id)->first();
+
         if ($thread == null) {
             abort(404);
         }
-        $replies = DB::table('replies')->where('thread_id', $thread->id)->orderBy('position', 'asc')->get();
+
+        $replies = DB::table('replies')
+            ->where('thread_id', $thread->id)
+            ->orderBy('position', 'asc')
+            ->get();
 
         return view('show_thread', [
             'thread' => $thread,
@@ -115,6 +141,7 @@ class ThreadController extends Controller
     public function edit($id)
     {
         $thread = DB::table('threads')->where('id', $id)->first();
+
         if ($thread == null) {
             abort(404);
         }
@@ -141,7 +168,7 @@ class ThreadController extends Controller
     {
         $thread = DB::table('threads')->where('id', $id)->first();
         if ($thread == null) {
-            abort(401);
+            abort(404);
         }
 
         $author_id = $thread->author_id;
@@ -149,14 +176,14 @@ class ThreadController extends Controller
             abort(401);
         }
 
+        // Validation
         $categoriesCount = DB::table('categories')->count();
-
         $this->validate($request, [
-            'category_id' => 'between:1,'.$categoriesCount,
-            'title' => 'string',
-            'content' => 'string',
+            'category_id' => 'between:1,'.$categoriesCount.'|required',
+            'title' => 'string|required',
+            'content' => 'string|required',
             'tags' => 'string',
-            'sticky' => 'boolean',
+            'sticky' => 'boolean|required',
         ]);
 
         $category_id = $request->input('category_id');
@@ -188,7 +215,7 @@ class ThreadController extends Controller
     {
         $thread = DB::table('threads')->where('id', $id)->first();
         if ($thread == null) {
-            abort(401);
+            abort(404);
         }
 
         $author_id = $thread->author_id;

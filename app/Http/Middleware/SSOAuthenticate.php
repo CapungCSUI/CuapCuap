@@ -24,7 +24,12 @@ class SSOAuthenticate
             return $next($request);
         }
         else if (SSO::check()) {
-            $userData = SSO::getUser();
+            try {
+                $userData = SSO::getUser();
+            }
+            catch (Exception $e) {
+                SSO::logout();
+            }
             if (substr($userData->npm, 0, 2) === "15" && $userData->faculty === "ILMU KOMPUTER") {
                 $request->session()->put('sso', json_encode(SSO::getUser()));
 

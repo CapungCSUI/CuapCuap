@@ -37,10 +37,19 @@
                     Route::get('/threads/{$category}', 'ThreadController@index');<br/>
                     Route::get('/thread/new', 'ThreadController@create');<br/>
                     Route::post('/thread/new', 'ThreadController@store');<br/>
-                    Route::get('/thread/edit/{id}', 'ThreadController@edit');<br/>
-                    Route::post('/thread/edit/{id}', 'ThreadController@update');<br/>
-                    Route::get('/thread/delete/{id}', 'ThreadController@destroy');<br/>
+                    Route::get('/thread/{id}/edit', 'ThreadController@edit');<br/>
+                    Route::post('/thread/{id}/edit', 'ThreadController@update');<br/>
+                    Route::get('/thread/{id}/delete', 'ThreadController@destroy');<br/>
                     Route::get('/thread/{id}', 'ThreadController@show');<br/>
+                    <br/>
+                    Route::get('/thread/{thread_id}/{parent_id}/reply', 'ReplyController@create');<br/>
+                    Route::post('/thread/{thread_id}/{parent_id}/reply', 'ReplyController@store');<br/>
+                    Route::get('/thread/{thread_id}/reply', 'ReplyController@create');<br/>
+                    Route::post('/thread/{thread_id}/reply', 'ReplyController@store');<br/>
+                    Route::get('/thread/{thread_id}/{id}', 'ReplyController@show');<br/>
+                    Route::get('/thread/{thread_id}/{id}/edit', 'ReplyController@edit');<br/>
+                    Route::post('/thread/{thread_id}/{id}/edit', 'ReplyController@update');<br/>
+                    Route::get('/thread/{thread_id}/{id}/delete', 'ReplyController@destroy');<br/>
                     <br/>
                     <br/>
                 </div>

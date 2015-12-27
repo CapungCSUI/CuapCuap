@@ -25,9 +25,10 @@ database structure:
 			user_id (int, NOT NULL, FOREIGN_KEY)
 			content(text, NOT NULL)
 			parent_id (int)
-			position (varchar(255), NOT NULL) //langsung string isi list reply_id (append zero hingga 5 digit) comma separated yang merupakan urutan nestednya
+			position (varchar(255)) //langsung string isi list reply_id (append zero hingga 5 digit) comma separated yang merupakan urutan nestednya
 			depth (int)
 			upvote (int, DEFAULT 0)
+			is_deleted (boolean, DEFAULT false)
 			created_at (DATE, DEFAULT)
 			updated_at (DATE, DEFAULT==CreatedAt)
 		

@@ -41,7 +41,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="/">
-                    Laravel
+                    CuapCuap
                 </a>
             </div>
 
@@ -49,6 +49,8 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
+                    <li><a href="/profiles">Profiles</a></li>
+                    <li><a href="/threads">Threads</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -65,6 +67,8 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/logout"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="/profile">My Profile</a></li>
+                                <li><a href="/profile/edit">Edit Profile</a></li>
                             </ul>
                     @endif
                 </ul>

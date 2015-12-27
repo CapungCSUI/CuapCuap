@@ -5,9 +5,10 @@
     <div class="row">
         {{ $category }}
         <div class="col-md-8 col-md-offset-2">
+            <button><a href="{{ 'thread/new' }}">New Thread</a></button>
             @foreach ($threads as $thread)
             <div class="panel panel-default">
-                <div class="panel-heading">Thread {{ $thread->id }}</div>
+                <div class="panel-heading"><a href="/thread/{{ $thread->id}}">Thread {{ $thread->id }}</a></div>
                 <div class="panel-body">
                         <div class="form-group">
                             <label class="col-md-4 control-label">Category_id: {{ $thread->category_id }}</label>

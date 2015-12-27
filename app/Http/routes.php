@@ -42,9 +42,18 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/threads/{category?}', 'ThreadController@index');
     Route::get('/thread/new', 'ThreadController@create');
     Route::post('/thread/new', 'ThreadController@store');
-    Route::get('/thread/edit/{id}', 'ThreadController@edit');
-    Route::post('/thread/edit/{id}', 'ThreadController@update');
-    Route::get('/thread/delete/{id}', 'ThreadController@destroy');
+    Route::get('/thread/{id}/edit', 'ThreadController@edit');
+    Route::post('/thread/{id}/edit', 'ThreadController@update');
+    Route::get('/thread/{id}/delete', 'ThreadController@destroy');
     Route::get('/thread/{id}', 'ThreadController@show');
 
+    Route::get('/thread/{thread_id}/{parent_id}/reply', 'ReplyController@create');
+    Route::post('/thread/{thread_id}/{parent_id}/reply', 'ReplyController@store');
+    Route::get('/thread/{thread_id}/reply', 'ReplyController@create');
+    Route::post('/thread/{thread_id}/reply', 'ReplyController@store');
+    Route::get('/thread/{thread_id}/{id}', 'ReplyController@show');
+    Route::get('/thread/{thread_id}/{id}/edit', 'ReplyController@edit');
+    Route::post('/thread/{thread_id}/{id}/edit', 'ReplyController@update');
+    Route::get('/thread/{thread_id}/{id}/delete', 'ReplyController@destroy');
+    
 });
