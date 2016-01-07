@@ -16,38 +16,16 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $user_id = Auth::user()->id;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $notifications = DB::table('notifications')
+            ->where('id', $user_id)
+            ->where('is_read', false)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        $user_id = $request->input('user_id');
-        $content_id = $request->input('content_id');
-        $type = $request->input('type');
-        $link = $request->input('link');
-
-        DB::table('notifications')->insert([
-            'type' => $type, 
-            'link' => $link,
-            'content_id' =>  $content_id,
-            'user_id' =>  $user_id
+        return view('show_notifications', [
+            'notifications' => $notifications,
         ]);
     }
 
@@ -59,37 +37,26 @@ class NotificationController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $user_id = Auth::user()->id;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $notification = DB::table('notifications')->where('id', $id)->first();
+        if ($notification == null) {
+            abort(404);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $author_id = $notification->author_id;
+        if ($author_id != $user_id) {
+            abort(401);
+        }
 
-        DB::table('notifications')
+        destroy($id);
 
-            ->where('id', $id)
-            ->update([
-            'is_read' => true
-        ]);
+        if ($notification->type == 0) {
+            return redirect()->action('MessageController@show', ['id' => $notification->content_id]);
+        }
+        else if ($notification->type == 1) {
+            return redirect()->action('ReplyController@show', ['id' => $notification->content_id]);
+        }
     }
 
     /**
@@ -100,7 +67,20 @@ class NotificationController extends Controller
      */
     public function destroy($id)
     {
-        //
-        DB::table('notifications')->where('id', $id)->delete();
+        $notification = DB::table('notifications')->where('id', $id)->first();
+        if ($notification == null) {
+            abort(404);
+        }
+
+        $author_id = $notification->author_id;
+        if ($author_id != Auth::user()->id) {
+            abort(401);
+        }
+
+        DB::table('notifications')
+            ->where('id', $id)
+            ->update([
+                'is_read' => true,
+            ]);
     }
 }

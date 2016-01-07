@@ -40,6 +40,8 @@ database structure:
 			birthday (DATE)
 			profile_picture (varchar(255)) // Referens ke jpeg ato apalah
 			exp (int, default 0)
+			comment_count (int, default 0)
+			thread_count (int, default 0)
 			voted_threads(text)
 			voted_replies(text)
 
@@ -48,7 +50,6 @@ database structure:
 			user_id (int, NOT NULL, FOREIGN_KEY)
 			type (int, NOT NULL) //untuk sementara 0: messaging, 1:thread_owner reply
 			content_id (int, NOT NULL) // id message/reply
-			link (varchar(255)) //link ke thread / message
 			created_at(DATE, DEFAULT)
 			is_read (boolean, DEFAULT FALSE)
 

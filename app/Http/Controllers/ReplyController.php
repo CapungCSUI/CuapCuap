@@ -88,6 +88,14 @@ class ReplyController extends Controller
         ]);
 
         DB::table('threads')->where('id', $thread_id)->increment('comment_count');
+        DB::table('users')->where('id', $user_id)->increment('comment_count');
+
+        $author_id = DB::table('threads')->where('id', $thread_id)->first()->author_id;
+        DB::table('notifications')->insert([
+            'type' => 1,
+            'user_id' => $author_id,
+            'content_id' => $count,
+        ]);
 
         return redirect('/home');
     }
@@ -99,11 +107,15 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($thread_id, $id)
+    public function show($id, $thread_id = null)
     {
         $reply = DB::table('replies')->where('id', $id)->first();
         if ($reply == null) {
             abort(404);
+        }
+
+        if ($thread_id == null) {
+            $thread_id = $reply->thread_id;
         }
 
         $thread = DB::table('threads')->where('id', $reply->thread_id)->first();

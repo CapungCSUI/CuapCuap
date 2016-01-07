@@ -104,6 +104,8 @@ class ThreadController extends Controller
             'tags' => $tags,
         ]);
 
+        DB::table('users')->where('id', $author_id)->increment('thread_count');
+
         return redirect('/home');
     }
 

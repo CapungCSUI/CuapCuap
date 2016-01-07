@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->date('birthday')->nullable();
             $table->string('profile_picture')->nullable();
             $table->integer('exp')->default(0);
+            $table->integer('comment_count')->default(0);
+            $table->integer('thread_count')->default(0);
             $table->text('voted_threads')->nullable();
             $table->text('voted_replies')->nullable();
         });

@@ -20,7 +20,6 @@ class CreateNotificationsTable extends Migration
 
             $table->integer('type');
             $table->integer('content_id');
-            $table->string('link')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->boolean('is_read')->default(false);
         });
