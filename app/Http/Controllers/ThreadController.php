@@ -23,14 +23,12 @@ class ThreadController extends Controller
             $threads = DB::table('threads')
                 ->orderBy('sticky', 'desc')
                 ->orderBy('upvote', 'desc')
-                ->orderBy('updated_at', 'desc')
-                ->get();
+                ->orderBy('updated_at', 'desc');
         }
         else if ($category === 'new') {
             $threads = DB::table('threads')
                 ->orderBy('sticky', 'desc')
-                ->orderBy('updated_at', 'desc')
-                ->get();
+                ->orderBy('updated_at', 'desc');
         }
         else {
             $category = DB::table('categories')
@@ -46,12 +44,13 @@ class ThreadController extends Controller
             $threads = DB::table('threads')
                 ->where('category_id', $category_id)
                 ->orderBy('sticky', 'desc')
-                ->orderBy('updated_at', 'desc')
-                ->get();
+                ->orderBy('updated_at', 'desc');
+
+            $category = $category->name;
         }
         
         return view('show_threads', [
-            'threads' => $threads,
+            'threads' => $threads->paginate(2),
             'category' => $category,
         ]);
     }
@@ -106,7 +105,7 @@ class ThreadController extends Controller
 
         DB::table('users')->where('id', $author_id)->increment('thread_count');
 
-        return redirect('/home');
+        return redirect('/threads');
     }
 
     /**
@@ -125,12 +124,11 @@ class ThreadController extends Controller
 
         $replies = DB::table('replies')
             ->where('thread_id', $thread->id)
-            ->orderBy('position', 'asc')
-            ->get();
+            ->orderBy('position', 'asc');
 
         return view('show_thread', [
             'thread' => $thread,
-            'replies' => $replies,
+            'replies' => $replies->paginate(2),
         ]);
     }
 
@@ -204,7 +202,7 @@ class ThreadController extends Controller
                 'tags' => $tags,
             ]);
 
-        return redirect('/home');
+        return redirect('/threads');
     }
 
     /**
@@ -228,6 +226,6 @@ class ThreadController extends Controller
         DB::table('replies')->where('thread_id', $id)->delete();
         DB::table('threads')->where('id', $id)->delete();
 
-        return redirect('/home');
+        return redirect('/threads');
     }
 }

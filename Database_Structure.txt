@@ -28,9 +28,9 @@ database structure:
 			position (varchar(255)) //langsung string isi list reply_id (append zero hingga 5 digit) comma separated yang merupakan urutan nestednya
 			depth (int)
 			upvote (int, DEFAULT 0)
-			is_deleted (boolean, DEFAULT false)
 			created_at (DATE, DEFAULT)
 			updated_at (DATE, DEFAULT==CreatedAt)
+			is_deleted (boolean, default false)
 		
 		users:
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
@@ -40,6 +40,7 @@ database structure:
 			birthday (DATE)
 			profile_picture (varchar(255)) // Referens ke jpeg ato apalah
 			exp (int, default 0)
+			role_id (int, default 0) //0: user biasa, 1: moderator, 2:admin
 			comment_count (int, default 0)
 			thread_count (int, default 0)
 			voted_threads(text)
@@ -65,3 +66,5 @@ database structure:
 			title (varchar(140), NOT NULL)
 			content(text, NOT NULL)
 			created_at(DATE, DEFAULT)	
+			updated_at(DATE, DEFAULT==CreatedAt)
+			is_deleted (boolean, default false)

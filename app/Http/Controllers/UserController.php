@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->get();
+        $users = DB::table('users')->paginate(3);
 
         foreach ($users as &$user) {
             if ($user->profile_picture !== null) {
@@ -155,7 +155,7 @@ class UserController extends Controller
                 'profile_picture' =>  $profile_picture,
             ]);
 
-        return redirect('/home');
+        return redirect('/profile/edit');
     }
 
     /**
@@ -168,7 +168,7 @@ class UserController extends Controller
     {
         DB::table('users')->where('id', $id)->delete();
 
-        return redirect('/home');
+        return redirect('/profiles');
     }
 
     /**

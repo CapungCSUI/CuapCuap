@@ -33,6 +33,7 @@
                 </div>
             </div>
             @endforeach
+            {!! $replies->links() !!}
         </div>
     </div>
 </div>

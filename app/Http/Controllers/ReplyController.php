@@ -94,10 +94,10 @@ class ReplyController extends Controller
         DB::table('notifications')->insert([
             'type' => 1,
             'user_id' => $author_id,
-            'content_id' => $count,
+            'content_id' => $id,
         ]);
 
-        return redirect('/home');
+        return redirect('/thread/' . $thread_id);
     }
 
     /**
@@ -107,15 +107,11 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $thread_id = null)
+    public function show($thread_id, $id)
     {
         $reply = DB::table('replies')->where('id', $id)->first();
         if ($reply == null) {
             abort(404);
-        }
-
-        if ($thread_id == null) {
-            $thread_id = $reply->thread_id;
         }
 
         $thread = DB::table('threads')->where('id', $reply->thread_id)->first();
@@ -129,7 +125,15 @@ class ReplyController extends Controller
             ->orderBy('position', 'asc')
             ->get();
 
+        $parentReplies = array();
+        $parentReply = $reply;
+        while ($parentReply->parent_id != null) {
+            $parentReply = DB::table('replies')->where('id', $parentReply->parent_id)->first();
+            $parentReplies[] = $parentReply;
+        }
+
         return view('show_reply', [
+            'parentReplies' => array_reverse($parentReplies),
             'startDepth' => $reply->depth,
             'thread' => $thread,
             'replies' => $replies,
@@ -195,7 +199,7 @@ class ReplyController extends Controller
             'content' => $content,
         ]);
 
-        return redirect('/home');
+        return redirect('/thread/' . $thread_id);
     }
 
     /**
@@ -221,6 +225,6 @@ class ReplyController extends Controller
             'is_deleted' => true,
         ]);
 
-        return redirect('/home');
+        return redirect('/thread/' . $thread_id);
     }
 }

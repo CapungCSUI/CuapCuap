@@ -28,8 +28,18 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
-        'web' => [
+        'user' => [
             \App\Http\Middleware\SSOAuthenticate::class,
+        ],
+
+        'moderator' => [
+            \App\Http\Middleware\SSOAuthenticate::class,
+            \App\Http\Middleware\ModeratorAuthenticate::class,
+        ],
+
+        'admin' => [
+            \App\Http\Middleware\SSOAuthenticate::class,
+            \App\Http\Middleware\AdminAuthenticate::class,
         ],
 
         'api' => [

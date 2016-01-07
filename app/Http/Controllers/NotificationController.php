@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
+use DB;
 
 class NotificationController extends Controller
 {
@@ -19,7 +21,7 @@ class NotificationController extends Controller
         $user_id = Auth::user()->id;
 
         $notifications = DB::table('notifications')
-            ->where('id', $user_id)
+            ->where('user_id', $user_id)
             ->where('is_read', false)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -44,18 +46,26 @@ class NotificationController extends Controller
             abort(404);
         }
 
-        $author_id = $notification->author_id;
+        $author_id = $notification->user_id;
         if ($author_id != $user_id) {
             abort(401);
         }
 
-        destroy($id);
+        NotificationController::destroy($id);
 
         if ($notification->type == 0) {
             return redirect()->action('MessageController@show', ['id' => $notification->content_id]);
         }
         else if ($notification->type == 1) {
-            return redirect()->action('ReplyController@show', ['id' => $notification->content_id]);
+            $reply = DB::table('replies')->where('id', $notification->content_id)->first();
+            if ($reply == null) {
+                abort(404);
+            }
+
+            return redirect()->action('ReplyController@show', [
+                'id' => $notification->content_id, 
+                'thread_id' => $reply->thread_id,
+            ]);
         }
     }
 
@@ -72,7 +82,7 @@ class NotificationController extends Controller
             abort(404);
         }
 
-        $author_id = $notification->author_id;
+        $author_id = $notification->user_id;
         if ($author_id != Auth::user()->id) {
             abort(401);
         }
@@ -82,5 +92,7 @@ class NotificationController extends Controller
             ->update([
                 'is_read' => true,
             ]);
+
+        return redirect('/notifications');
     }
 }

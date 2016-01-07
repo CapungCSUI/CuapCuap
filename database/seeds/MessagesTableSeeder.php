@@ -13,9 +13,14 @@ class MessagesTableSeeder extends Seeder
     {
         for ($count = 1; $count <= 10; $count++) {
         	$receiver_id = (rand(0, 1) == 1 ? rand(1, DB::table('users')->count()) : 1);
+            
+            do {
+                $sender_id = rand(1, DB::table('users')->count());
+            } 
+            while ($sender_id == $receiver_id);
 
         	DB::table('messages')->insert([
-	            'sender_id' => rand(1, DB::table('users')->count()),
+	            'sender_id' => $sender_id,
 	            'receiver_id' => $receiver_id,
                 'content' => str_random(100),
 	        ]);
@@ -23,7 +28,7 @@ class MessagesTableSeeder extends Seeder
 	        DB::table('notifications')->insert([
 	            'type' => 0,
 	            'user_id' => $receiver_id,
-	            'content_id' => $count,
+	            'content_id' => $sender_id,
 	        ]);
 
         }

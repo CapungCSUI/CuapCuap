@@ -23,9 +23,15 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Profile picture: <img style="max-width:100px;" src="{{ $user->profile_picture }}"></label>
                         </div>
+
+                        <div class="form-group">
+                            <button><a href="/messages/{{ $user->id }}">Message!</a></button>
+                        </div>
+
                 </div>
             </div>
             @endforeach
+            {!! $users->links() !!}
         </div>
     </div>
 </div>

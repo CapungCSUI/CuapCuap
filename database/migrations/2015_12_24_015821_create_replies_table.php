@@ -26,9 +26,9 @@ class CreateRepliesTable extends Migration
             $table->string('position')->nullable();
             $table->integer('depth');
             $table->integer('upvote')->default(0);
-            $table->boolean('is_deleted')->default(false);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->boolean('is_deleted')->default(false);
         });
     }
 

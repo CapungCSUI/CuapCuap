@@ -51,6 +51,8 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/profiles">Profiles</a></li>
                     <li><a href="/threads">Threads</a></li>
+                    <li><a href="/categories">Categories</a></li>
+                    <li><a href="/announcements">Announcements</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -69,6 +71,7 @@
                                 <li><a href="/logout"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                                 <li><a href="/profile">My Profile</a></li>
                                 <li><a href="/profile/edit">Edit Profile</a></li>
+                                <li><a href="/notifications">Notifications</a></li>
                             </ul>
                     @endif
                 </ul>

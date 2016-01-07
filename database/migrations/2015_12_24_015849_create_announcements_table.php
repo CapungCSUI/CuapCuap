@@ -17,6 +17,8 @@ class CreateAnnouncementsTable extends Migration
             $table->string('title', 140);
             $table->text('content');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->boolean('is_deleted')->default(false);
         });
     }
 

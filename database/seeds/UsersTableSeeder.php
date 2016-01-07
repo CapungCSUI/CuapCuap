@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
             'username' => 'aldi.fahrezi',
             'email' => 'aldi.fahrezi@gmail.com',
             'birthday' => '1997-09-08',
+            'role_id' => 2,
         ]);
 
     	for ($count = 0; $count < 5; $count++) {
