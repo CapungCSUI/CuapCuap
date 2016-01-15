@@ -34,13 +34,19 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = DB::table('categories')->where('id', $id)->first();
-        
-        if ($category == null) {
-            abort(404);
+        if ($id != 'hot' && $id != 'new') {
+            $category = DB::table('categories')->where('id', $id)->first();
+            
+            if ($category == null) {
+                abort(404);
+            }
+            
+            $category = $category->name;
+        }
+        else {
+            $category = $id;
         }
 
-        $category = $category->name;
         return redirect()->action('ThreadController@index', ['category' => $category]);
     }
 
