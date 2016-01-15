@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CuapCuap &middot; Home</title>
+
+	<link rel="stylesheet" href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" />
+
+	<style>
+		#header {
+			overflow: hidden;
+		    position: relative;
+		    width: 100%;
+			border-bottom: 2px solid #3B8EE3;
+			padding: 1em;
+			padding-bottom: 0;
+		}
+
+		#header-background {
+			position: absolute;
+    		z-index: -1;
+    		top:0;
+    		height:0;
+    		margin-left: -1em;
+			width:100%;
+			height:100%;
+			background: #666 url('img/bg.jpg') center no-repeat;
+			filter: brightness(50%);
+			-webkit-filter: brightness(50%);
+			background-size: cover;
+		}
+
+		.navbar {
+			background: none;
+			margin-top: 2em;
+			margin-bottom: 0;
+		}
+
+		nav li a {
+			color: white !important;
+			border: 2px solid transparent !important;
+			padding-left: 2em !important;
+			padding-right: 2em !important;
+		}
+
+		nav li a:hover {
+			background: none !important;
+			border-radius: 4px !important;
+			border: 2px solid #8ADD14 !important;
+		}
+
+		.search_bar {
+			background: none;
+			border-top: none !important;
+			border-left: none !important;
+			border-right: none !important;
+			border-radius: 0 !important;
+			width: 250px;
+			text-align: right;
+			text-transform: uppercase;
+			color: white !important;
+		}
+
+		.content {
+			background: #8ADD14;
+			min-height: 50em;
+		}
+
+		.sidebar {
+			background: #3B8EE3;
+		}
+
+	</style>
+
+</head>
+<body>
+	<header id="header">
+		<img src="img/cuapcuap-logo-h.png" alt="CuapCuap Capung" height="100">
+
+		<div class="navbar">
+			<nav>
+				<ul>
+					<li><a href="#">Hot</a></li>
+					<li><a href="#">New</a></li>
+					<li><a href="#">Akademis</a></li>
+					<li><a href="#">Riset</a></li>
+					<li><a href="#">Seni</a></li>
+					<li><a href="#">Olahraga</a></li>
+					<li><a href="#">Santai</a></li>
+				</ul>
+				<ul>
+					<li>
+						<form action="/search" method="get" accept-charset="utf-8">
+							<input type="search" class="search_bar" name="keyword" placeholder="Cari sesuatu?">
+						</form>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+		<div id="header-background">
+			
+		</div>
+
+	</header><!-- /header -->
+
+	<main class="wrapper">
+		<div class="row">
+			<main class="content col-9">
+				.content; unfinished
+			</main>
+
+			<aside class="sidebar col-3">
+				.sidebar; unfinished
+			</aside>
+		</div>
+	</main>
+
+
+	<script type="text/javascript" src="http://cdn.everything.io/kickstart/3.x/js/kickstart.min.js"></script>
+</body>
+</html>
