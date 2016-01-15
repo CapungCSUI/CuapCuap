@@ -1,7 +1,14 @@
 <?php
 
-// Customizing when using CLEARDB
-if (getenv("CLEARDB_DATABASE_URL") != false && filter_var(getenv("CLEARDB_DATABASE_URL"), FILTER_VALIDATE_URL) == TRUE) {
+// Customizing when using DB4FREE or CLEARDB
+if (getenv("DB4FREE_DATABASE_URL") != false && filter_var(getenv("DB4FREE_DATABASE_URL"), FILTER_VALIDATE_URL) == TRUE) {
+    $url = parse_url(getenv("DB4FREE_DATABASE_URL"));
+    $dbhost = $url["host"];
+    $dbusername = $url["user"];
+    $dbpassword = $url["pass"];
+    $dbname = substr($url["path"], 1);
+}
+else if (getenv("CLEARDB_DATABASE_URL") != false && filter_var(getenv("CLEARDB_DATABASE_URL"), FILTER_VALIDATE_URL) == TRUE) {
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $dbhost = $url["host"];
     $dbusername = $url["user"];

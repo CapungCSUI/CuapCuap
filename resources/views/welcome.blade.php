@@ -111,7 +111,7 @@
 				<img src="img/cuapcuap-logo.png" alt="Logo CuapCuap" class="responsive block" />
 			</div>
 			<div>
-				<a href="#" class="button">Masuk</a>
+				<a href="{{ url('/login') }}" class="button">Masuk</a>
 			</div>
 		</div>
 

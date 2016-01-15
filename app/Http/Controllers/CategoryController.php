@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class CategoryController extends Controller
 {
@@ -16,32 +17,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $categories = DB::table('categories')
+            ->orderBy('id', 'asc')
+            ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        $name = $request->input('name');
-
-        DB::table('categories')->insert([
-            'name' => $name
+        return view('show_categories', [
+            'categories' => $categories,
         ]);
     }
 
@@ -53,7 +34,45 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = DB::table('categories')->where('id', $id)->first();
+        
+        if ($category == null) {
+            abort(404);
+        }
+
+        $category = $category->name;
+        return redirect()->action('ThreadController@index', ['category' => $category]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('create_category');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'string|required|unique:categories',
+        ]);
+
+        $name = $request->input('name');
+
+        DB::table('categories')->insert([
+            'name' => $name,
+        ]);
+
+        return redirect('/categories');
     }
 
     /**
@@ -64,7 +83,15 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = DB::table('categories')->where('id', $id)->first();
+
+        if ($category == null) {
+            abort(404);
+        }
+        
+        return view('edit_category', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -76,14 +103,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = DB::table('categories')->where('id', $id)->first();
+        if ($category == null) {
+            abort(404);
+        }
+
+        $this->validate($request, [
+            'name' => 'string|required|unique:categories',
+        ]);
+
         $name = $request->input('name');
 
         DB::table('categories')
             ->where('id', $id)
             ->update([
-            'name' => $name
-        ]);
+                'name' => $name
+            ]);
+
+        return redirect('/categories');
     }
 
     /**
@@ -94,8 +131,31 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = DB::table('categories')->where('id', $id)->first();
+        if ($category == null) {
+            abort(404);
+        }
+
+        $threads = DB::table('threads')->where('category_id', $id)->get();
+        foreach ($threads as $thread) {
+            DB::table('replies')->where('thread_id', $thread->id)->delete();
+            DB::table('threads')->where('id', $thread->id)->delete();
+        }
+
         DB::table('categories')->where('id', $id)->delete();
 
+        return redirect('/categories');
+    }
+
+    /**
+     * Returns categories in array
+     * 
+     * @return array
+     */
+    public function getCategories()
+    {
+        return DB::table('categories')
+            ->orderBy('id', 'asc')
+            ->get();
     }
 }

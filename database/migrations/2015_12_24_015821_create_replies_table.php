@@ -21,12 +21,14 @@ class CreateRepliesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->string('content');
-            $table->integer('upvote')->default(0);
-            $table->timestamp('created_at')->default(DB;:raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->text('content');
             $table->integer('parent_id')->nullable();
-            $table->string('child_replies')->nullable();
+            $table->string('position')->nullable();
+            $table->integer('depth');
+            $table->integer('upvote')->default(0);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->boolean('is_deleted')->default(false);
         });
     }
 

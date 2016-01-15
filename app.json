@@ -1,6 +1,8 @@
 {
   "name": "CuapCuap",
-  "scripts": {},
+  "scripts": {
+    "postdeploy": "php artisan migrate:refresh --seed"
+    },
   "env": {
     "APP_ENV": "staging",
     "APP_KEY": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",

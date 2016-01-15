@@ -24,9 +24,13 @@ class SSOAuthenticate
             return $next($request);
         }
         else if (SSO::check()) {
-            $userData = SSO::getUser();
+            try {
+                $userData = SSO::getUser();
+            }
+            catch (Exception $e) {
+                SSO::logout();
+            }
             if (substr($userData->npm, 0, 2) === "15" && $userData->faculty === "ILMU KOMPUTER") {
-                // die('asdfasdf');
                 $request->session()->put('sso', json_encode(SSO::getUser()));
 
                 if (Auth::guard($guard)->attempt(['username' => $userData->username, 'password' => ''])) {
@@ -40,16 +44,12 @@ class SSOAuthenticate
                     // Create folder for user
                     Storage::makeDirectory('users/'.$id);
 
-                    // Create voted_threads and voted_replies
-                    Storage::put('users/'.$id.'/voted_threads.txt','');
-                    Storage::put('users/'.$id.'/voted_replies.txt','');
-
                     Auth::guard($guard)->loginUsingId($id);
                     return $next($request);
                 }
             }
 
-            return response('Unauthorized.', 401);
+            return abort(401);
         }
         else {
             SSO::authenticate();

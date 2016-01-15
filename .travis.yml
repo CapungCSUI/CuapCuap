@@ -1,9 +1,7 @@
 language: php
 php:
-  - 5.5
   - 5.6
   - hhvm
-  - nightly
 
 services:
   - mysql
@@ -16,16 +14,14 @@ env:
     - CACHE_DRIVER=file
     - SESSION_DRIVER=file
     - QUEUE_DRIVER=sync
-    - DB_HOST=127.0.0.1
-    - DB_DATABASE=cuapcuap
-    - DB_USERNAME=root
-    - DB_PASSWORD=
+    - DB4FREE_DATABASE_URL=mysql://aldifahrezi:vesuvius@db4free.net/cuapcuap?reconnect=true
 
 # Commands to be run before your environment runs.
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
-  - mysql -e 'create database cuapcuap;'
+  - composer dumpautoload
+  - php artisan migrate:refresh --seed
 
 # Commands you want to run that will verify your build.
 script: phpunit --coverage-clover build/logs/clover.xml
@@ -37,8 +33,6 @@ after_script:
 # fast_finish: If your build fails do not continue trying to build, just stop.
 matrix:
   allow_failures:
-    - php: 5.5
-    - php: nightly
   fast_finish: true
 
 # Notifications

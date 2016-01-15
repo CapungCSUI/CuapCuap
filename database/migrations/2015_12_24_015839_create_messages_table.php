@@ -21,7 +21,7 @@ class CreateMessagesTable extends Migration
             $table->integer('receiver_id')->unsigned();
             $table->foreign('receiver_id')->references('id')->on('users');            
 
-            $table->string('content');
+            $table->text('content');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class AnnouncementController extends Controller
 {
@@ -16,36 +17,14 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $announcements = DB::table('announcements')
+            ->where('is_deleted', false)
+            ->orderBy('created_at', 'desc')
+            ->paginate(2);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        $title = $request->input('title');
-        $content = $request->$file('content');
-
-
-        DB::table('announcements')->insert([
-            'content' =>  $content,
-            'title' =>  $title,
+        return view('show_announcements', [
+            'announcements' => $announcements,
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -56,7 +35,49 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-        //
+        $announcement = DB::table('announcements')->where('id', $id)->first();
+
+        if ($announcement == null) {
+            abort(404);
+        }
+
+        return view('show_announcement', [
+            'announcement' => $announcement,
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('create_announcement');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'string|required',
+            'content' => 'string|required',
+        ]);
+
+        $title = $request->input('title');
+        $content = $request->input('content');
+
+        DB::table('announcements')->insert([
+            'title' => $title,
+            'content' => $content,
+        ]);
+
+        return redirect('/announcements');
     }
 
     /**
@@ -67,7 +88,15 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $announcement = DB::table('announcements')->where('id', $id)->first();
+
+        if ($announcement == null) {
+            abort(404);
+        }
+        
+        return view('edit_announcement', [
+            'announcement' => $announcement,
+        ]);
     }
 
     /**
@@ -79,17 +108,27 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $announcement = DB::table('announcements')->where('id', $id)->first();
+        if ($announcement == null) {
+            abort(404);
+        }
+
+        $this->validate($request, [
+            'title' => 'string|required',
+            'content' => 'string|required',
+        ]);
+
         $title = $request->input('title');
-        $content = $request->$file('content');
-
-
+        $content = $request->input('content');
+        
         DB::table('announcements')
             ->where('id', $id)
             ->update([
-            'content' =>  $content,
-            'title' =>  $title,
-        ]);
+                'title' => $title,
+                'content' => $content,
+            ]);
+
+        return redirect('/announcements');
     }
 
     /**
@@ -100,7 +139,15 @@ class AnnouncementController extends Controller
      */
     public function destroy($id)
     {
-        //
-        DB::table('announcements')->where('id', $id)->delete();
+        $announcement = DB::table('announcements')->where('id', $id)->first();
+        if ($announcement == null) {
+            abort(404);
+        }
+
+        DB::table('announcements')->where('id', $id)->update([
+            'is_deleted' => true,
+        ]);
+
+        return redirect('/announcements');
     }
 }

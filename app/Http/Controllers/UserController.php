@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Helpers\Helper;
 use SSO\SSO;
+use Auth;
+use DB;
+use Storage;
+use Response;
 
 class UserController extends Controller
 {
@@ -17,37 +22,51 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $users = DB::table('users')->paginate(3);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        foreach ($users as &$user) {
+            if ($user->profile_picture !== null) {
+                $user->profile_picture = 'users/'.$user->id.'/'.$user->profile_picture;
+                $user->profile_picture = url($user->profile_picture);
+            }
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-         $username = $request->input('username');
-         $birthday = $request->input('birthday');
-         $profile_picture = $request->$file('profile_picture');
-
-
-        DB::table('users')->insert([
-            'username' => $username, 
-            'birthday' => $birthday,
-            'profile_picture' =>  $profile_picture
+        return view('show_profiles', [
+            'users' => $users,
         ]);
+    }
+
+    /**
+     * Show user related resources.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getResource($id = 0, $filename)
+    {
+        if ($id == 0) {
+            $id = Auth::user()->id;
+        }
+
+        if (DB::table('users')->where('id', $id)->first() == null) {
+            return abort(401);
+        }
+        $file = 'users/' . $id . '/' . $filename;
+
+        if (!Storage::has($file)) {
+            return abort(404);
+        }
+
+        $mimeType = Storage::mimeType($file);
+        if (!Helper::startsWith($mimeType, 'image/')) {
+            return abort(404);
+        }
+
+        $file = Storage::get($file);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $mimeType);
+
+        return $response;
     }
 
     /**
@@ -56,42 +75,87 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id = 0)
     {
-        //
+        if ($id == 0) {
+            $id = Auth::user()->id;
+        }
+
+        $user = DB::table('users')->where('id', $id)->first();
+        if ($user == null) {
+            return abort(401);
+        }
+
+        if ($user->profile_picture !== null) {
+            $user->profile_picture = 'users/'.$id.'/'.$user->profile_picture;
+            $user->profile_picture = url($user->profile_picture);
+        }
+        else {
+            $user->profile_picture = null;
+        }
+
+        return view('show_profile', [
+            'user' => $user,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $user = Auth::user();
+
+        return view('edit_profile', [
+            'user' => $user,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $username = $request->input('username');
+        $user = Auth::user();
+
+        $this->validate($request, [
+            'email' => 'email',
+            'birthday' => 'date',
+            'profile_picture' => 'image|max:10000',
+        ]);
+
         $birthday = $request->input('birthday');
-        $profile_picture = $request->$file('profile_picture');
+        $birthday = date('Y-m-d', strtotime($birthday));
+
+        $email = $request->input('email');
+
+        if ($request->hasFile('profile_picture') && $request->file('profile_picture')->isValid()) {
+            $image = $request->file('profile_picture');
+            if (isset($user->profile_picture)) {
+                Storage::delete('users/'.$user->id.'/'.$user->profile_picture);
+            }
+
+            $profile_picture = $image->getClientOriginalName();
+            $image->move(storage_path().'/app/users/'.$user->id, $profile_picture);
+        }
+        else {
+            $profile_picture = $user->profile_picture;
+        }
 
         DB::table('users')
-            ->where('id', $id)
+            ->where('id', $user->id)
             ->update([
-                'username' => $username,
+                'email' => $email,
                 'birthday' => $birthday,  
-                'profile_picture' =>  $profile_picture  
+                'profile_picture' =>  $profile_picture,
             ]);
+
+        return redirect('/profile/edit');
     }
 
     /**
@@ -104,6 +168,18 @@ class UserController extends Controller
     {
         DB::table('users')->where('id', $id)->delete();
 
+        return redirect('/profiles');
+    }
+
+    /**
+     * Login the user.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function login(Request $request)
+    {
+        return redirect('/home');
     }
 
     /**
@@ -114,12 +190,13 @@ class UserController extends Controller
      */
     public function logout(Request $request)
     {
-        if (!$request->session()->has('sso')) {
+        if (!$request->session()->has('sso') && !Auth::check()) {
             SSO::logout();
         }
         
+        Auth::logout();
         $request->session()->flush();
         
-        return redirect('logout');
+        return redirect('/logout');
     }
 }

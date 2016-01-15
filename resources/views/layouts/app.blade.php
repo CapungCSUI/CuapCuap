@@ -41,7 +41,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="/">
-                    Laravel
+                    CuapCuap
                 </a>
             </div>
 
@@ -49,6 +49,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="/">Home</a></li>
+                    <li><a href="/profiles">Profiles</a></li>
+                    <li><a href="/threads">Threads</a></li>
+                    <li><a href="/categories">Categories</a></li>
+                    <li><a href="/announcements">Announcements</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -60,11 +64,14 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->id }} <span class="caret"></span>
+                                {{ Auth::user()->username }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/logout"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="/profile">My Profile</a></li>
+                                <li><a href="/profile/edit">Edit Profile</a></li>
+                                <li><a href="/notifications">Notifications</a></li>
                             </ul>
                     @endif
                 </ul>
