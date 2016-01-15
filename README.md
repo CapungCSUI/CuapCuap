@@ -11,7 +11,8 @@ No official documentation (yet.)
 
 ## Contributing
 
-No official contribution guide (yet.)
+*Front-end guide*
+	- Use kickstart (http://getkickstart.com/docs/3.x/)
 
 ## Security Vulnerabilities
 
