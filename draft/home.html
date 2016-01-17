@@ -16,6 +16,11 @@
 			border-bottom: 2px solid #3B8EE3;
 			padding: 1em;
 			padding-bottom: 0;
+			margin-bottom: 1em;
+		}
+
+		#header img {
+			margin:0 2em;
 		}
 
 		#header-background {
@@ -35,6 +40,7 @@
 		#footer {
 			width: 100%;
 			margin: 0 auto;
+			margin-top: 1em;	
 			padding: 0;
 			text-align: center;
 			background: #3e3e3e;
@@ -123,13 +129,30 @@
 			color: white !important;
 		}
 
-		.content {
-			background: #8ADD14;
-			min-height: 50em;
+		.content article a {
+			color: inherit;
+			text-decoration: none;
 		}
 
-		.sidebar {
-			background: #3B8EE3;
+		.text-center {
+			text-align: center;
+		}
+
+		span.label a {
+			color: inherit;
+			text-decoration: none !important;
+		}
+
+		.rate {
+			min-width: 4em;
+		}
+
+		.positive {
+			color: #3B8EE3;
+		}
+
+		.negative {
+			color: #E33B3B;
 		}
 
 	</style>
@@ -169,7 +192,116 @@
 	<main class="wrapper">
 		<div class="row">
 			<main class="content col-9">
-				.content; unfinished
+
+				<article class="row">
+					<div class="col-2 text-center rate">
+						<div class="wrapper wrapper-fluid">
+							<a href="#upvote">
+								<svg style="width:48;height:48" viewBox="0 0 24 24">
+							    	<path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
+								</svg>
+							</a>
+						</div>
+						<span class="wrapper wrapper-fluid positive">
+							9999
+						</span>
+						<div class="wrapper wrapper-fluid">
+							<a href="#downvote">
+								<svg style="width:48;height:48" viewBox="0 0 24 24">
+								    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div class="col-10">
+						<a href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua.</p></a>
+						<div>
+							<span class="label"><a href="#">9999 Cuap</a></span>
+							<span class="label label-green"><a href="#">Sebarin</a></span>
+							<span class="label label-red"><a href="#">Laporin</a></span>
+
+							<div style="float:right">
+								<span class="label"><a href="#">Sticky</a></span>
+								<span class="label label-green"><a href="#">Akademis</a></span>
+							</div>
+						</div>
+					</div>
+				</article>
+
+				<article class="row">
+					<div class="col-2 text-center rate">
+						<div class="wrapper wrapper-fluid">
+							<a href="#upvote">
+								<svg style="width:48;height:48" viewBox="0 0 24 24">
+							    	<path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
+								</svg>
+							</a>
+						</div>
+						<span class="wrapper wrapper-fluid positive">
+							9999
+						</span>
+						<div class="wrapper wrapper-fluid">
+							<a href="#downvote">
+								<svg style="width:48;height:48" viewBox="0 0 24 24">
+								    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div class="col-10">
+						<a href="#"><p>Lorem ipsum dolor sit amet.</p></a>
+						<div>
+							<span class="label"><a href="#">9999 Cuap</a></span>
+							<span class="label label-green"><a href="#">Sebarin</a></span>
+							<span class="label label-red"><a href="#">Laporin</a></span>
+
+							<div style="float:right">
+								<span class="label label-green"><a href="#">Olahraga</a></span>
+							</div>
+						</div>
+					</div>
+				</article>
+
+				<article class="row">
+					<div class="col-2 text-center rate">
+						<div class="wrapper wrapper-fluid">
+							<a href="#upvote">
+								<svg style="width:48;height:48" viewBox="0 0 24 24">
+							    	<path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
+								</svg>
+							</a>
+						</div>
+						<span class="wrapper wrapper-fluid negative">
+							-9999
+						</span>
+						<div class="wrapper wrapper-fluid">
+							<a href="#downvote">
+								<svg style="width:48;height:48" viewBox="0 0 24 24">
+								    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div class="col-10">
+						<a href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></a>
+						<div>
+							<span class="label"><a href="#">9999 Cuap</a></span>
+							<span class="label label-green"><a href="#">Sebarin</a></span>
+							<span class="label label-red"><a href="#">Laporin</a></span>
+
+							<div style="float:right">
+								<span class="label label-green"><a href="#">Santai</a></span>
+							</div>
+						</div>
+					</div>
+				</article>
+
 			</main>
 
 			<aside class="sidebar col-3">
