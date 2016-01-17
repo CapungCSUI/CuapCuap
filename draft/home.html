@@ -32,6 +32,66 @@
 			background-size: cover;
 		}
 
+		#footer {
+			width: 100%;
+			margin: 0 auto;
+			padding: 0;
+			text-align: center;
+			background: #3e3e3e;
+			border-bottom: #3e3e3e;
+		}
+
+		#footer-logo {
+			background: #FFF;
+			width: 100%;
+			height: 5em;
+			padding: 0;
+			margin: 0 auto 5em auto;
+		}
+
+		#footer-logo img {
+			height: 10em;
+		}
+
+		#footer-links {
+			min-height: 2em;
+			margin: 0;
+			padding: 1em;
+			background: #3c90e6;
+		}
+
+		#footer-links ul {
+			margin: 0 auto;
+			padding: 0;
+			text-align: center;
+			width: 50%;
+		}
+
+		#footer-links li {
+			display: inline;
+			white-space: nowrap;
+		}
+
+		#footer-links li:after {
+			content: " \00b7";
+		}
+
+		#footer-links li.nobullet:after {
+			content: none;
+		}
+
+		#footer-links a:visited, #footer-links a:link {
+			color: white;
+		}
+
+		#footer-links a:hover {
+			text-decoration: underline;
+		}
+
+		#footer-links a:active {
+			color: #00F;
+		}
+
 		.navbar {
 			background: none;
 			margin-top: 2em;
@@ -118,6 +178,19 @@
 		</div>
 	</main>
 
+	<footer id="footer">
+		<div id="footer-logo">
+			<img src="img/footer-logo.png"> 
+		</div>
+		<div style="color: white; margin:0; padding:0.5em;">&copy; Tim SBF PTI 2015, All Rights Reserved.</div>
+		<div id="footer-links">
+			<ul>
+				<li><a href="#">Tentang Kami</a></li>
+				<li><a href="#">Bantuan</a></li>
+				<li class="nobullet"><a href="#">Kontak</a></li>
+			</ul>
+		</div>
+	</footer>
 
 	<script type="text/javascript" src="http://cdn.everything.io/kickstart/3.x/js/kickstart.min.js"></script>
 </body>
