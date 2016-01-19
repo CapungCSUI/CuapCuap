@@ -9,6 +9,12 @@
 	<link rel="stylesheet" href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" />
 
 	<style>
+
+		@font-face {
+		    font-family: 'DroidSerif-Regular';
+		    src: url('draft/fonts/DroidSerif-Regular.ttf');
+		}
+
 		#header {
 			overflow: hidden;
 		    position: relative;
@@ -44,7 +50,7 @@
 			padding: 0;
 			text-align: center;
 			background: #3e3e3e;
-			border-bottom: #3e3e3e;
+			border-top: none;
 		}
 
 		#footer-logo {
@@ -129,6 +135,11 @@
 			color: white !important;
 		}
 
+		.content article {
+			margin-bottom: 1em;
+			font-family: "DroidSerif-Regular" !important;
+		}
+
 		.content article a {
 			color: inherit;
 			text-decoration: none;
@@ -194,7 +205,7 @@
 			<main class="content col-9">
 
 				<article class="row">
-					<div class="col-2 text-center rate">
+					<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
 						<div class="wrapper wrapper-fluid">
 							<a href="#upvote">
 								<svg style="width:48;height:48" viewBox="0 0 24 24">
@@ -217,20 +228,16 @@
 						<a href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 						tempor incididunt ut labore et dolore magna aliqua.</p></a>
 						<div>
+							<span class="label label-green"><a href="#">Sticky</a></span>
+							<span class="label label-red"><a href="#">Akademis</a></span>
 							<span class="label"><a href="#">9999 Cuap</a></span>
-							<span class="label label-green"><a href="#">Sebarin</a></span>
-							<span class="label label-red"><a href="#">Laporin</a></span>
-
-							<div style="float:right">
-								<span class="label"><a href="#">Sticky</a></span>
-								<span class="label label-green"><a href="#">Akademis</a></span>
-							</div>
+							<span style="float: right; font-size: 0.8em; font-style: italic;">Last post: xxxx-xx-xx by xxx</span>
 						</div>
 					</div>
 				</article>
 
 				<article class="row">
-					<div class="col-2 text-center rate">
+					<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
 						<div class="wrapper wrapper-fluid">
 							<a href="#upvote">
 								<svg style="width:48;height:48" viewBox="0 0 24 24">
@@ -252,19 +259,15 @@
 					<div class="col-10">
 						<a href="#"><p>Lorem ipsum dolor sit amet.</p></a>
 						<div>
+							<span class="label label-green"><a href="#">Olahraga</a></span>
 							<span class="label"><a href="#">9999 Cuap</a></span>
-							<span class="label label-green"><a href="#">Sebarin</a></span>
-							<span class="label label-red"><a href="#">Laporin</a></span>
-
-							<div style="float:right">
-								<span class="label label-green"><a href="#">Olahraga</a></span>
-							</div>
+							<span style="float: right; font-size: 0.8em; font-style: italic;">Last post: xxxx-xx-xx by xxx</span>
 						</div>
 					</div>
 				</article>
 
 				<article class="row">
-					<div class="col-2 text-center rate">
+					<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
 						<div class="wrapper wrapper-fluid">
 							<a href="#upvote">
 								<svg style="width:48;height:48" viewBox="0 0 24 24">
@@ -291,13 +294,9 @@
 						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></a>
 						<div>
+							<span class="label label-green"><a href="#">Santai</a></span>
 							<span class="label"><a href="#">9999 Cuap</a></span>
-							<span class="label label-green"><a href="#">Sebarin</a></span>
-							<span class="label label-red"><a href="#">Laporin</a></span>
-
-							<div style="float:right">
-								<span class="label label-green"><a href="#">Santai</a></span>
-							</div>
+							<span style="float: right; font-size: 0.8em; font-style: italic;">Last post: xxxx-xx-xx by xxx</span>
 						</div>
 					</div>
 				</article>
@@ -312,7 +311,7 @@
 
 	<footer id="footer">
 		<div id="footer-logo">
-			<img src="img/footer-logo.png"> 
+			<img src="draft/img/footer-logo.png"> 
 		</div>
 		<div style="color: white; margin:0; padding:0.5em;">&copy; Tim SBF PTI 2015, All Rights Reserved.</div>
 		<div id="footer-links">
