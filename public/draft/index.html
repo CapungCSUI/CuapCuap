@@ -12,7 +12,7 @@
 
 		@font-face {
 		    font-family: 'DroidSerif-Regular';
-		    src: url('draft/fonts/DroidSerif-Regular.ttf');
+		    src: url('fonts/DroidSerif-Regular.ttf');
 		}
 
 		#header {
@@ -40,7 +40,7 @@
 			background: #666 url('img/bg.jpg') center no-repeat;
 			filter: brightness(50%);
 			-webkit-filter: brightness(50%);
-			background-size: cover;
+			background-size: cover
 		}
 
 		#footer {
@@ -110,14 +110,14 @@
 			margin-bottom: 0;
 		}
 
-		nav li a {
+		nav.menu li a {
 			color: white !important;
 			border: 2px solid transparent !important;
 			padding-left: 2em !important;
 			padding-right: 2em !important;
 		}
 
-		nav li a:hover {
+		nav.menu li a:hover {
 			background: none !important;
 			border-radius: 4px !important;
 			border: 2px solid #8ADD14 !important;
@@ -166,163 +166,268 @@
 			color: #E33B3B;
 		}
 
+		.outer-wrapper {
+			background: #fff;
+		}
+
+		// Slideout
+
+		body {
+		  width: 100%;
+		  height: 100%;
+		}
+
+		.slideout-menu {
+		  position: fixed;
+		  left: auto; // Right Slideout
+		  top: 0;
+		  right: 0;
+		  height: 100%;
+		  background: #333;
+		  margin:0;
+		  padding:0;
+		  z-index: ;
+		  width: 300px;
+		  overflow-y: auto;
+		  -webkit-overflow-scrolling: touch;
+		  display: none;
+		  color:white;
+		}
+
+		.slideout-panel {
+		  position: relative;
+		  z-index: 0;
+		}
+
+		.slideout-open,
+		.slideout-open body,
+		.slideout-open .slideout-panel {
+		  overflow: hidden;
+		}
+
+		.slideout-open .slideout-menu {
+		  display: block;
+		}
+
+		.profpic-cover {
+			height: 250px;
+			width: 100%;
+			color: white;
+			padding: 1em;
+			font-size: 200%;
+			background-size: cover !important;
+			-webkit-box-shadow: inset 0px -22px 37px -20px rgba(0,0,0,0.75);
+			-moz-box-shadow: inset 0px -22px 37px -20px rgba(0,0,0,0.75);
+			box-shadow: inset 0px -22px 37px -20px rgba(0,0,0,0.75);
+		}	
+
+		.profpic-cover a {
+			color: white !important;
+			text-decoration: none !important;
+		}
+
+		.menu-toggle {
+			color: white;
+			font-size: 300%;
+			float:right;
+			text-decoration: none !important;
+			margin-right: .5em;
+		}
+
+		.slideout-menu h3 {
+			text-align: center;
+		}
+
 	</style>
 
 </head>
 <body>
-	<header id="header">
-		<img src="img/cuapcuap-logo-h.png" alt="CuapCuap Capung" height="100">
+	<div class="navbar sidemenu">
+		<div class="profpic-cover" style="background: url('http://cdn.dota2.com/apps/dota2/images/heroes/ogre_magi_vert.jpg') no-repeat center;">
+			<a href="#" class="menu-close">&times;</a>
+		</div>
 
-		<div class="navbar">
-			<nav>
+		<h3>Ogre Magi Two-Headed Ogre</h3>
+
+		// unfinished;
+	</div>
+
+	<main class="outer-wrapper">
+		<header id="header">
+			<img src="img/cuapcuap-logo-h.png" alt="CuapCuap Capung" height="100">
+
+			<a href="#" class="menu-toggle">&equiv;</a>
+
+			<div class="navbar">
+				<nav class="menu">
+					<ul>
+						<li><a href="#">Hot</a></li>
+						<li><a href="#">New</a></li>
+						<li><a href="#">Akademis</a></li>
+						<li><a href="#">Riset</a></li>
+						<li><a href="#">Seni</a></li>
+						<li><a href="#">Olahraga</a></li>
+						<li><a href="#">Santai</a></li>
+					</ul>
+					<ul>
+						<li>
+							<form action="/search" method="get" accept-charset="utf-8">
+								<input type="search" class="search_bar" name="keyword" placeholder="Cari sesuatu?">
+							</form>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+			<div id="header-background">
+
+			</div>
+
+		</header><!-- /header -->
+
+		<main class="wrapper">
+			<div class="row">
+				<main class="content col-9">
+
+					<article class="row">
+						<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
+							<div class="wrapper wrapper-fluid">
+								<a href="#upvote">
+									<svg style="width:48;height:48" viewBox="0 0 24 24">
+								    	<path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
+									</svg>
+								</a>
+							</div>
+							<span class="wrapper wrapper-fluid positive">
+								9999
+							</span>
+							<div class="wrapper wrapper-fluid">
+								<a href="#downvote">
+									<svg style="width:48;height:48" viewBox="0 0 24 24">
+									    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+									</svg>
+								</a>
+							</div>
+						</div>
+						<div class="col-10">
+							<a href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua.</p></a>
+							<div>
+								<span class="label label-red"><a href="#">Sticky</a></span>
+								<span class="label label-green"><a href="#">Akademis</a></span>
+								<span class="label"><a href="#">9999 Cuap</a></span>
+								<span style="float: right; font-size: 0.8em; font-style: italic;">Last post: xxxx-xx-xx by xxx</span>
+							</div>
+						</div>
+					</article>
+
+					<article class="row">
+						<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
+							<div class="wrapper wrapper-fluid">
+								<a href="#upvote">
+									<svg style="width:48;height:48" viewBox="0 0 24 24">
+								    	<path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
+									</svg>
+								</a>
+							</div>
+							<span class="wrapper wrapper-fluid positive">
+								9999
+							</span>
+							<div class="wrapper wrapper-fluid">
+								<a href="#downvote">
+									<svg style="width:48;height:48" viewBox="0 0 24 24">
+									    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+									</svg>
+								</a>
+							</div>
+						</div>
+						<div class="col-10">
+							<a href="#"><p>Lorem ipsum dolor sit amet.</p></a>
+							<div>
+								<span class="label label-green"><a href="#">Olahraga</a></span>
+								<span class="label"><a href="#">9999 Cuap</a></span>
+								<span style="float: right; font-size: 0.8em; font-style: italic;">Last post: xxxx-xx-xx by xxx</span>
+							</div>
+						</div>
+					</article>
+
+					<article class="row">
+						<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
+							<div class="wrapper wrapper-fluid">
+								<a href="#upvote">
+									<svg style="width:48;height:48" viewBox="0 0 24 24">
+								    	<path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
+									</svg>
+								</a>
+							</div>
+							<span class="wrapper wrapper-fluid negative">
+								-9999
+							</span>
+							<div class="wrapper wrapper-fluid">
+								<a href="#downvote">
+									<svg style="width:48;height:48" viewBox="0 0 24 24">
+									    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+									</svg>
+								</a>
+							</div>
+						</div>
+						<div class="col-10">
+							<a href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></a>
+							<div>
+								<span class="label label-green"><a href="#">Santai</a></span>
+								<span class="label"><a href="#">9999 Cuap</a></span>
+								<span style="float: right; font-size: 0.8em; font-style: italic;">Last post: xxxx-xx-xx by xxx</span>
+							</div>
+						</div>
+					</article>
+
+				</main>
+
+				<aside class="sidebar col-3">
+					.sidebar; unfinished
+				</aside>
+			</div>
+		</main>
+
+		<footer id="footer">
+			<div id="footer-logo">
+				<img src="img/footer-logo.png"> 
+			</div>
+			<div style="color: white; margin:0; padding:0.5em;">&copy; Tim SBF PTI 2015, All Rights Reserved.</div>
+			<div id="footer-links">
 				<ul>
-					<li><a href="#">Hot</a></li>
-					<li><a href="#">New</a></li>
-					<li><a href="#">Akademis</a></li>
-					<li><a href="#">Riset</a></li>
-					<li><a href="#">Seni</a></li>
-					<li><a href="#">Olahraga</a></li>
-					<li><a href="#">Santai</a></li>
+					<li><a href="#">Tentang Kami</a></li>
+					<li><a href="#">Bantuan</a></li>
+					<li class="nobullet"><a href="#">Kontak</a></li>
 				</ul>
-				<ul>
-					<li>
-						<form action="/search" method="get" accept-charset="utf-8">
-							<input type="search" class="search_bar" name="keyword" placeholder="Cari sesuatu?">
-						</form>
-					</li>
-				</ul>
-			</nav>
-		</div>
-
-		<div id="header-background">
-			
-		</div>
-
-	</header><!-- /header -->
-
-	<main class="wrapper">
-		<div class="row">
-			<main class="content col-9">
-
-				<article class="row">
-					<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
-						<div class="wrapper wrapper-fluid">
-							<a href="#upvote">
-								<svg style="width:48;height:48" viewBox="0 0 24 24">
-							    	<path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
-								</svg>
-							</a>
-						</div>
-						<span class="wrapper wrapper-fluid positive">
-							9999
-						</span>
-						<div class="wrapper wrapper-fluid">
-							<a href="#downvote">
-								<svg style="width:48;height:48" viewBox="0 0 24 24">
-								    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-								</svg>
-							</a>
-						</div>
-					</div>
-					<div class="col-10">
-						<a href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.</p></a>
-						<div>
-							<span class="label label-green"><a href="#">Sticky</a></span>
-							<span class="label label-red"><a href="#">Akademis</a></span>
-							<span class="label"><a href="#">9999 Cuap</a></span>
-							<span style="float: right; font-size: 0.8em; font-style: italic;">Last post: xxxx-xx-xx by xxx</span>
-						</div>
-					</div>
-				</article>
-
-				<article class="row">
-					<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
-						<div class="wrapper wrapper-fluid">
-							<a href="#upvote">
-								<svg style="width:48;height:48" viewBox="0 0 24 24">
-							    	<path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
-								</svg>
-							</a>
-						</div>
-						<span class="wrapper wrapper-fluid positive">
-							9999
-						</span>
-						<div class="wrapper wrapper-fluid">
-							<a href="#downvote">
-								<svg style="width:48;height:48" viewBox="0 0 24 24">
-								    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-								</svg>
-							</a>
-						</div>
-					</div>
-					<div class="col-10">
-						<a href="#"><p>Lorem ipsum dolor sit amet.</p></a>
-						<div>
-							<span class="label label-green"><a href="#">Olahraga</a></span>
-							<span class="label"><a href="#">9999 Cuap</a></span>
-							<span style="float: right; font-size: 0.8em; font-style: italic;">Last post: xxxx-xx-xx by xxx</span>
-						</div>
-					</div>
-				</article>
-
-				<article class="row">
-					<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
-						<div class="wrapper wrapper-fluid">
-							<a href="#upvote">
-								<svg style="width:48;height:48" viewBox="0 0 24 24">
-							    	<path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
-								</svg>
-							</a>
-						</div>
-						<span class="wrapper wrapper-fluid negative">
-							-9999
-						</span>
-						<div class="wrapper wrapper-fluid">
-							<a href="#downvote">
-								<svg style="width:48;height:48" viewBox="0 0 24 24">
-								    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-								</svg>
-							</a>
-						</div>
-					</div>
-					<div class="col-10">
-						<a href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></a>
-						<div>
-							<span class="label label-green"><a href="#">Santai</a></span>
-							<span class="label"><a href="#">9999 Cuap</a></span>
-							<span style="float: right; font-size: 0.8em; font-style: italic;">Last post: xxxx-xx-xx by xxx</span>
-						</div>
-					</div>
-				</article>
-
-			</main>
-
-			<aside class="sidebar col-3">
-				.sidebar; unfinished
-			</aside>
-		</div>
+			</div>
+		</footer>
 	</main>
 
-	<footer id="footer">
-		<div id="footer-logo">
-			<img src="draft/img/footer-logo.png"> 
-		</div>
-		<div style="color: white; margin:0; padding:0.5em;">&copy; Tim SBF PTI 2015, All Rights Reserved.</div>
-		<div id="footer-links">
-			<ul>
-				<li><a href="#">Tentang Kami</a></li>
-				<li><a href="#">Bantuan</a></li>
-				<li class="nobullet"><a href="#">Kontak</a></li>
-			</ul>
-		</div>
-	</footer>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/0.1.11/slideout.min.js"></script>
+	<script src="http://cdn.everything.io/kickstart/3.x/js/kickstart.min.js"></script>
 
-	<script type="text/javascript" src="http://cdn.everything.io/kickstart/3.x/js/kickstart.min.js"></script>
+	<script>
+		var slideout = new Slideout({
+			'panel' : document.querySelector('.outer-wrapper'),
+			'menu'	: document.querySelector('.sidemenu'),
+			'padding' : 300,
+			'tolerance' : 70,
+			'side' : 'right'
+		});
+
+		document.querySelector('.menu-toggle').addEventListener('click', function(){
+			slideout.toggle();
+		});
+
+		document.querySelector('.menu-close').addEventListener('click', function(){
+			slideout.close();
+		});
+	</script>
 </body>
 </html>
