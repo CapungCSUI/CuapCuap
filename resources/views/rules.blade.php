@@ -17,9 +17,8 @@
 @endsection
 
 @section('content')
-    <div class="heading">Announcement</div>
-    <h2 id="title">{{ $announcement->title }}</h2>
+    <div class="heading">Peraturan Forum</div>
     <div id="content">
-        {{ $announcement->content }}
+        Ga boleh nakal!
     </div>
 @endsection

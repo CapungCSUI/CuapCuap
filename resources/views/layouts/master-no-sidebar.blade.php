@@ -219,6 +219,26 @@
 				text-align: center;
 			}
 
+			.heading {
+		        padding-top: 0.4em;
+		        padding-bottom: 0.4em;
+		        text-align: center;
+		        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+		        color: white;
+		        background: #C00;
+		        font-size: 2em;
+		        margin-bottom: 1em;
+		    }
+
+		    .form-text-area {
+		        width: 30em;
+		        height: 16em;
+		    }
+
+		    .help-block {
+		        color: red;
+		    }
+
 		@show
 
 	</style>

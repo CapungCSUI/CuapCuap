@@ -31,6 +31,11 @@ class ReplyController extends Controller
             abort(404);
         }
 
+        if ($parentReply != null) {
+            $user_name = DB::table('users')->select('username')->where('id', $parentReply->user_id)->first();
+            $parentReply->user_name = $user_name->username;
+        }
+
         return view('create_reply', [
             'thread' => $thread,
             'parentReply' => $parentReply,
@@ -94,7 +99,7 @@ class ReplyController extends Controller
         DB::table('notifications')->insert([
             'type' => 1,
             'user_id' => $author_id,
-            'content_id' => $id,
+            'content_id' => $thread_id,
         ]);
 
         return redirect('/thread/' . $thread_id);
@@ -160,6 +165,11 @@ class ReplyController extends Controller
 
         $thread = DB::table('threads')->where('id', $reply->thread_id)->first();
         $parentReply = DB::table('replies')->where('id', $reply->parent_id)->first();
+
+        if ($parentReply != null) {
+            $user_name = DB::table('users')->select('username')->where('id', $parentReply->user_id)->first();
+            $parentReply->user_name = $user_name->username;
+        }
 
         return view('edit_reply', [
             'reply' => $reply,

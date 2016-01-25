@@ -60,7 +60,7 @@ class RepliesTableSeeder extends Seeder
 	        DB::table('notifications')->insert([
 	            'type' => 1,
 	            'user_id' => $author_id,
-	            'content_id' => $count,
+	            'content_id' => $thread_id,
 	        ]);
         }
     }

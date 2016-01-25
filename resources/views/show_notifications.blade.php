@@ -1,37 +1,76 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            @foreach ($notifications as $notification)
-            <div class="panel panel-default">
-                <div class="panel-heading"><a href="/notification/{{ $notification->id }}">Notification {{ $notification->id }}</a></div>
-                <div class="panel-body">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">user_id: {{ $notification->user_id }}</label>
-                        </div>
+@section('internal-css')
+    @parent
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">type: {{ $notification->type }}</label>
-                        </div>
+    .notification {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">content_id: {{ $notification->content_id }}</label>
-                        </div>
+    ul.notification li {
+        display: block;
+        border-radius: 8px;
+        color: white;
+        background-color: #528ac3;
+        padding: 8px 16px;
+        margin: 0.5em;
+        text-decoration: none;
+        border: 1px solid #bbb;
+    }
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">created_at: {{ $notification->created_at }}</label>
-                        </div>
+    ul.notification li.green {
+        background-color: #96d046;
+    }
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">is_read: {{ $notification->is_read }}</label>
-                        </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</div>
+    ul.notification li:hover, ul.notification li.green:hover {
+        text-decoration: underline;
+    }
+
+    ul.notification li:active {
+        background-color: #bbb;
+    }
+
 @endsection
 
+@section('content')
+    <div class="heading">Inbox</div>
+    <div class="row">
+        <ul class="notification col-6">
+            @for ($i = 0; $i < count($notifications); $i += 2)
+                <a href="/notification/{{ $notifications[$i]->id }}">
+                    <li {{ $notifications[$i]->type == 1 ? "class=green" : "" }}>
+                        @if ($notifications[$i]->type == 0)
+                        New message from - {{ $users[$notifications[$i]->content_id - 1]->username }}<br />
+                        At {{ $notifications[$i]->created_at }}
+                        @elseif ($notifications[$i]->type == 1)
+                        New reply on Thread - {{ $threads[$notifications[$i]->content_id - 1]->title }}<br />
+                        At {{ $notifications[$i]->created_at }}
+                        @endif
+                    </li>
+                </a>
+            @endfor
+        </ul>
+        <ul class="notification col-6">
+            @for ($i = 1; $i < count($notifications); $i += 2)
+                <a href="/notification/{{ $notifications[$i]->id }}">
+                    <li {{ $notifications[$i]->type == 1 ? "class=green" : "" }}>
+                        @if ($notifications[$i]->type == 0)
+                        New message from - {{ $users[$notifications[$i]->content_id - 1]->username }}<br />
+                        At {{ $notifications[$i]->created_at }}
+                        @elseif ($notifications[$i]->type == 1)
+                        New reply on Thread - {{ $threads[$notifications[$i]->content_id - 1]->title }}<br />
+                        At {{ $notifications[$i]->created_at }}
+                        @endif
+                    </li>
+                </a>
+            @endfor
+        </ul>
+        
+        <div class="col-12" style="text-align:center; margin-top: 1.5em; margin-bottom: 1.5em;">
+            {!! $notifications->links() !!}
+        </div>
+    </div>
+@endsection

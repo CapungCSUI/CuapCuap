@@ -27,6 +27,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/announcement/{id}/edit', 'AnnouncementController@edit');
     Route::post('/announcement/{id}/edit', 'AnnouncementController@update');
     Route::get('/announcement/{id}/delete', 'AnnouncementController@destroy');
+    Route::get('/announcements', 'AnnouncementController@index');
 });
 
 Route::group(['middleware' => 'user'], function () {
@@ -38,6 +39,12 @@ Route::group(['middleware' => 'user'], function () {
     });
     Route::post('/contact', function() {
         return abort(503);
+    });
+    Route::get('/rules', function() {
+        return view('rules');
+    });
+    Route::get('/guide/how-to-make-a-post', function() {
+        return view('guide.how-to-make-a-post');
     });
 
 	Route::get('/home', 'HomeController@index');
@@ -76,6 +83,5 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/categories', 'CategoryController@index');
     Route::get('/category/{id}', 'CategoryController@show');
 
-    Route::get('/announcements', 'AnnouncementController@index');
     Route::get('/announcement/{id}', 'AnnouncementController@show');
 });

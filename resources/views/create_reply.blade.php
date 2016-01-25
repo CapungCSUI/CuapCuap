@@ -1,70 +1,79 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">New Reply</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ Request::url() }}" >
-                        {!! csrf_field() !!}
+@section('internal-css')
+    @parent
 
-                        <div class="panel panel-default">
-                            <label class="col-md-4 control-label">Thread</label>
+    .parentReply {
+        //font-family: "DroidSerif-Regular" !important;
+    }
 
-                            <div class="col-md-6">
-                                Thread {{ $thread->id}}, category {{ $thread->category_id }}, author {{ $thread->author_id}}, title {{ $thread->title }}, tags {{ $thread->tags }}, sticky {{ $thread->sticky }}, <br />
-                                comment-count: {{ $thread->comment_count }}, content: <br />
-                                {{ $thread->content }}
-                            </div>
-                        </div>
+    .parentReply .content {
+        border-radius: 4px;
+        padding: 1em;
+        background-color: #EDEDED;
+        margin-bottom: 1em;
+    }
+    
+    .statusbar {
+        font-size: 0.9em; 
+    }
 
-                        @if ($parentReply != null)
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Reply {{ $parentReply->id }}, thread: {{ $parentReply->thread_id }}, parent: {{ $parentReply->parent_id }}<br />pos: {{ $parentReply->position }}</div>
-                            <div class="panel-body">
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">By: {{ $parentReply->user_id }}</label>
-                                    </div>
+    .statusbar a {
+        color: blue;
+    }
 
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Content: {{ $parentReply->content }}</label>
-                                    </div>
+    .statusbar a:hover {
+        text-decoration: underline;
+    }
 
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Depth: {{ $parentReply->depth }}</label>
-                                    </div>
-                            </div>
-                        </div>
-                        @endif
+    .statusbar a:active {
+        color: #A2F;
+    }
 
-                        <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Create reply</label>
-
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="content" >
-                                @if ($errors->has('content'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('content') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <br />
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i>Create
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 
+@section('content')
+    <div class="heading">Post Reply</div>
+    <div>
+        <form class="form form-left" role="form" method="POST">
+            {!! csrf_field() !!}
+
+            @if ($parentReply != null)
+            Parent Reply:
+            <div class="parentReply">
+                <div class="content">
+                    {{ $parentReply->content }}
+                </div>
+                <div class="statusbar">
+                    By <a href="/profile/{{ $parentReply->user_id }}">{{ $parentReply->user_name }}</a>
+                    <span style="float: right">{{ $parentReply->updated_at }}</span>
+                </div>
+            </div>
+
+            <div style="height: 1px; background: #528ac3; margin: 1em 0;"></div>
+            @endif
+
+            <div class="form_group row{{ $errors->has('content') ? ' has-error' : '' }}">
+                <label class="col-2">Create Reply</label>
+
+                <div class="col-10">
+                    <textarea name="content" class="form-text-area"></textarea>
+                    @if ($errors->has('content'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('content') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <br />
+            <div class="form_group row">
+                <div class="col-10 col-left-2">
+                    <button type="submit" class="btn btn-primary">
+                        Create
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+@endsection
