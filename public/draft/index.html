@@ -7,6 +7,7 @@
 	<title>CuapCuap &middot; Home</title>
 
 	<link rel="stylesheet" href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 	<style>
 
@@ -119,8 +120,11 @@
 
 		nav.menu li a:hover {
 			background: none !important;
-			border-radius: 4px !important;
 			border: 2px solid #8ADD14 !important;
+		}
+
+		nav.menu ul:first-child li:active {
+			background: #8ADD14; !important;
 		}
 
 		.search_bar {
@@ -238,8 +242,205 @@
 			text-align: center;
 		}
 
-	</style>
+		.card-title {
+			padding: 0.25em;
+			color: white;
+		    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		    text-align: center;
+		    background-color: #8cdf15;
+		}
 
+		.thread {
+			text-align: justify;
+		}
+
+		.thread .vote {
+			position: relative; 
+			bottom: 0.5em; 
+			left: 1em;
+		}
+
+		.thread .statusbar {
+			font-size: 0.8em; 
+		}
+
+		.thread-link:hover {
+			text-decoration: underline;
+		}
+
+		.thread-link:active {
+			color: #A2F;
+		}
+
+		.thread .author, .reply .author {
+			color: blue;
+		}
+
+		.thread .author:hover, .reply .author:hover {
+			text-decoration: underline;
+		}
+
+		.thread .author:active, .reply .author:active {
+			color: #A2F;
+		}
+
+		.thread .content {
+			font-size: 0.8em; 
+			text-align: justify; 
+			border: 1px solid black; 
+			padding: 1em; 
+			margin: 0.5em 0; 
+			line-height: 1.5em;
+		}
+
+		.reply-button:active {
+			background: blue;
+			color: white;
+		}
+
+		.status-button:active {
+			background: green;
+			color: white;
+		}
+
+		.thread .reply-button {
+			float: left;
+			padding: 0em 1.2em; 
+			border: 1px solid blue; 
+			font-size: 0.8em; 
+			font-family: Calibri;
+		}
+
+		.thread .status-button {
+			float: right;
+			margin: 0 0.25em;
+			padding: 0 1.2em; 
+			border: 1px solid green; 
+			font-size: 0.8em; 
+			font-family: Calibri;
+		}
+
+		.reply {
+			font-size: 0.8em;
+		}
+
+		.reply .reply-time {
+			font-size: 0.8em;
+		}
+
+		.reply .reply-time span {
+			color: yellow;
+		}
+
+		.reply .reply-button {
+			font-size: 0.8em;
+			padding: 0.3em 1.2em; 
+			border: 1px solid blue; 
+			font-family: Calibri;
+		}
+
+		.reply .content {
+			text-align: justify; 
+			line-height: 1.5em; 
+			margin-bottom: 0.3em;
+		}
+
+		.reply hr {
+			height:1px;
+			border:none;
+			color:black;
+			background-color:black;" 
+		}
+
+		.reply .vote {
+			position: relative; 
+			bottom: 0.25em; 
+			left: 1.5em;
+		}
+
+		ul.pagination {
+		    display: inline-block;
+		    padding: 0;
+		    margin: 0;
+		    font-size: 0.8em;
+		}
+
+		ul.pagination li {
+			display: inline;
+		}
+
+		ul.pagination li a {
+		    color: black;
+		    float: left;
+		    padding: 8px 16px;
+		    text-decoration: none;
+		    border: 1px solid #ddd;
+		}
+
+		ul.pagination li a.active {
+		    background-color: #3c90e6;
+		    color: white;
+		    border: 1px solid #3c90e6;
+		}
+
+		ul.pagination li a:hover:not(.active) {
+			background-color: #ddd;
+		}
+
+		.sidebar-button div {
+			padding: 1em;
+			text-align: center;
+			color:white; 
+			padding: 0.25em 0; 
+			margin: 0.25em 0;
+		}
+
+		.sidebar-button div:active {
+			color: #A2F;
+		}
+
+		a.sidebar-button {
+			color: white;
+		}
+
+		a.sidebar-button:hover {
+			text-decoration: none;
+		}
+
+		.card-content {
+			color: white;
+			font-size: 0.6em;
+			background-color: #3d3f3c;
+			margin: 0 0.3em;
+			padding: 1em;
+			text-align: left;
+		}
+
+		.card-content ul{
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+		}
+
+		.card-content li {
+			padding: 0 0.3em;
+			border: 2px solid #528ac3;
+			margin: 0.4em 0;
+		}
+
+		.card-content li:nth-child(even) {
+			border: 2px solid #96d046;
+		}
+
+		.card-content li a {
+			color: white;
+		}
+
+		.card-content li a:active {
+			color: #A2F;
+		}
+
+	</style>
 </head>
 <body>
 	<div class="navbar sidemenu">
@@ -248,8 +449,52 @@
 		</div>
 
 		<h3>Ogre Magi Two-Headed Ogre</h3>
-
-		// unfinished;
+		<div style="background-color:#8cdf15; padding-bottom: 0.3em; margin:0.6em;" class="text-center">
+			<span style="font-size: 2em;line-height:1em;">LEVEL</span>
+			<div class="text-center" style="background-color:#3e3e3e; margin: 0 auto; width:96%;">
+				<span style="font-size: 3em; line-height: 1em;">999999999</span>
+			</div>
+		</div>
+		<div style="background-color:#3b91e8; padding: 0.3em; margin:0.5em 0.6em;">
+			<div style="background-color:#3e3e3e; margin: 0; padding: 0.3em 0.3em 0.1em 0.3em; width:73%; float:left;">
+				<span style="font-size: 1.4em;">999999999</span>
+			</div>
+			<div style="margin: 0; padding: 0.3em 0.2em 0.1em 0.3em; float:right;">
+				<span style="font-size: 1.4em;">CUAP</span>
+			</div>
+			<div style="clear:both; width:0; height:0; margin:0; padding:0; "></div>
+		</div>
+		<div style="background-color:#8cdf15; padding: 0.3em; margin:0.5em 0.6em;">
+			<div style="background-color:#3e3e3e; margin: 0; padding: 0.3em 0.3em 0.1em 0.3em; width:60%; float:left;">
+				<span style="font-size: 1.4em;">999999999</span>
+			</div>
+			<div style="margin: 0; padding: 0.3em 0.2em 0.1em 0.3em; float:right;">
+				<span style="font-size: 1.4em;">THANKS</span>
+			</div>
+			<div style="clear:both; width:0; height:0; margin:0; padding:0; "></div>
+		</div>
+		<a href="#" style="color:white;">
+		<div style="background-color:#3b91e8; margin-top: 2em;">
+			<div style="background-color:white; width:20%; margin:0; padding: 0.3em 0.2em 0.1em 0.3em; float:left; color: #3b91e8">
+				<span style="font-size: 1.4em;">999+</span>
+			</div>
+			<div style="margin: 0; padding: 0.3em 0.2em 0.1em 0.3em; float:right;">
+				<span style="font-size: 1.4em;">INBOX</span>
+			</div>
+			<div style="clear:both; width:0; height:0; margin:0; padding:0; "></div>
+		</div>
+		</a>
+		<a href="#" style="color:white;">
+		<div style="background-color:#8cdf15">
+			<div style="width:20%; margin:0; padding: 0.3em 0.2em 0.1em 0.6em; float:left;">
+				<i class="fa fa-user fa-lg"></i>
+			</div>
+			<div style="margin: 0; padding: 0.3em 0.2em 0.1em 0.3em; float:right;">
+				<span style="font-size: 1.4em;">MY PROFILE</span>
+			</div>
+			<div style="clear:both; width:0; height:0; margin:0; padding:0; "></div>
+		</div>
+		</a>
 	</div>
 
 	<main class="outer-wrapper">
@@ -288,9 +533,8 @@
 		<main class="wrapper">
 			<div class="row">
 				<main class="content col-9">
-
-					<article class="row">
-						<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
+					<article class="row thread">
+						<div class="col-2 text-center rate vote">
 							<div class="wrapper wrapper-fluid">
 								<a href="#upvote">
 									<svg style="width:48;height:48" viewBox="0 0 24 24">
@@ -310,7 +554,7 @@
 							</div>
 						</div>
 						<div class="col-10">
-							<a href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							<a class="thread-link" href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua.</p></a>
 							<div>
 								<span class="label label-red"><a href="#">Sticky</a></span>
@@ -321,8 +565,8 @@
 						</div>
 					</article>
 
-					<article class="row">
-						<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
+					<article class="row thread">
+						<div class="col-2 text-center rate vote">
 							<div class="wrapper wrapper-fluid">
 								<a href="#upvote">
 									<svg style="width:48;height:48" viewBox="0 0 24 24">
@@ -342,7 +586,7 @@
 							</div>
 						</div>
 						<div class="col-10">
-							<a href="#"><p>Lorem ipsum dolor sit amet.</p></a>
+							<a class="thread-link" href="#"><p>Lorem ipsum dolor sit amet.</p></a>
 							<div>
 								<span class="label label-green"><a href="#">Olahraga</a></span>
 								<span class="label"><a href="#">9999 Cuap</a></span>
@@ -351,8 +595,8 @@
 						</div>
 					</article>
 
-					<article class="row">
-						<div class="col-2 text-center rate" style="position: relative; bottom: 0.5em;">
+					<article class="row thread">
+						<div class="col-2 text-center rate vote">
 							<div class="wrapper wrapper-fluid">
 								<a href="#upvote">
 									<svg style="width:48;height:48" viewBox="0 0 24 24">
@@ -372,7 +616,7 @@
 							</div>
 						</div>
 						<div class="col-10">
-							<a href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							<a class="thread-link" href="#"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -386,10 +630,41 @@
 						</div>
 					</article>
 
+					<div class="col-left-2 col-10" style="text-align:center; margin-top: 1.5em; margin-bottom: 1.5em;">
+		                <ul class="pagination">
+						    <li><a href="#">«</a></li>
+						    <li><a href="#">1</a></li>
+						    <li><a class="active" href="#">2</a></li>
+						    <li><a href="#">3</a></li>
+						    <li><a href="#">4</a></li>
+						    <li><a href="#">5</a></li>
+						    <li><a href="#">6</a></li>
+						    <li><a href="#">7</a></li>
+						    <li><a href="#">»</a></li>
+						</ul>
+					</div>
 				</main>
 
 				<aside class="sidebar col-3">
-					.sidebar; unfinished
+					<a href="#" class="sidebar-button"><div style="background: #8cdf15;">MULAI DISKUSI</div></a>
+					<a href="#" class="sidebar-button"><div style="background: #3c90e6;">MULAI PERTANYAAN</div></a>
+					<div class="card-title">PENGUMUMAN</div>
+					<div class="card-content">
+						<ul>
+							<li><a href="#">PENGUMUMAN PENDEK</a></li>
+							<li><a href="#">PENGUMUMAN LAGI</a></li>
+							<li><a href="#">PENGUMUMAN DUA</a></li>
+							<li><a href="#">PENGUMUMAN SATU</a></li>
+							<li><a href="#">PENGUMUMAN TERAKHIR</a></li>
+						</ul>
+					</div>
+					<div class="card-title">RULES &amp; GUIDES</div>
+					<div class="card-content">
+						<ul>
+							<li><a href="#">PERATURAN FORUM</a></li>
+							<li><a href="#">HOW-TO MAKE A POST</a></li>
+						</ul>
+					</div>
 				</aside>
 			</div>
 		</main>

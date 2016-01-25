@@ -30,6 +30,15 @@ Route::group(['middleware' => 'admin'], function () {
 });
 
 Route::group(['middleware' => 'user'], function () {
+    Route::get('/aboutus', function() {
+        return view('aboutus');
+    });
+    Route::get('/contact', function() {
+        return view('contact');
+    });
+    Route::post('/contact', function() {
+        return abort(503);
+    });
 
 	Route::get('/home', 'HomeController@index');
 	
