@@ -87,13 +87,18 @@ class ThreadController extends Controller
             'title' => 'string|required',
             'content' => 'string|required',
             'tags' => 'string',
-            'sticky' => 'boolean|required',
+            'sticky' => 'boolean',
         ]);
 
         $author_id = Auth::user()->id;
         $category_id = $request->input('category_id');
         $title = $request->input('title');
+        
         $sticky = $request->input('sticky');
+        if (empty($sticky) || Auth::user()->role_id == 0) {
+            $sticky = false;
+        }
+
         $tags = $request->input('tags');
         $content = $request->input('content');
 
@@ -196,12 +201,17 @@ class ThreadController extends Controller
             'title' => 'string|required',
             'content' => 'string|required',
             'tags' => 'string',
-            'sticky' => 'boolean|required',
+            'sticky' => 'boolean',
         ]);
 
         $category_id = $request->input('category_id');
         $title = $request->input('title');
+        
         $sticky = $request->input('sticky');
+        if (empty($sticky) || Auth::user()->role_id == 0) {
+            $sticky = false;
+        }
+
         $tags = $request->input('tags');
         $content = $request->input('content');
 

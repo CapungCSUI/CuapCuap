@@ -20,14 +20,19 @@ class NotificationController extends Controller
     {
         $user_id = Auth::user()->id;
 
+        $users = DB::table('users')->select('username')->orderBy('id', 'asc')->get();
+        $threads = DB::table('threads')->select('title')->orderBy('id', 'asc')->get();
+
         $notifications = DB::table('notifications')
             ->where('user_id', $user_id)
             ->where('is_read', false)
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10);
 
         return view('show_notifications', [
             'notifications' => $notifications,
+            'users' => $users,
+            'threads' => $threads,
         ]);
     }
 
@@ -57,14 +62,13 @@ class NotificationController extends Controller
             return redirect()->action('MessageController@show', ['id' => $notification->content_id]);
         }
         else if ($notification->type == 1) {
-            $reply = DB::table('replies')->where('id', $notification->content_id)->first();
-            if ($reply == null) {
+            $thread = DB::table('threads')->where('id', $notification->content_id)->first();
+            if ($thread == null) {
                 abort(404);
             }
 
-            return redirect()->action('ReplyController@show', [
+            return redirect()->action('ThreadController@show', [
                 'id' => $notification->content_id, 
-                'thread_id' => $reply->thread_id,
             ]);
         }
     }

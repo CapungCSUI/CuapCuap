@@ -242,7 +242,7 @@
 				text-align: center;
 				color:white; 
 				padding: 0.25em 0; 
-				margin: 0.25em 0;
+				margin: 0 0 0.25em 0;
 			}
 
 			.sidebar-button div:active {
@@ -267,7 +267,7 @@
 
 			.card-content {
 				color: white;
-				font-size: 0.6em;
+				font-size: 0.8em;
 				background-color: #3d3f3c;
 				margin: 0 0.3em;
 				padding: 1em;
@@ -341,6 +341,26 @@
 
 		    .negative {
 		        color: #E33B3B;
+		    }
+
+		    .heading {
+		        padding-top: 0.4em;
+		        padding-bottom: 0.4em;
+		        text-align: center;
+		        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+		        color: white;
+		        background: #C00;
+		        font-size: 2em;
+		        margin-bottom: 1em;
+		    }
+
+		    .form-text-area {
+		        width: 30em;
+		        height: 16em;
+		    }
+
+		    .help-block {
+		        color: red;
 		    }
 		@show
 	</style>
@@ -475,7 +495,7 @@
 						<div class="card-content">
 							<ul>
 								<li><a href="/rules">PERATURAN FORUM</a></li>
-								<li><a href="/guides">HOW-TO MAKE A POST</a></li>
+								<li><a href="/guide/how-to-make-a-post">HOW-TO MAKE A POST</a></li>
 							</ul>
 						</div>
 					@show
