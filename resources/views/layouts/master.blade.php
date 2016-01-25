@@ -10,15 +10,15 @@
 	<title>CuapCuap &middot; @yield('title')</title>
 
 	@section('external-resource')
-		<link rel="stylesheet" href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+			<link rel="stylesheet" href="{!! asset('css/kickstart.min.css) !!}">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	@show
 
 	<style>
 		@section('internal-css')
 			@font-face {
 			    font-family: 'DroidSerif-Regular';
-			    src: url('/fonts/DroidSerif-Regular.ttf');
+			    src: url('fonts/DroidSerif-Regular.ttf');
 			}
 
 			#header {
@@ -43,7 +43,7 @@
 	    		margin-left: -1em;
 				width:100%;
 				height:100%;
-				background: #666 url('/img/bg.jpg') center no-repeat;
+				background: #666 url('img/bg.jpg') center no-repeat;
 				filter: brightness(50%);
 				-webkit-filter: brightness(50%);
 				background-size: cover
@@ -109,32 +109,6 @@
 			#footer-links a:active {
 				color: #00F;
 			}
-	
-			ul.pagination {
-			    display: inline-block;
-			    padding: 0;
-			    margin: 0;
-			    font-size: 0.8em;
-			}
-
-			ul.pagination li {
-				display: inline;
-				color: black;
-			    float: left;
-			    padding: 8px 16px;
-			    text-decoration: none;
-			    border: 1px solid #ddd;
-			}
-
-			ul.pagination li.active {
-			    background-color: #3c90e6;
-			    color: white;
-			    border: 1px solid #3c90e6;
-			}
-
-			ul.pagination li:hover:not(.active) {
-				background-color: #ddd;
-			}
 
 			.navbar {
 				background: none;
@@ -170,7 +144,39 @@
 				color: white !important;
 			}
 
+			.content article {
+				margin-bottom: 1em;
+				font-family: "DroidSerif-Regular" !important;
+			}
+
+			.content article a {
+				color: inherit;
+				text-decoration: none;
+			}
+
+			.text-center {
+				text-align: center;
+			}
+
+			span.label a {
+				color: inherit;
+				text-decoration: none !important;
+			}
+
+			.positive {
+				color: #3B8EE3;
+			}
+
+			.negative {
+				color: #E33B3B;
+			}
+
+			.outer-wrapper {
+				background: #fff;
+			}
+
 			// Slideout
+
 			body {
 			  width: 100%;
 			  height: 100%;
@@ -237,6 +243,14 @@
 				text-align: center;
 			}
 
+			.card-title {
+				padding: 0.25em;
+				color: white;
+			    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			    text-align: center;
+			    background-color: #8cdf15;
+			}
+
 			.sidebar-button div {
 				padding: 1em;
 				text-align: center;
@@ -255,14 +269,6 @@
 
 			a.sidebar-button:hover {
 				text-decoration: none;
-			}
-
-			.card-title {
-				padding: 0.25em;
-				color: white;
-			    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			    text-align: center;
-			    background-color: #8cdf15;
 			}
 
 			.card-content {
@@ -298,50 +304,28 @@
 				color: #A2F;
 			}
 
-			.text-center {
-				text-align: center;
+			img.logo {
+				max-width: 85%;
+				max-height: 100px;
+				height: auto;
 			}
 
-			.outer-wrapper {
-				background: #fff;
+			.pagination .active {
+				background: #999;
 			}
 
-			span.label a {
-				color: inherit;
-				text-decoration: none !important;
+			.pagination .disabled {
+				color: #aaa;
+				cursor: not-allowed;
 			}
 
-		    .content article {
-		        margin-bottom: 1em;
-		        font-family: "DroidSerif-Regular" !important;
-		    }
-
-		    .content article a {
-		        color: inherit;
-		        text-decoration: none;
-		    }
-
-			.thread {
-				text-align: justify;
+			.pagination .disabled:hover {
+				box-shadow: none !important;
 			}
-			
-		    .thread .vote {
-		        position: relative; 
-		        bottom: 0.5em; 
-		        left: 1em;
-		    }
 
-		    .rate {
-		        min-width: 4em;
-		    }
-
-		    .positive {
-		        color: #3B8EE3;
-		    }
-
-		    .negative {
-		        color: #E33B3B;
-		    }
+			.pagination ul {
+				margin:0 auto !important;
+			}
 		@show
 	</style>
 
@@ -349,7 +333,7 @@
 <body>
 	@section('slidemenu')
 		<div class="navbar sidemenu">
-			<div class="profpic-cover" style="background: url('http://cdn.dota2.com/apps/dota2/images/heroes/ogre_magi_vert.jpg') no-repeat center;">
+			<div class="profpic-cover" style="background: url('{{ Auth::user()->profile_picture }}') no-repeat center;">
 				<a href="#" class="menu-close">&times;</a>
 			</div>
 
@@ -412,7 +396,7 @@
 	<main class="outer-wrapper">
 		<header id="header">
 			@section('header')
-				<img src="/img/cuapcuap-logo-h.png" alt="CuapCuap Capung" height="100">
+				<img src="/img/cuapcuap-logo-h.png" alt="CuapCuap Capung" class="logo">
 
 				<a href="#" class="menu-toggle">&equiv;</a>
 
