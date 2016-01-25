@@ -19,6 +19,10 @@ class ThreadController extends Controller
      */
     public function index($category = 'new')
     {
+        $categories = DB::table('categories')
+            ->orderBy('id', 'asc')
+            ->get();
+
         if ($category === 'hot') {
             $threads = DB::table('threads')
                 ->orderBy('sticky', 'desc')
@@ -31,7 +35,7 @@ class ThreadController extends Controller
                 ->orderBy('updated_at', 'desc');
         }
         else {
-            $category = DB::table('categories')
+            $category_id = DB::table('categories')
                 ->where('name', $category)
                 ->first();
 
@@ -39,19 +43,18 @@ class ThreadController extends Controller
                 abort(404);
             }
 
-            $category_id = $category->id;
+            $category_id = $category_id->id;
 
             $threads = DB::table('threads')
                 ->where('category_id', $category_id)
                 ->orderBy('sticky', 'desc')
                 ->orderBy('updated_at', 'desc');
-
-            $category = $category->name;
         }
         
         return view('show_threads', [
             'threads' => $threads->paginate(2),
-            'category' => $category,
+            'categories' => $categories,
+            'category' => ucfirst($category),
         ]);
     }
 
@@ -116,7 +119,15 @@ class ThreadController extends Controller
      */
     public function show($id)
     {
+        $categories = DB::table('categories')
+            ->orderBy('id', 'asc')
+            ->get();
+
         $thread = DB::table('threads')->where('id', $id)->first();
+        $users = DB::table('users')
+            ->select('username')
+            ->orderBy('id', 'asc')
+            ->get();
 
         if ($thread == null) {
             abort(404);
@@ -129,6 +140,8 @@ class ThreadController extends Controller
         return view('show_thread', [
             'thread' => $thread,
             'replies' => $replies->paginate(2),
+            'users' => $users,
+            'categories' => $categories,
         ]);
     }
 

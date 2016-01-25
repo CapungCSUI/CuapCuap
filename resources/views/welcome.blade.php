@@ -93,11 +93,6 @@
 		.left {
 			float:left;
 		}
-
-		.right {
-			margin-left: auto;
-			float: right;
-		}
 	</style>
 
 
@@ -119,10 +114,6 @@
 		<div class="bottom">
 			<div class="left">
 				&copy; Tim SBF PTI 2015, All Rights Reserved.
-			</div>
-
-			<div class="right">
-				<a href="#">Tentang Kami</a> &middot; <a href="#">Bantuan</a> &middot; <a href="#">Kontak</a>
 			</div>
 		</div>
 	</div>
