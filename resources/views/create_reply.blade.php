@@ -42,7 +42,7 @@
             Parent Reply:
             <div class="parentReply">
                 <div class="content">
-                    {{ $parentReply->content }}
+                    {!! $parentReply->content !!}
                 </div>
                 <div class="statusbar">
                     By <a href="/profile/{{ $parentReply->user_id }}">{{ $parentReply->user_name }}</a>

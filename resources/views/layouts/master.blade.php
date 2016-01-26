@@ -4,7 +4,19 @@
 	@section('head')
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">	
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="/plugins/tinymce/tinymce.min.js"></script>
+  		<script>
+  			tinymce.init({ 
+  				selector: 'textarea',
+  				plugins: [
+  					"fullscreen code table insertdatetime link image media advlist imagetools paste visualblocks searchreplace charmap"
+				],
+				toolbar: [
+					"insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | link image media | insertdatetime | fullscreen | code",
+				],
+  			});
+  		</script>	
 	@show
 
 	<title>CuapCuap &middot; @yield('title')</title>
@@ -71,6 +83,8 @@
 				height: 5em;
 				padding: 0;
 				margin: 0 auto 5em auto;
+				position: relative;
+				bottom: 1px;
 			}
 
 			#footer-logo img {
@@ -292,6 +306,10 @@
 				text-decoration: none !important;
 			}
 
+			.content {
+				margin-bottom: 2em;
+			}
+
 		    .content article {
 		        margin-bottom: 1em;
 		        font-family: "DroidSerif-Regular" !important;
@@ -373,7 +391,7 @@
 			<div style="background-color:#8cdf15; padding-bottom: 0.3em; margin:0.6em;" class="text-center">
 				<span style="font-size: 2em;line-height:1em;">LEVEL</span>
 				<div class="text-center" style="background-color:#3e3e3e; margin: 0 auto; width:96%;">
-					<span style="font-size: 3em; line-height: 1em;">{{ Auth::user()->exp / 100 }}</span>
+					<span style="font-size: 3em; line-height: 1em;">{{ intval(Auth::user()->exp / 10) }}</span>
 				</div>
 			</div>
 			<div style="background-color:#3b91e8; padding: 0.3em; margin:0.5em 0.6em;">

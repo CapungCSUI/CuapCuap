@@ -40,6 +40,8 @@ class SSOAuthenticate
                 else {
                     $id = DB::table('users')->insertGetId([
                         'username' => $userData->username,
+                        'voted_threads' => "|",
+                        'voted_replies' => "|",
                     ]);
 
                     // Create folder for user

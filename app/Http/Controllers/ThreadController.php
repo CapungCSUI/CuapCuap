@@ -144,7 +144,7 @@ class ThreadController extends Controller
 
         return view('show_thread', [
             'thread' => $thread,
-            'replies' => $replies->paginate(2),
+            'replies' => $replies->paginate(8),
             'users' => $users,
             'categories' => $categories,
         ]);

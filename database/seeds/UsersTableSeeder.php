@@ -24,6 +24,8 @@ class UsersTableSeeder extends Seeder
 	            'username' => str_random(10).$count,
 	            'email' => str_random(10).'@gmail.com',
 	            'birthday' => rand(1611, 2014).'-'.rand(10, 12).'-'.rand(10, 30),
+                'voted_threads' => "|",
+                'voted_replies' => "|",
 	        ]);
         }
 
