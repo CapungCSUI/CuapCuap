@@ -334,11 +334,11 @@
 		        color: red;
 		    }
 
-		    .pagination .active {
+		   .pagination .active {
 				background: #999;
 			}
 
-			.pagination .disabled {
+			.pagination .disabled, .pagination .active {
 				color: #aaa;
 				cursor: not-allowed;
 			}
@@ -349,6 +349,14 @@
 
 			.pagination ul {
 				margin:0 auto !important;
+			}
+
+			.pagination li span {
+				display: inline-block;
+				padding: 5px 12px;
+				line-height: 1.45rem;
+				vertical-align: top;
+				background: #ededed;
 			}
 		@show
 	</style>
