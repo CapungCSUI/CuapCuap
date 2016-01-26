@@ -140,7 +140,6 @@
 		}
 
 		.content article {
-			margin-bottom: 1em;
 			font-family: "DroidSerif-Regular" !important;
 		}
 
@@ -156,6 +155,10 @@
 		span.label a {
 			color: inherit;
 			text-decoration: none !important;
+		}
+
+		.label {
+			margin-bottom: 0 !important;
 		}
 
 		.positive {
@@ -246,123 +249,19 @@
 		    background-color: #8cdf15;
 		}
 
-		.thread {
+		.thread p {
 			text-align: justify;
-		}
-
-		.thread .statusbar {
-			font-size: 0.8em; 
-		}
-
-		.thread .author, .reply .author {
-			color: blue;
-		}
-
-		.thread .author:hover, .reply .author:hover {
-			text-decoration: underline;
-		}
-
-		.thread .author:active, .reply .author:active {
-			color: #A2F;
-		}
-
-		.thread .content {
-			font-size: 0.8em; 
-			text-align: justify; 
-			border: 1px solid black; 
-			padding: 1em; 
-			margin: 0.5em 0; 
-			line-height: 1.5em;
-		}
-
-		.reply-button:active {
-			background: blue;
-			color: white;
-		}
-
-		.status-button:active {
-			background: green;
-			color: white;
-		}
-
-		.thread .reply-button {
-			float: left;
-			padding: 0em 1.2em; 
-			border: 1px solid blue; 
-			font-size: 0.8em; 
-			font-family: Calibri;
-		}
-
-		.thread .status-button {
-			float: right;
-			margin: 0 0.25em;
-			padding: 0 1.2em; 
-			border: 1px solid green; 
-			font-size: 0.8em; 
-			font-family: Calibri;
 		}
 
 		.reply {
 			font-size: 0.8em;
 		}
 
-		.reply .reply-time {
-			font-size: 0.8em;
+		.reply time {
+			font-style: italic;
 		}
 
-		.reply .reply-time span {
-			color: yellow;
-		}
-
-		.reply .reply-button {
-			font-size: 0.8em;
-			padding: 0.3em 1.2em; 
-			border: 1px solid blue; 
-			font-family: Calibri;
-		}
-
-		.reply .content {
-			text-align: justify; 
-			line-height: 1.5em; 
-			margin-bottom: 0.3em;
-		}
-
-		.reply hr {
-			height:1px;
-			border:none;
-			color:black;
-			background-color:black;" 
-		}
-
-		ul.pagination {
-		    display: inline-block;
-		    padding: 0;
-		    margin: 0;
-		    font-size: 0.8em;
-		}
-
-		ul.pagination li {
-			display: inline;
-		}
-
-		ul.pagination li a {
-		    color: black;
-		    float: left;
-		    padding: 8px 16px;
-		    text-decoration: none;
-		    border: 1px solid #ddd;
-		}
-
-		ul.pagination li a.active {
-		    background-color: #3c90e6;
-		    color: white;
-		    border: 1px solid #3c90e6;
-		}
-
-		ul.pagination li a:hover:not(.active) {
-			background-color: #ddd;
-		}
-
+		
 		.sidebar-button div {
 			padding: 1em;
 			text-align: center;
@@ -422,6 +321,54 @@
 			height: auto;
 		}
 
+		.pagination .active {
+			background: #999;
+		}
+
+		.pagination .disabled {
+			color: #aaa;
+			cursor: not-allowed;
+		}
+
+		.pagination .disabled:hover {
+			box-shadow: none !important;
+		}
+
+		.pagination ul {
+			margin:0 auto !important;
+		}
+
+		.pull-right {
+			float: right;
+		}
+
+		.content article {
+			margin-bottom: 1em;	
+		}
+
+		.nested-1 {
+			padding-left: 1em;
+		}
+
+		.nested-2 {
+			padding-left: 2em;
+		}
+
+		.nested-3 {
+			padding-left: 3em;
+		}
+
+		.nested-4 {
+			padding-left: 4em;
+		}
+
+		.nested-5 {
+			padding-left: 5em;
+		}
+
+		.author {
+			color: #3B8EE3 !important;
+		}
 	</style>
 
 </head>
@@ -472,152 +419,135 @@
 		<main class="wrapper">
 			<div class="row">
 				<main class="content col-9">
-					<article class="row thread">
-	                    <div class="col-xs-3 col-md-2 text-center">
-	                        <div class="wrapper wrapper-fluid">
-	                            <a href="#upvote">
-	                                <svg style="width:48;height:48" viewBox="0 0 24 24">
-	                                    <path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
-	                                </svg>
-	                            </a>
-	                        </div>
-	                        <span class="wrapper wrapper-fluid positive">
-	                            9999
-	                        </span>
-	                        <div class="wrapper wrapper-fluid">
-	                            <a href="#downvote">
-	                                <svg style="width:48;height:48" viewBox="0 0 24 24">
-	                                    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-	                                </svg>
-	                            </a>
-	                        </div>
-	                    </div>
-	                    <div class="col-xs-9 col-md-10">
-	                        <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	                        tempor incididunt ut labore et dolore magna aliqua.</a>
-	                        <div class="statusbar">
-	                            oleh <a href="#" class="author">Ogre Magi</a>
-	                            <span style="color: gray; float: right;">xxxx-xx-xx</span>
-	                        </div>
-	                        <div class="content">
-	                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac posuere est. Ut nec diam sollicitudin, suscipit orci ac, facilisis justo. In lacinia cursus enim, ornare vehicula justo pharetra eu. Vivamus sodales erat id libero bibendum mollis. Suspendisse ornare, nulla quis malesuada efficitur, eros lorem porta neque, at pharetra ipsum lectus et nunc. Mauris finibus leo in maximus molestie. Nulla hendrerit libero tortor, at maximus arcu vestibulum vitae. Etiam vel porttitor ante, sed malesuada urna. Duis vulputate at tortor a sagittis. Nullam cursus gravida fermentum. Sed a tortor condimentum, interdum lectus at, pretium enim. Integer vitae pellentesque enim, sit amet eleifend sapien.
+	                <article class="thread">
+	                        <div class="container">
+		                        <header>
+		                        	<h3><a href="#" class="author">Ogre Magi</a></h3>
+	                        		<span><time>5 menit</time> yang lalu</span>
+		                        </header>
+		                        <main>
+		                        	<header>
+		                        		<h1><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></h1>
+		                        	</header>
 
-	Curabitur sit amet justo ultricies, dictum neque et, consectetur odio. Sed at vestibulum odio. Donec commodo dictum ultrices. Proin cursus purus eget tellus faucibus pharetra. Phasellus eleifend dolor at condimentum tempor. Suspendisse ligula felis, pulvinar quis efficitur euismod, luctus eget felis. Mauris nec tristique nibh. In hac habitasse platea dictumst. Cras eget ligula ut purus sagittis placerat. Aliquam elit arcu, iaculis non facilisis eu, vehicula sed nunc. Nam vel arcu suscipit, congue augue non, blandit tellus. Donec malesuada commodo tristique. Sed semper semper erat, non viverra massa vestibulum sit amet. Praesent congue sagittis malesuada.
+		                        	<article>
+		                        		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac posuere est. Ut nec diam sollicitudin, suscipit orci ac, facilisis justo. In lacinia cursus enim, ornare vehicula justo pharetra eu. Vivamus sodales erat id libero bibendum mollis. Suspendisse ornare, nulla quis malesuada efficitur, eros lorem porta neque, at pharetra ipsum lectus et nunc. Mauris finibus leo in maximus molestie. Nulla hendrerit libero tortor, at maximus arcu vestibulum vitae. Etiam vel porttitor ante, sed malesuada urna. Duis vulputate at tortor a sagittis. Nullam cursus gravida fermentum. Sed a tortor condimentum, interdum lectus at, pretium enim. Integer vitae pellentesque enim, sit amet eleifend sapien.</p>
 
-	Nulla tristique, elit sit amet placerat varius, erat lorem blandit nibh, id porta justo quam a eros. Mauris in tempor neque, eget aliquet urna. Pellentesque nisi sapien, hendrerit non euismod non, pellentesque eget leo. Vivamus vitae mi id eros dignissim consectetur. Aenean in sodales felis. In ut arcu sit amet mi vestibulum porta. Etiam sagittis nisl sed tortor viverra, ut interdum mi tincidunt. Praesent ullamcorper sit amet lectus vel rutrum.
+	<p>Curabitur sit amet justo ultricies, dictum neque et, consectetur odio. Sed at vestibulum odio. Donec commodo dictum ultrices. Proin cursus purus eget tellus faucibus pharetra. Phasellus eleifend dolor at condimentum tempor. Suspendisse ligula felis, pulvinar quis efficitur euismod, luctus eget felis. Mauris nec tristique nibh. In hac habitasse platea dictumst. Cras eget ligula ut purus sagittis placerat. Aliquam elit arcu, iaculis non facilisis eu, vehicula sed nunc. Nam vel arcu suscipit, congue augue non, blandit tellus. Donec malesuada commodo tristique. Sed semper semper erat, non viverra massa vestibulum sit amet. Praesent congue sagittis malesuada.</p>
 
-	Vivamus facilisis vehicula nunc et blandit. Integer accumsan pretium urna vel scelerisque. Cras finibus massa porttitor, varius felis et, aliquam odio. Nullam lacinia libero vel eros fermentum, eget laoreet nibh mattis. Mauris aliquam urna nunc, sit amet blandit sapien mattis eu. Vestibulum in metus congue, euismod libero id, laoreet lacus. Curabitur porttitor mi elit, sed tristique erat tincidunt a. In pellentesque quis ex sit amet sodales. Duis bibendum non sem ut finibus. In dui ligula, venenatis ut placerat eget, accumsan nec mauris. Nam bibendum fermentum nulla, id aliquam nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris luctus ex ac enim efficitur, vel tempor libero cursus.
+	<p>Nulla tristique, elit sit amet placerat varius, erat lorem blandit nibh, id porta justo quam a eros. Mauris in tempor neque, eget aliquet urna. Pellentesque nisi sapien, hendrerit non euismod non, pellentesque eget leo. Vivamus vitae mi id eros dignissim consectetur. Aenean in sodales felis. In ut arcu sit amet mi vestibulum porta. Etiam sagittis nisl sed tortor viverra, ut interdum mi tincidunt. Praesent ullamcorper sit amet lectus vel rutrum.</p>
 
-	Sed eget orci quis velit maximus tristique. Nulla non vehicula nibh. Phasellus ornare mi a quam mollis aliquam. Donec at ultrices nulla, et euismod sapien. Curabitur eget felis id eros rhoncus accumsan id non odio. In sed nisi id dolor pretium viverra nec eu sapien. Sed dictum orci et massa malesuada accumsan.
+	<p>Vivamus facilisis vehicula nunc et blandit. Integer accumsan pretium urna vel scelerisque. Cras finibus massa porttitor, varius felis et, aliquam odio. Nullam lacinia libero vel eros fermentum, eget laoreet nibh mattis. Mauris aliquam urna nunc, sit amet blandit sapien mattis eu. Vestibulum in metus congue, euismod libero id, laoreet lacus. Curabitur porttitor mi elit, sed tristique erat tincidunt a. In pellentesque quis ex sit amet sodales. Duis bibendum non sem ut finibus. In dui ligula, venenatis ut placerat eget, accumsan nec mauris. Nam bibendum fermentum nulla, id aliquam nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris luctus ex ac enim efficitur, vel tempor libero cursus.</p>
+
+	<p>Sed eget orci quis velit maximus tristique. Nulla non vehicula nibh. Phasellus ornare mi a quam mollis aliquam. Donec at ultrices nulla, et euismod sapien. Curabitur eget felis id eros rhoncus accumsan id non odio. In sed nisi id dolor pretium viverra nec eu sapien. Sed dictum orci et massa malesuada accumsan.</p>
+		                        	</article>
+		                        </main>
+		                        <footer>
+		                        	<span class="label"><a href="#">CUAPIN</a></span>
+		                        	<div>
+		                        		<span class="label">999 Cuap</span>
+		                        		<span class="label label-green"><a href="#">Olahraga</a></span>
+		                        	</div>
+		                        	<div>
+		                        		<span class="label label-green"><a href="#">▴</a></span>
+			                        	<span class="negative">-9999</span>
+			                        	<span class="label label-red"><a href="#">▾</a></span>
+		                        	</div>
+
+		                        </footer>
 	                        </div>
-	                        <div>
-		                        <span class="reply-button"><a href="#">CUAPIN</a></span>
-		                        <span class="status-button"><a href="#">Olahraga</a></span>
-		                        <span class="status-button">9999 Cuap</span>
-	                        </div>
-	                    </div>	                
-	                </article>
-	                
-	                <article class="row reply">
-	                    <div class="col-xs-3 col-md-2 text-center rate vote">
-	                        <div class="wrapper wrapper-fluid">
-	                            <a href="#upvote">
-	                                <svg style="width:35;height:35" viewBox="0 0 24 24">
-	                                    <path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
-	                                </svg>
-	                            </a>
-	                        </div>
-	                        <span class="wrapper wrapper-fluid negative">
-	                            -9999
-	                        </span>
-	                        <div class="wrapper wrapper-fluid">
-	                            <a href="#downvote">
-	                                <svg style="width:35;height:35" viewBox="0 0 24 24">
-	                                    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-	                                </svg>
-	                            </a>
-	                        </div>
-	                    </div>
-	                    <div class="col-xs-9 col-md-10">
-	                        <a href="#" class="author">Arc Warden the Warden of the Universe</a>
-	                        <div class="reply-time"><span>5 menit</span> yang lalu </div>
-	                        <hr />
-	                        <div class="content">
-	                        Nulla tristique, elit sit amet placerat varius, erat lorem blandit nibh, id porta justo quam a eros. Mauris in tempor neque, eget aliquet urna. Pellentesque nisi sapien, hendrerit non euismod non, pellentesque eget leo. Vivamus vitae mi id eros dignissim consectetur. Aenean in sodales felis. In ut arcu sit amet mi vestibulum porta. Etiam sagittis nisl sed tortor viverra, ut interdum mi tincidunt. Praesent ullamcorper sit amet lectus vel rutrum.
-	                        </div>
-	                        <span class="reply-button">
-	                            <a href="#">CUAPIN</a>
-	                        </span>
-	                    </div>
 	                </article>
 
-	                <article class="row reply">
-	                    <div class="col-xs-3 col-md-2 text-center">
-	                        <div class="wrapper wrapper-fluid">
-	                            <a href="#upvote">
-	                                <svg style="width:35;height:35" viewBox="0 0 24 24">
-	                                    <path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
-	                                </svg>
-	                            </a>
+	                <header>
+	                	<h3>999 CUAP</h3>
+	                </header>
+
+	                <article class="reply">
+	                        <div class="container">
+		                        <header>
+		                        	<a href="#" class="author">Arc Warden the Warden of the Universe</a>
+	                        		<span><time>5 menit</time> yang lalu</span>
+		                        </header>
+		                        <main>
+		                        	<p>Nulla tristique, elit sit amet placerat varius, erat lorem blandit nibh, id porta justo quam a eros. Mauris in tempor neque, eget aliquet urna. Pellentesque nisi sapien, hendrerit non euismod non, pellentesque eget leo. Vivamus vitae mi id eros dignissim consectetur. Aenean in sodales felis. In ut arcu sit amet mi vestibulum porta. Etiam sagittis nisl sed tortor viverra, ut interdum mi tincidunt. Praesent ullamcorper sit amet lectus vel rutrum.</p>
+		                        </main>
+		                        <footer>
+		                        	<span class="label"><a href="#">CUAPIN</a></span>
+		                        	<div>
+		                        		<span class="label label-green"><a href="#">▴</a></span>
+			                        	<span class="negative">-9999</span>
+			                        	<span class="label label-red"><a href="#">▾</a></span>
+		                        	</div>
+
+		                        </footer>
 	                        </div>
-	                        <span class="wrapper wrapper-fluid negative">
-	                            -9999
-	                        </span>
-	                        <div class="wrapper wrapper-fluid">
-	                            <a href="#downvote">
-	                                <svg style="width:35;height:35" viewBox="0 0 24 24">
-	                                    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-	                                </svg>
-	                            </a>
-	                        </div>
-	                    </div>
-	                    <div class="col-xs-9 col-md-10">
-	                        <a class="author" href="#">Arc Warden the Warden of the Universe</a>
-	                        <div class="reply-time"><span>5 menit</span> yang lalu </div>
-	                        <hr />
-	                        <div class="content">
-	                        Nulla tristique, elit sit amet placerat varius, erat lorem blandit nibh, id porta justo quam a eros. Mauris in tempor neque, eget aliquet urna. Pellentesque nisi sapien, hendrerit non euismod non, pellentesque eget leo. Vivamus vitae mi id eros dignissim consectetur. Aenean in sodales felis. In ut arcu sit amet mi vestibulum porta. Etiam sagittis nisl sed tortor viverra, ut interdum mi tincidunt. Praesent ullamcorper sit amet lectus vel rutrum.
-	                        </div>
-	                        <span class="reply-button">
-	                            <a href="#">CUAPIN</a>
-	                        </span>
-	                    </div>
 	                </article>
 
-	                <article class="row reply col-left-1">
-	                    <div class="col-xs-3 col-md-2 text-center">
-	                        <div class="wrapper wrapper-fluid">
-	                            <a href="#upvote">
-	                                <svg style="width:35;height:35" viewBox="0 0 24 24">
-	                                    <path fill="#3B8EE3" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" />
-	                                </svg>
-	                            </a>
+
+	                <article class="reply nested-1">
+	                        <div class="container">
+		                        <header>
+		                        	<a href="#" class="author">Arc Warden the Warden of the Universe</a>
+	                        		<span><time>5 menit</time> yang lalu</span>
+		                        </header>
+		                        <main>
+		                        	<p>Nulla tristique, elit sit amet placerat varius, erat lorem blandit nibh, id porta justo quam a eros. Mauris in tempor neque, eget aliquet urna. Pellentesque nisi sapien, hendrerit non euismod non, pellentesque eget leo. Vivamus vitae mi id eros dignissim consectetur. Aenean in sodales felis. In ut arcu sit amet mi vestibulum porta. Etiam sagittis nisl sed tortor viverra, ut interdum mi tincidunt. Praesent ullamcorper sit amet lectus vel rutrum.</p>
+		                        </main>
+		                        <footer>
+		                        	<span class="label"><a href="#">CUAPIN</a></span>
+		                        	<div>
+		                        		<span class="label label-green"><a href="#">▴</a></span>
+			                        	<span class="negative">-9999</span>
+			                        	<span class="label label-red"><a href="#">▾</a></span>
+		                        	</div>
+
+		                        </footer>
 	                        </div>
-	                        <span class="wrapper wrapper-fluid negative">
-	                            -9999
-	                        </span>
-	                        <div class="wrapper wrapper-fluid">
-	                            <a href="#downvote">
-	                                <svg style="width:35;height:35" viewBox="0 0 24 24">
-	                                    <path fill="#E33B3B" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-	                                </svg>
-	                            </a>
+	                </article>
+
+	                 <article class="reply nested-2">
+	                        <div class="container">
+		                        <header>
+		                        	<a href="#" class="author">Arc Warden the Warden of the Universe</a>
+	                        		<span><time>5 menit</time> yang lalu</span>
+		                        </header>
+		                        <main>
+		                        	<p>Nulla tristique, elit sit amet placerat varius, erat lorem blandit nibh, id porta justo quam a eros. Mauris in tempor neque, eget aliquet urna. Pellentesque nisi sapien, hendrerit non euismod non, pellentesque eget leo. Vivamus vitae mi id eros dignissim consectetur. Aenean in sodales felis. In ut arcu sit amet mi vestibulum porta. Etiam sagittis nisl sed tortor viverra, ut interdum mi tincidunt. Praesent ullamcorper sit amet lectus vel rutrum.</p>
+		                        </main>
+		                        <footer>
+		                        	<span class="label"><a href="#">CUAPIN</a></span>
+		                        	<div>
+		                        		<span class="label label-green"><a href="#">▴</a></span>
+			                        	<span class="negative">-9999</span>
+			                        	<span class="label label-red"><a href="#">▾</a></span>
+		                        	</div>
+
+		                        </footer>
 	                        </div>
-	                    </div>
-	                    <div class="col-xs-7 col-md-8">
-	                        <a href="#" class="author">Arc Warden the Warden of the Universe</a>
-	                        <div class="reply-time"><span>5 menit</span> yang lalu </div>
-	                        <hr />
-	                        <div class="content">
-	                        Nulla tristique, elit sit amet placerat varius, erat lorem blandit nibh, id porta justo quam a eros. Mauris in tempor neque, eget aliquet urna. Pellentesque nisi sapien, hendrerit non euismod non, pellentesque eget leo. Vivamus vitae mi id eros dignissim consectetur. Aenean in sodales felis. In ut arcu sit amet mi vestibulum porta. Etiam sagittis nisl sed tortor viverra, ut interdum mi tincidunt. Praesent ullamcorper sit amet lectus vel rutrum.
+	                </article>
+
+	                <article class="reply">
+	                        <div class="container">
+		                        <header>
+		                        	<a href="#" class="author">Arc Warden the Warden of the Universe</a>
+	                        		<span><time>5 menit</time> yang lalu</span>
+		                        </header>
+		                        <main>
+		                        	<p>Nulla tristique, elit sit amet placerat varius, erat lorem blandit nibh, id porta justo quam a eros. Mauris in tempor neque, eget aliquet urna. Pellentesque nisi sapien, hendrerit non euismod non, pellentesque eget leo. Vivamus vitae mi id eros dignissim consectetur. Aenean in sodales felis. In ut arcu sit amet mi vestibulum porta. Etiam sagittis nisl sed tortor viverra, ut interdum mi tincidunt. Praesent ullamcorper sit amet lectus vel rutrum.</p>
+		                        </main>
+		                        <footer>
+		                        	<span class="label"><a href="#">CUAPIN</a></span>
+		                        	<div>
+		                        		<span class="label label-green"><a href="#">▴</a></span>
+			                        	<span class="negative">-9999</span>
+			                        	<span class="label label-red"><a href="#">▾</a></span>
+		                        	</div>
+
+		                        </footer>
 	                        </div>
-	                        <span class="reply-button">
-	                            <a href="#">CUAPIN</a>
-	                        </span>
-	                    </div>
 	                </article>
 					
-					<div class="col-left-2 col-10" style="text-align:center; margin-top: 1.5em; margin-bottom: 1.5em;">
+					<div class="pagination wrapper wrapper-fluid">
 		                <ul class="pagination">
 						    <li><a href="#">«</a></li>
 						    <li><a href="#">1</a></li>
