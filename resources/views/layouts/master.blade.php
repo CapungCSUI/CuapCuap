@@ -116,38 +116,6 @@
 				color: #00F;
 			}
 
-			ul.pagination {
- 			    display: inline-block;
- 			    padding: 0;
- 			    margin: 0;
- 			    fontsize: 0.8em;
- 			}
- 
-			div.paginationbox {
-				text-align: center;
-				margin-top: 1.5em;
-				margin-bottom: 1.5em;
-			}
-
- 			ul.pagination li {
- 				display: inline;
- 				color: black;
- 			    float: left;
- 			    padding: 8px 16px;
- 			    text-decoration: none;
- 			    border: 1px solid #ddd;
- 			}
- 
- 			ul.pagination li.active {
- 			    background-color: #3c90e6;
- 			    color: white;
- 			    border: 1px solid #3c90e6;
- 			}
- 
- 			ul.pagination li:hover:not(.active) {
- 				background-color: #ddd;
- 			}
-
 			.navbar {
 				background: none;
 				margin-top: 2em;
@@ -365,6 +333,23 @@
 		    .help-block {
 		        color: red;
 		    }
+
+		    .pagination .active {
+				background: #999;
+			}
+
+			.pagination .disabled {
+				color: #aaa;
+				cursor: not-allowed;
+			}
+
+			.pagination .disabled:hover {
+				box-shadow: none !important;
+			}
+
+			.pagination ul {
+				margin:0 auto !important;
+			}
 		@show
 	</style>
 

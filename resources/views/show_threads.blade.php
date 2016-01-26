@@ -53,7 +53,7 @@
     </article>
     @endforeach
 
-    <div class="paginationbox col-left-2 col-10">
+    <div class="pagination wrapper wrapper-fluid">
         {!! $threads->links() !!}
     </div>
 @endsection
