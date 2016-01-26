@@ -75,6 +75,14 @@
         margin: 0.5em 0 1em 0;
     }
 
+    .author:hover {
+        text-decoration: underline;
+    }
+
+    .author:active {
+        color: blue;
+    }
+
 @endsection
 
 @section('content')
@@ -111,7 +119,7 @@
 
     @foreach ($replies as $reply)
          <article class="reply">
-            <div class="container container-2 {{ $reply->depth > 0 ? "col-left-" . $reply->depth : "" }} ">
+            <div class="container container-2 {{ $reply->depth > 0 ? "col-left-" . ($reply->depth > 7 ? '7' : $reply->depth) : "" }} ">
                 <header>
                      <a class="author" href="/profile/{{ $reply->user_id }}">{{ $users[$reply->user_id - 1]->username }}</a>
                     <span><time>{{ $reply->updated_at }}</time></span>

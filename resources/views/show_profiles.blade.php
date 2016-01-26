@@ -25,6 +25,14 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-md-4 control-label">Voted_threads: {{ $user->voted_threads }}</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Voted_replies: {{ $user->voted_replies }}</label>
+                        </div>
+
+                        <div class="form-group">
                             <button><a href="/messages/{{ $user->id }}">Message!</a></button>
                         </div>
 

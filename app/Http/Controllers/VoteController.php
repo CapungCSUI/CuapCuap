@@ -20,6 +20,12 @@ class VoteController extends Controller
      */
     public function upvoteThread($id)
     {
+        $author = DB::table('threads')->select('author_id')->where('id', $id)->first();
+
+        if ($author == null || $author->author_id == Auth::user()->id) {
+            return redirect()->back();
+        }
+
         $votedThreads = Auth::user()->voted_threads;
         $needle = '|' . $id . ':';
         $pos = strpos($votedThreads, $needle);
@@ -67,8 +73,6 @@ class VoteController extends Controller
                 $thanks = 2;
             }
         }
-        
-        $author = DB::table('threads')->select('author_id')->where('id', $id)->first()->author_id;
 
         if ($thanks < 0) {
             DB::table('users')->where('id', $author)->decrement('exp', -$thanks);
@@ -88,6 +92,11 @@ class VoteController extends Controller
      */
     public function downvoteThread($id)
     {
+        $author = DB::table('threads')->select('author_id')->where('id', $id)->first();
+        if ($author == null || $author->author_id == Auth::user()->id) {
+            return redirect()->back();
+        }
+        
         $votedThreads = Auth::user()->voted_threads;
         $needle = '|' . $id . ':';
         $pos = strpos($votedThreads, $needle);
@@ -135,8 +144,6 @@ class VoteController extends Controller
             }
         }
 
-        $author = DB::table('threads')->select('author_id')->where('id', $id)->first()->author_id;
-
         if ($thanks < 0) {
             DB::table('users')->where('id', $author)->decrement('exp', -$thanks);
         }
@@ -155,6 +162,11 @@ class VoteController extends Controller
      */
     public function upvoteReply($id)
     {
+        $author = DB::table('replies')->select('user_id')->where('id', $id)->first();
+        if ($author == null || $author->user_id == Auth::user()->id) {
+            return redirect()->back();
+        }
+        
         $votedReplies = Auth::user()->voted_replies;
         $needle = '|' . $id . ':';
         $pos = strpos($votedReplies, $needle);
@@ -203,8 +215,6 @@ class VoteController extends Controller
             }
         }
 
-        $author = DB::table('replies')->select('user_id')->where('id', $id)->first()->user_id;
-
         if ($thanks < 0) {
             DB::table('users')->where('id', $author)->decrement('exp', -$thanks);
         }
@@ -223,6 +233,11 @@ class VoteController extends Controller
      */
     public function downvoteReply($id)
     {
+        $author = DB::table('replies')->select('user_id')->where('id', $id)->first();
+        if ($author == null || $author->user_id == Auth::user()->id) {
+            return redirect()->back();
+        }
+
         $votedReplies = Auth::user()->voted_replies;
         $needle = '|' . $id . ':';
         $pos = strpos($votedReplies, $needle);
@@ -270,8 +285,6 @@ class VoteController extends Controller
                 $thanks = 1;
             }
         }
-
-        $author = DB::table('replies')->select('user_id')->where('id', $id)->first()->user_id;
 
         if ($thanks < 0) {
             DB::table('users')->where('id', $author)->decrement('exp', -$thanks);
