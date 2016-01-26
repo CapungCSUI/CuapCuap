@@ -27,4 +27,12 @@ class Helper
 
 		return $value;
 	}
+
+	public static function getUserResource($path, $id) {
+		if ($path !== null) {
+            $path = '/users/'.$id.'/'.$path;
+        }
+
+        return $path;
+	}
 }

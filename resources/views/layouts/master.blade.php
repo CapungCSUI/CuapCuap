@@ -10,7 +10,7 @@
 	<title>CuapCuap &middot; @yield('title')</title>
 
 	@section('external-resource')
-		<link rel="stylesheet" href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" />
+		<link rel="stylesheet" href="{!! asset('/css/kickstart.min.css') !!}">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	@show
 
@@ -48,6 +48,12 @@
 				-webkit-filter: brightness(50%);
 				background-size: cover
 			}
+
+			img.logo {
+ 				max-width: 85%;
+ 				max-height: 100px;
+ 				height: auto;
+  			}
 
 			#footer {
 				width: 100%;
@@ -109,32 +115,38 @@
 			#footer-links a:active {
 				color: #00F;
 			}
-	
+
 			ul.pagination {
-			    display: inline-block;
-			    padding: 0;
-			    margin: 0;
-			    font-size: 0.8em;
+ 			    display: inline-block;
+ 			    padding: 0;
+ 			    margin: 0;
+ 			    fontsize: 0.8em;
+ 			}
+ 
+			div.paginationbox {
+				text-align: center;
+				margin-top: 1.5em;
+				margin-bottom: 1.5em;
 			}
 
-			ul.pagination li {
-				display: inline;
-				color: black;
-			    float: left;
-			    padding: 8px 16px;
-			    text-decoration: none;
-			    border: 1px solid #ddd;
-			}
-
-			ul.pagination li.active {
-			    background-color: #3c90e6;
-			    color: white;
-			    border: 1px solid #3c90e6;
-			}
-
-			ul.pagination li:hover:not(.active) {
-				background-color: #ddd;
-			}
+ 			ul.pagination li {
+ 				display: inline;
+ 				color: black;
+ 			    float: left;
+ 			    padding: 8px 16px;
+ 			    text-decoration: none;
+ 			    border: 1px solid #ddd;
+ 			}
+ 
+ 			ul.pagination li.active {
+ 			    background-color: #3c90e6;
+ 			    color: white;
+ 			    border: 1px solid #3c90e6;
+ 			}
+ 
+ 			ul.pagination li:hover:not(.active) {
+ 				background-color: #ddd;
+ 			}
 
 			.navbar {
 				background: none;
@@ -157,6 +169,7 @@
 			nav.menu ul:first-child li:active {
 				background: #8ADD14; !important;
 			}
+
 
 			.search_bar {
 				background: none;
@@ -324,16 +337,6 @@
 			.thread {
 				text-align: justify;
 			}
-			
-		    .thread .vote {
-		        position: relative; 
-		        bottom: 0.5em; 
-		        left: 1em;
-		    }
-
-		    .rate {
-		        min-width: 4em;
-		    }
 
 		    .positive {
 		        color: #3B8EE3;
@@ -369,7 +372,7 @@
 <body>
 	@section('slidemenu')
 		<div class="navbar sidemenu">
-			<div class="profpic-cover" style="background: url('http://cdn.dota2.com/apps/dota2/images/heroes/ogre_magi_vert.jpg') no-repeat center;">
+			<div class="profpic-cover" style="background: url('{{ App\Helpers\Helper::getUserResource(Auth::user()->profile_picture, Auth::user()->id) }}') no-repeat center;">
 				<a href="#" class="menu-close">&times;</a>
 			</div>
 
@@ -432,7 +435,7 @@
 	<main class="outer-wrapper">
 		<header id="header">
 			@section('header')
-				<img src="/img/cuapcuap-logo-h.png" alt="CuapCuap Capung" height="100">
+				<img src="/img/cuapcuap-logo-h.png" alt="CuapCuap Capung" class="logo">
 
 				<a href="#" class="menu-toggle">&equiv;</a>
 

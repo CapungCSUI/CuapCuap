@@ -14,12 +14,13 @@
         color: #A2F;
     }
 
+
 @endsection
 
 @section('content')
     @foreach ($threads as $thread)
     <article class="row thread">
-        <div class="col-2 text-center rate vote">
+        <div class="col-xs-3 col-md-2 text-center">
             <div class="wrapper wrapper-fluid">
                 <a href="#upvote">
                     <svg style="width:48;height:48" viewBox="0 0 24 24">
@@ -38,7 +39,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-10">
+        <div class="col-xs-9 col-md-10">
             <a class="thread-link" href="/thread/{{ $thread->id }}"><p>{{ $thread->title }}</p></a>
             <div>
                 @if ($thread->sticky == true)
@@ -52,7 +53,7 @@
     </article>
     @endforeach
 
-    <div class="col-left-2 col-10" style="text-align:center; margin-top: 1.5em; margin-bottom: 1.5em;">
+    <div class="paginationbox col-left-2 col-10">
         {!! $threads->links() !!}
     </div>
 @endsection

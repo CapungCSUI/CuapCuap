@@ -5,6 +5,10 @@
 @section('internal-css')
     @parent
 
+    .thread {
+        text-align: justify;
+    }
+
     .thread .statusbar {
         font-size: 0.8em; 
     }
@@ -88,17 +92,11 @@
         color:black;
         background-color:black;" 
     }
-
-    .reply .vote {
-        position: relative; 
-        bottom: 0.25em; 
-        left: 1.5em;
-    }
 @endsection
 
 @section('content')
     <article class="row thread">
-        <div class="col-2 text-center rate vote">
+        <div class="col-xs-3 col-md-2 text-center">
             <div class="wrapper wrapper-fluid">
                 <a href="#upvote">
                     <svg style="width:48;height:48" viewBox="0 0 24 24">
@@ -117,7 +115,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-10">
+        <div class="col-xs-9 col-md-10">
             {{ $thread->title }}
             <div class="statusbar">
                 oleh <a href="/profile/{{ $thread->author_id }}" class="author">{{ $users[$thread->author_id - 1]->username }}</a>
@@ -137,7 +135,7 @@
 
     @foreach ($replies as $reply)
         <article class="row reply">
-            <div class="col-2 text-center rate vote">
+            <div class="col-xs-3 col-md-2 text-center">
                 <div class="wrapper wrapper-fluid">
                     <a href="#upvote">
                         <svg style="width:35;height:35" viewBox="0 0 24 24">
@@ -156,7 +154,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-10">
+            <div class="col-xs-9 col-md-10">
                 <a class="author" href="/profile/{{ $reply->user_id }}">{{ $users[$reply->user_id - 1]->username }}</a>
                 <!--<div class="reply-time"><span>5 menit</span> yang lalu </div>-->
                 <div class="reply-time">Pada <span>{{ $reply->updated_at }}</span></div>
@@ -170,7 +168,7 @@
             </div>
         </article>
     @endforeach
-    <div class="col-left-2 col-10" style="text-align:center; margin-top: 1.5em; margin-bottom: 1.5em;">
+    <div class="paginationbox col-left-2 col-10">
         {!! $replies->links() !!}
     </div>
 @endsection

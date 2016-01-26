@@ -25,10 +25,7 @@ class UserController extends Controller
         $users = DB::table('users')->paginate(3);
 
         foreach ($users as &$user) {
-            if ($user->profile_picture !== null) {
-                $user->profile_picture = 'users/'.$user->id.'/'.$user->profile_picture;
-                $user->profile_picture = url($user->profile_picture);
-            }
+            $user->profile_picture = Helper::getUserResource($user->profile_picture, $user->id);
         }
 
         return view('show_profiles', [
@@ -87,11 +84,7 @@ class UserController extends Controller
         }
 
         if ($user->profile_picture !== null) {
-            $user->profile_picture = 'users/'.$id.'/'.$user->profile_picture;
-            $user->profile_picture = url($user->profile_picture);
-        }
-        else {
-            $user->profile_picture = null;
+            $user->profile_picture = Helper::getUserResource($user->profile_picture, $user->id);
         }
 
         return view('show_profile', [
