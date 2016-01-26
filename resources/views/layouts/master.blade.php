@@ -374,6 +374,14 @@
 				line-height: 1.45rem;
 				vertical-align: top;
 				background: #ededed;
+				border: 1px solid transparent;
+				border-radius: 3px;
+			}
+
+			.pagination>ul>li:not(:first-child):not(:last-child):not(:only-child)>span {
+			    border-radius: 0;
+			    border-left: 0;
+			    border-right: 1px solid rgba(0,0,0,.1);
 			}
 		@show
 	</style>
