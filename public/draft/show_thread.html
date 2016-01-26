@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>CuapCuap &middot; Home</title>
 
-	<link rel="stylesheet" href="http://cdn.everything.io/kickstart/3.x/css/kickstart.min.css" />
+	<link rel="stylesheet" href="assets/css/kickstart.min.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 	<style>
@@ -158,10 +158,6 @@
 			text-decoration: none !important;
 		}
 
-		.rate {
-			min-width: 4em;
-		}
-
 		.positive {
 			color: #3B8EE3;
 		}
@@ -254,12 +250,6 @@
 			text-align: justify;
 		}
 
-		.thread .vote {
-			position: relative; 
-			bottom: 0.5em; 
-			left: 1em;
-		}
-
 		.thread .statusbar {
 			font-size: 0.8em; 
 		}
@@ -344,12 +334,6 @@
 			background-color:black;" 
 		}
 
-		.reply .vote {
-			position: relative; 
-			bottom: 0.25em; 
-			left: 1.5em;
-		}
-
 		ul.pagination {
 		    display: inline-block;
 		    padding: 0;
@@ -432,6 +416,12 @@
 			color: #A2F;
 		}
 
+		img.logo {
+			max-width: 85%;
+			max-height: 100px;
+			height: auto;
+		}
+
 	</style>
 
 </head>
@@ -448,7 +438,7 @@
 
 	<main class="outer-wrapper">
 		<header id="header">
-			<img src="img/cuapcuap-logo-h.png" alt="CuapCuap Capung" height="100">
+			<img src="img/cuapcuap-logo-h.png" alt="CuapCuap Capung" height="100" class="logo">
 
 			<a href="#" class="menu-toggle">&equiv;</a>
 
@@ -483,7 +473,7 @@
 			<div class="row">
 				<main class="content col-9">
 					<article class="row thread">
-	                    <div class="col-2 text-center rate vote">
+	                    <div class="col-xs-3 col-md-2 text-center">
 	                        <div class="wrapper wrapper-fluid">
 	                            <a href="#upvote">
 	                                <svg style="width:48;height:48" viewBox="0 0 24 24">
@@ -502,7 +492,7 @@
 	                            </a>
 	                        </div>
 	                    </div>
-	                    <div class="col-10">
+	                    <div class="col-xs-9 col-md-10">
 	                        <a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	                        tempor incididunt ut labore et dolore magna aliqua.</a>
 	                        <div class="statusbar">
@@ -529,7 +519,7 @@
 	                </article>
 	                
 	                <article class="row reply">
-	                    <div class="col-2 text-center rate vote">
+	                    <div class="col-xs-3 col-md-2 text-center rate vote">
 	                        <div class="wrapper wrapper-fluid">
 	                            <a href="#upvote">
 	                                <svg style="width:35;height:35" viewBox="0 0 24 24">
@@ -548,7 +538,7 @@
 	                            </a>
 	                        </div>
 	                    </div>
-	                    <div class="col-10">
+	                    <div class="col-xs-9 col-md-10">
 	                        <a href="#" class="author">Arc Warden the Warden of the Universe</a>
 	                        <div class="reply-time"><span>5 menit</span> yang lalu </div>
 	                        <hr />
@@ -562,7 +552,7 @@
 	                </article>
 
 	                <article class="row reply">
-	                    <div class="col-2 text-center rate vote">
+	                    <div class="col-xs-3 col-md-2 text-center">
 	                        <div class="wrapper wrapper-fluid">
 	                            <a href="#upvote">
 	                                <svg style="width:35;height:35" viewBox="0 0 24 24">
@@ -581,7 +571,7 @@
 	                            </a>
 	                        </div>
 	                    </div>
-	                    <div class="col-10">
+	                    <div class="col-xs-9 col-md-10">
 	                        <a class="author" href="#">Arc Warden the Warden of the Universe</a>
 	                        <div class="reply-time"><span>5 menit</span> yang lalu </div>
 	                        <hr />
@@ -595,7 +585,7 @@
 	                </article>
 
 	                <article class="row reply col-left-1">
-	                    <div class="col-2 text-center rate vote">
+	                    <div class="col-xs-3 col-md-2 text-center">
 	                        <div class="wrapper wrapper-fluid">
 	                            <a href="#upvote">
 	                                <svg style="width:35;height:35" viewBox="0 0 24 24">
@@ -614,7 +604,7 @@
 	                            </a>
 	                        </div>
 	                    </div>
-	                    <div class="col-10">
+	                    <div class="col-xs-7 col-md-8">
 	                        <a href="#" class="author">Arc Warden the Warden of the Universe</a>
 	                        <div class="reply-time"><span>5 menit</span> yang lalu </div>
 	                        <hr />
@@ -626,6 +616,7 @@
 	                        </span>
 	                    </div>
 	                </article>
+					
 					<div class="col-left-2 col-10" style="text-align:center; margin-top: 1.5em; margin-bottom: 1.5em;">
 		                <ul class="pagination">
 						    <li><a href="#">«</a></li>
@@ -639,6 +630,7 @@
 						    <li><a href="#">»</a></li>
 						</ul>
 					</div>
+
 				</main>
 
 				<aside class="sidebar col-3">
