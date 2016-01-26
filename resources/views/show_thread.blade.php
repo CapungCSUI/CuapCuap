@@ -89,7 +89,7 @@
     <article class="thread">
         <div class="container container-1">
             <header>
-                <h3><a href="/profile/{{ $thread->author_id }}" class="author">{{ $users[$thread->author_id - 1]->username }}</a></h3>
+                <h3><a href="/profile/{{ $thread->author_id }}" class="author">{{ $users[$thread->author_id - 1]->fullname }}</a></h3>
                 <time>{{ $thread->created_at }}</time>
             </header>
             <main>
@@ -121,7 +121,7 @@
          <article class="reply">
             <div class="container container-2 {{ $reply->depth > 0 ? "col-left-" . ($reply->depth > 7 ? '7' : $reply->depth) : "" }} ">
                 <header>
-                     <a class="author" href="/profile/{{ $reply->user_id }}">{{ $users[$reply->user_id - 1]->username }}</a>
+                     <a class="author" href="/profile/{{ $reply->user_id }}">{{ $users[$reply->user_id - 1]->fullname }}</a>
                     <span><time>{{ $reply->updated_at }}</time></span>
                 </header>
                 <main>

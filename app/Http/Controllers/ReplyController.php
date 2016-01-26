@@ -32,8 +32,8 @@ class ReplyController extends Controller
         }
 
         if ($parentReply != null) {
-            $user_name = DB::table('users')->select('username')->where('id', $parentReply->user_id)->first();
-            $parentReply->user_name = $user_name->username;
+            $user_name = DB::table('users')->select('fullname')->where('id', $parentReply->user_id)->first();
+            $parentReply->user_name = $user_name->fullname;
         }
 
         return view('create_reply', [
@@ -167,8 +167,8 @@ class ReplyController extends Controller
         $parentReply = DB::table('replies')->where('id', $reply->parent_id)->first();
 
         if ($parentReply != null) {
-            $user_name = DB::table('users')->select('username')->where('id', $parentReply->user_id)->first();
-            $parentReply->user_name = $user_name->username;
+            $user_name = DB::table('users')->select('fullname')->where('id', $parentReply->user_id)->first();
+            $parentReply->user_name = $user_name->fullname;
         }
 
         return view('edit_reply', [

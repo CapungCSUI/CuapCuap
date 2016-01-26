@@ -251,7 +251,7 @@
 				<a href="#" class="menu-close">&times;</a>
 			</div>
 
-			<h3>{{ Auth::user()->username }}</h3>
+			<h3>{{ Auth::user()->fullname }}</h3>
 			<div style="background-color:#8cdf15; padding-bottom: 0.3em; margin:0.6em;" class="text-center">
 				<span style="font-size: 2em;line-height:1em;">LEVEL</span>
 				<div class="text-center" style="background-color:#3e3e3e; margin: 0 auto; width:96%;">

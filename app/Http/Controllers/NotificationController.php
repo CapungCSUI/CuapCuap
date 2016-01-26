@@ -20,7 +20,7 @@ class NotificationController extends Controller
     {
         $user_id = Auth::user()->id;
 
-        $users = DB::table('users')->select('username')->orderBy('id', 'asc')->get();
+        $users = DB::table('users')->select('fullname')->orderBy('id', 'asc')->get();
         $threads = DB::table('threads')->select('title')->orderBy('id', 'asc')->get();
 
         $notifications = DB::table('notifications')

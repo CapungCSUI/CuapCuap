@@ -43,7 +43,7 @@
                 <a href="/notification/{{ $notifications[$i]->id }}">
                     <li {{ $notifications[$i]->type == 1 ? "class=green" : "" }}>
                         @if ($notifications[$i]->type == 0)
-                        New message from - {{ $users[$notifications[$i]->content_id - 1]->username }}<br />
+                        New message from - {{ $users[$notifications[$i]->content_id - 1]->fullname }}<br />
                         At {{ $notifications[$i]->created_at }}
                         @elseif ($notifications[$i]->type == 1)
                         New reply on Thread - {{ $threads[$notifications[$i]->content_id - 1]->title }}<br />
@@ -58,7 +58,7 @@
                 <a href="/notification/{{ $notifications[$i]->id }}">
                     <li {{ $notifications[$i]->type == 1 ? "class=green" : "" }}>
                         @if ($notifications[$i]->type == 0)
-                        New message from - {{ $users[$notifications[$i]->content_id - 1]->username }}<br />
+                        New message from - {{ $users[$notifications[$i]->content_id - 1]->fullname }}<br />
                         At {{ $notifications[$i]->created_at }}
                         @elseif ($notifications[$i]->type == 1)
                         New reply on Thread - {{ $threads[$notifications[$i]->content_id - 1]->title }}<br />

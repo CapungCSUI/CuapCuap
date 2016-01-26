@@ -130,7 +130,7 @@ class ThreadController extends Controller
 
         $thread = DB::table('threads')->where('id', $id)->first();
         $users = DB::table('users')
-            ->select('username')
+            ->select('fullname')
             ->orderBy('id', 'asc')
             ->get();
 
