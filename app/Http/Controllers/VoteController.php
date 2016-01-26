@@ -25,6 +25,7 @@ class VoteController extends Controller
         if ($author == null || $author->author_id == Auth::user()->id) {
             return redirect()->back();
         }
+        $author = $author->author_id;
 
         $votedThreads = Auth::user()->voted_threads;
         $needle = '|' . $id . ':';
@@ -96,6 +97,7 @@ class VoteController extends Controller
         if ($author == null || $author->author_id == Auth::user()->id) {
             return redirect()->back();
         }
+        $author = $author->author_id;
         
         $votedThreads = Auth::user()->voted_threads;
         $needle = '|' . $id . ':';
@@ -166,6 +168,7 @@ class VoteController extends Controller
         if ($author == null || $author->user_id == Auth::user()->id) {
             return redirect()->back();
         }
+        $author = $author->user_id;
         
         $votedReplies = Auth::user()->voted_replies;
         $needle = '|' . $id . ':';
@@ -237,6 +240,7 @@ class VoteController extends Controller
         if ($author == null || $author->user_id == Auth::user()->id) {
             return redirect()->back();
         }
+        $author = $author->user_id;
 
         $votedReplies = Auth::user()->voted_replies;
         $needle = '|' . $id . ':';
