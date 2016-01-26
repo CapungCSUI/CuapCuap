@@ -35,6 +35,7 @@ database structure:
 		users:
 			id (int, NOT NULL, AUTO INCREMENT, PRIMARY)
 			username (varchar(255), NOT NULL, unique)
+			fullname (varchar(255), NOT NULL)
 			password (varchar(255) ,bcrypt hash, default bcrypt(''))
 			email (varchar(255))
 			birthday (DATE)

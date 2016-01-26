@@ -40,6 +40,7 @@ class SSOAuthenticate
                 else {
                     $id = DB::table('users')->insertGetId([
                         'username' => $userData->username,
+                        'fullname' => $userData->name,
                         'voted_threads' => "|",
                         'voted_replies' => "|",
                     ]);

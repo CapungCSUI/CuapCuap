@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
 
     	DB::table('users')->insert([
             'username' => 'aldi.fahrezi',
+            'fullname' => 'Aldi Fahrezi',
             'email' => 'aldi.fahrezi@gmail.com',
             'birthday' => '1997-09-08',
             'role_id' => 2,
@@ -24,6 +25,7 @@ class UsersTableSeeder extends Seeder
     	for ($count = 0; $count < 5; $count++) {
         	DB::table('users')->insert([
 	            'username' => str_random(10).$count,
+                'fullname' => str_random(10).$count,
 	            'email' => str_random(10).'@gmail.com',
 	            'birthday' => rand(1611, 2014).'-'.rand(10, 12).'-'.rand(10, 30),
                 'voted_threads' => "|",
