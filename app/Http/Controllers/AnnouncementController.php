@@ -20,7 +20,7 @@ class AnnouncementController extends Controller
         $announcements = DB::table('announcements')
             ->where('is_deleted', false)
             ->orderBy('created_at', 'desc')
-            ->paginate(2);
+            ->paginate(8);
 
         return view('show_announcements', [
             'announcements' => $announcements,

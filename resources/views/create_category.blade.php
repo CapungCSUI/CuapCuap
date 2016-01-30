@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'New Category')
+
 @section('content')
     <div class="heading">New Category</div>
     <div>

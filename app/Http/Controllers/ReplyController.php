@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Helpers\Helper;
 use Auth;
 use DB;
+use HTMLPurifier;
+use HTMLPurifier_Config;
 
 class ReplyController extends Controller
 {
@@ -78,6 +80,10 @@ class ReplyController extends Controller
         ]);
 
         $content = $request->input('content');
+
+        $config = HTMLPurifier_Config::createDefault();
+        $purifier = new HTMLPurifier($config);
+        $content = $purifier->purify($content);
 
         $id = DB::table('replies')->insertGetId([
             'thread_id' =>  $thread_id,
@@ -204,6 +210,10 @@ class ReplyController extends Controller
         ]);
 
         $content = $request->input('content');
+
+        $config = HTMLPurifier_Config::createDefault();
+        $purifier = new HTMLPurifier($config);
+        $content = $purifier->purify($content);
 
         DB::table('replies')->where('id', $id)->update([
             'content' => $content,

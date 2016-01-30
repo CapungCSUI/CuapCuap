@@ -18,7 +18,12 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()) {
-            return view('home');
+            if (Auth::user()->role_id == 0) {
+                return redirect()->action('ThreadController@index');
+            }
+            else if (Auth::user()->role_id >= 1) {
+                return view('home');
+            }
         }
         else {
             return view('welcome');

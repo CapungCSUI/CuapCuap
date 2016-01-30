@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Peraturan Forum')
+
 @section('internal-css')
     @parent
     

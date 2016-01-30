@@ -46,7 +46,6 @@
 
     .container footer {
         vertical-align: center;
-        height: 2.5em;
     }
 
     .container-1 header, .container-1 footer {
@@ -71,7 +70,7 @@
 
     .horizontal-line {
         height: 1px;
-        background: #878787;
+        background: #CCC;
         margin: 0.5em 0 1em 0;
     }
 
@@ -102,6 +101,9 @@
             <footer>
                 <div>
                     <span class="label"><a href="/thread/{{ $thread->id }}/reply">CUAPIN</a></span>
+                    @if (Auth::user()->id == $thread->author_id)
+                    <span class="label"><a href="/thread/{{ $thread->id }}/edit">Edit</a></span>
+                    @endif
                 </div>
                 <div>
                     <span class="label">{{ $thread->comment_count }} Cuap</span>
@@ -130,11 +132,17 @@
                 <footer>
                     <div>
                         <span class="label"><a href="/thread/{{ $thread->id }}/{{ $reply->id }}/reply">CUAPIN</a></span>
+                        @if (Auth::user()->id == $reply->user_id)
+                        @endif
                     </div>
                     <div>
+                        @if (Auth::user()->id != $reply->user_id)
                         <span class="label label-green"><a href="/reply/{{ $reply->id }}/upvote">▴</a></span>
                         <span class="{{ $reply->upvote >= 0 ? "positive" : "negative" }}">{{ $reply->upvote }}</span>
                         <span class="label label-red"><a href="/reply/{{ $reply->id }}/downvote">▾</a></span>
+                        @else
+                        <span class="label"><a href="/thread/{{ $thread->id }}/{{ $reply->id }}/edit">Edit</a></span>
+                        @endif
                     </div>
                 </footer>
             </div>

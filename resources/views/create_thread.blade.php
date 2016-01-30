@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'New Thread')
+
 @section('content')
     <div class="heading">New Thread</div>
     <div>
@@ -31,7 +33,7 @@
                     @if ($errors->has('title'))
                         <span class="help-block">
                             <strong>{{ $errors->first('title') }}</strong>
-                        </span>
+                    </span>
                     @endif
                 </div>
             </div>
@@ -40,7 +42,7 @@
                 <label class="col-2">Content</label>
 
                 <div class="col-10">
-                    <textarea name="content" class="form-text-area"></textarea>
+                    <textarea name="content" class="form-text-area tinymce"></textarea>
                     @if ($errors->has('content'))
                         <span class="help-block">
                             <strong>{{ $errors->first('content') }}</strong>
@@ -49,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="form_group row{{ $errors->has('tags') ? ' has-error' : '' }}">
+            <!--<div class="form_group row{{ $errors->has('tags') ? ' has-error' : '' }}">
                 <label class="col-2">Tags</label>
 
                 <div class="col-10">
@@ -60,7 +62,7 @@
                         </span>
                     @endif
                 </div>
-            </div>
+            </div>-->
 
             <div class="form_group row{{ $errors->has('sticky') ? ' has-error' : '' }}">
                 <label class="col-2">Sticky</label>

@@ -5,15 +5,16 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="/favicon.png" sizes="32x32" type="image/png">
 		<script src="/plugins/tinymce/tinymce.min.js"></script>
   		<script>
   			tinymce.init({ 
-  				selector: 'textarea',
+  				selector: '.tinymce',
   				plugins: [
-  					"fullscreen code table insertdatetime link image media advlist imagetools paste visualblocks searchreplace charmap"
+  					"fullscreen code link image advlist imagetools paste visualblocks searchreplace charmap"
 				],
 				toolbar: [
-					"insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | link image media | insertdatetime | fullscreen | code",
+					"undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | fullscreen | code",
 				],
   			});
   		</script>	
@@ -133,7 +134,7 @@
 			.navbar {
 				background: none;
 				margin-top: 2em;
-				margin-bottom: 0;
+				margin-bottom: 0.25em;
 			}
 
 			nav.menu li a {
@@ -316,7 +317,6 @@
 
 		    .content article a {
 		        color: inherit;
-		        text-decoration: none;
 		    }
 
 			.thread {
@@ -398,7 +398,7 @@
 			<div style="background-color:#8cdf15; padding-bottom: 0.3em; margin:0.6em;" class="text-center">
 				<span style="font-size: 2em;line-height:1em;">LEVEL</span>
 				<div class="text-center" style="background-color:#3e3e3e; margin: 0 auto; width:96%;">
-					<span style="font-size: 3em; line-height: 1em;">{{ intval(Auth::user()->exp / 10) }}</span>
+					<span style="font-size: 3em; line-height: 1em;">{{ intval(Auth::user()->exp / 10)+1 }}</span>
 				</div>
 			</div>
 			<div style="background-color:#3b91e8; padding: 0.3em; margin:0.5em 0.6em;">
@@ -442,7 +442,15 @@
 					<i class="fa fa-user fa-lg"></i>
 				</div>
 				<div style="margin: 0; padding: 0.3em 0.2em 0.1em 0.3em; float:right;">
-					<span style="font-size: 1.4em;">MY PROFILE</span>
+					<span style="font-size: 1.4em;">EDIT PROFILE</span>
+				</div>
+				<div style="clear:both; width:0; height:0; margin:0; padding:0; "></div>
+			</div>
+			</a>
+			<a href="/logout" style="color:white;">
+			<div style="background-color:red;">
+				<div style="margin: 0; padding: 0.3em 0.2em 0.1em 0.3em; float:right;">
+					<span style="font-size: 1.4em;">LOGOUT  <i class="fa fa-sign-out fa-lg"></i></span>
 				</div>
 				<div style="clear:both; width:0; height:0; margin:0; padding:0; "></div>
 			</div>
@@ -453,7 +461,7 @@
 	<main class="outer-wrapper">
 		<header id="header">
 			@section('header')
-				<img src="/img/cuapcuap-logo-h.png" alt="CuapCuap Capung" class="logo">
+				<a style="margin:0;padding:0;" href="/"><img src="/img/cuapcuap-logo-h.png" alt="CuapCuap Capung" class="logo"></a>
 
 				<a href="#" class="menu-toggle">&equiv;</a>
 
@@ -471,13 +479,13 @@
 								<li><a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
 							@endforeach
 						</ul>
-						<ul>
+						<!--<ul>
 							<li>
 								<form action="/search" method="get" accept-charset="utf-8">
 									<input type="search" class="search_bar" name="keyword" placeholder="Cari sesuatu?">
 								</form>
 							</li>
-						</ul>
+						</ul> -->
 					</nav>
 				</div>
 
@@ -512,13 +520,13 @@
 								@endforeach
 							</ul>
 						</div>
-						<div class="card-title">RULES &amp; GUIDES</div>
+						<!--<div class="card-title">RULES &amp; GUIDES</div>
 						<div class="card-content">
 							<ul>
 								<li><a href="/rules">PERATURAN FORUM</a></li>
 								<li><a href="/guide/how-to-make-a-post">HOW-TO MAKE A POST</a></li>
 							</ul>
-						</div>
+						</div>-->
 					@show
 				</aside>
 			</div>
@@ -532,8 +540,8 @@
 				<div style="color: white; margin:0; padding:0.5em;">&copy; Tim SBF PTI 2015, All Rights Reserved.</div>
 				<div id="footer-links">
 					<ul>
-						<li><a href="/aboutus">Tentang Kami</a></li>
-						<li class="nobullet"><a href="/contact">Kontak</a></li>
+						<li class="nobullet"><a href="/aboutus">Tentang Kami</a></li>
+						<!--<li ><a href="/contact">Kontak</a></li>-->
 					</ul>
 				</div>
 			@show

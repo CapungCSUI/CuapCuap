@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 use Auth;
+use HTMLPurifier;
+use HTMLPurifier_Config;
 
 class ThreadController extends Controller
 {
@@ -52,7 +54,7 @@ class ThreadController extends Controller
         }
         
         return view('show_threads', [
-            'threads' => $threads->paginate(2),
+            'threads' => $threads->paginate(8),
             'categories' => $categories,
             'category' => ucfirst($category),
         ]);
@@ -102,6 +104,10 @@ class ThreadController extends Controller
         $tags = $request->input('tags');
         $content = $request->input('content');
 
+        $config = HTMLPurifier_Config::createDefault();
+        $purifier = new HTMLPurifier($config);
+        $content = $purifier->purify($content);
+
         DB::table('threads')->insert([
             'title' => $title, 
             'sticky' => $sticky,
@@ -144,7 +150,7 @@ class ThreadController extends Controller
 
         return view('show_thread', [
             'thread' => $thread,
-            'replies' => $replies->paginate(8),
+            'replies' => $replies->paginate(16),
             'users' => $users,
             'categories' => $categories,
         ]);
@@ -214,6 +220,10 @@ class ThreadController extends Controller
 
         $tags = $request->input('tags');
         $content = $request->input('content');
+
+        $config = HTMLPurifier_Config::createDefault();
+        $purifier = new HTMLPurifier($config);
+        $content = $purifier->purify($content);
 
         DB::table('threads')
             ->where('id', $id)

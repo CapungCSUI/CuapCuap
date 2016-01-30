@@ -78,7 +78,7 @@ class MessageController extends Controller
                       ->where('sender_id', $receiver_id);
             })
             ->orderBy('created_at', 'asc')
-            ->paginate(2);
+            ->paginate(8);
 
         return view('show_messages', [
             'receiver' => $receiver,

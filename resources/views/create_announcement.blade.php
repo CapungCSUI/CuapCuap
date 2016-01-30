@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'New Announcement')
+
 @section('content')
     <div class="heading">New Announcement</div>
     <div>
@@ -23,7 +25,7 @@
                 <label class="col-2">Content</label>
 
                 <div class="col-10">
-                    <textarea name="content" class="form-text-area"></textarea>
+                    <textarea name="content" class="form-text-area tinymce"></textarea>
                     @if ($errors->has('content'))
                         <span class="help-block">
                             <strong>{{ $errors->first('content') }}</strong>

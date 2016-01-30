@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Edit Reply')
+
 @section('internal-css')
     @parent
 
@@ -57,7 +59,7 @@
                 <label class="col-2">Edit Reply</label>
 
                 <div class="col-10">
-                    <textarea name="content" class="form-text-area">{{ $reply->content }}</textarea>
+                    <textarea name="content" class="form-text-area tinymce">{{ $reply->content }}</textarea>
                     @if ($errors->has('content'))
                         <span class="help-block">
                             <strong>{{ $errors->first('content') }}</strong>

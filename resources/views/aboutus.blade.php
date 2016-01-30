@@ -1,6 +1,6 @@
 @extends('layouts.master-no-sidebar')
 
-@section('title', 'Kontak')
+@section('title', 'About Us')
 
 @section('internal-css')
     @parent
@@ -27,62 +27,95 @@
 
 @section('content')
     <mark><h4>TENTANG CUAP CUAP CAPUNG</h4></mark>
-    <p>Ullamcorper ac egestas sociis adipiscing mauris semper parturient litora ut a a justo ante tortor class orci et convallis ullamcorper. Est malesuada a commodo interdum maecenas lectus platea commodo lacus vestibulum placerat suspendisse dictumst vestibulum porta senectus ullamcorper a. Metus ultrices vestibulum metus suscipit parturient parturient a himenaeos mi parturient ad a cras sodales vulputate eros. Pretium aliquam consectetur a a cubilia ut turpis adipiscing parturient pulvinar aenean scelerisque inceptos luctus vivamus vulputate libero a leo morbi parturient vel blandit risus. Urna a dui diam tempor nibh purus praesent vestibulum tristique scelerisque quam ut adipiscing porttitor senectus tortor. Suspendisse a a netus diam faucibus accumsan lacinia placerat taciti in a maecenas tellus commodo donec condimentum eu sed a mus duis. 
-    <br>
-    <br>
-    Et morbi eleifend adipiscing consequat molestie vestibulum a sed lorem dolor eros condimentum etiam ullamcorper posuere cras sem. Egestas duis nunc in cum condimentum fermentum a cras eu ad orci enim a habitant hendrerit vestibulum congue hac scelerisque a nisl rhoncus vestibulum scelerisque. Suspendisse a parturient scelerisque ut nibh faucibus id eu fusce fusce leo senectus nam duis suspendisse praesent ultrices at tempus. 
-    </p>
+    <p>Cuap Cuap Capung adalah sebuah website yang dibuat sebagai sarana 
+    untuk mahasiswa angkatan 2015 saling berkomunikasi. <br />
+    Website ini dibuat 
+    dengan tujuan mempermudah komunikasi dan mempererat hubungan angkatan 2015.</p>
     <div id="TimKami">
     <h4>TIM KAMI</h5>
         <div class="row">
             <div class="col-4">
-                <img src="img/Round.PNG" style="width: 60%;"></img><br>
-                <strong>Name Is Nama</strong><br>
-                Sebagai Om Om Genit
+                <img src="collaborators/img/Aldi.PNG" style="width: 60%;"></img><br>
+                <strong>Aldi Fahrezi</strong><br>
+                Project Officer
             </div>
             <div class="col-4">
-                <img src="img/Round.PNG" style="width: 60%;"></img><br>
-                <strong>Name Is Nama</strong><br>
-                Sebagai Om Om Genit
+                <img src="collaborators/img/Arief.PNG" style="width: 60%;"></img><br>
+                <strong>Arief Tritomo</strong><br>
+                Back-end Team
             </div>
             <div class="col-4">
-                <img src="img/Round.PNG" style="width: 60%;"></img><br>
-                <strong>Name Is Nama</strong><br>
-                Sebagai Om Om Genit
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <img src="img/Round.PNG" style="width: 60%;"></img><br>
-                <strong>Name Is Nama</strong><br>
-                Sebagai Om Om Genit
-            </div>
-            <div class="col-4">
-                <img src="img/Round.PNG" style="width: 60%;"></img><br>
-                <strong>Name Is Nama</strong><br>
-                Sebagai Om Om Genit
-            </div>
-            <div class="col-4">
-                <img src="img/Round.PNG" style="width: 60%;"></img><br>
-                <strong>Name Is Nama</strong><br>
-                Sebagai Om Om Genit
+                <img src="collaborators/img/Avicenna.PNG" style="width: 60%;"></img><br>
+                <strong>Avicenna Wisesa</strong><br>
+                Back-end Team
             </div>
         </div>
         <div class="row">
             <div class="col-4">
-                <img src="img/Round.PNG" style="width: 60%;"></img><br>
-                <strong>Name Is Nama</strong><br>
-                Sebagai Om Om Genit
+                <img src="collaborators/img/Fahmi.PNG" style="width: 60%;"></img><br>
+                <strong>Fahmi</strong><br>
+                Back-end Team
             </div>
             <div class="col-4">
-                <img src="img/Round.PNG" style="width: 60%;"></img><br>
-                <strong>Name Is Nama</strong><br>
-                Sebagai Om Om Genit
+                <img src="collaborators/img/Hafizh.PNG" style="width: 60%;"></img><br>
+                <strong>Hafizh Rafizal Adnan</strong><br>
+                Front-end Team
             </div>
             <div class="col-4">
-                <img src="img/Round.PNG" style="width: 60%;"></img><br>
-                <strong>Name Is Nama</strong><br>
-                Sebagai Om Om Genit
+                <img src="collaborators/img/Hafizha.PNG" style="width: 60%;"></img><br>
+                <strong>Hafizha Zuharah</strong><br>
+                Front-end Team
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="collaborators/img/Kenny.PNG" style="width: 60%;"></img><br>
+                <strong>Kenny R. Dharmawan</strong><br>
+                Front-end Team
+            </div>
+            <div class="col-4">
+                <img src="collaborators/img/Aufa.PNG" style="width: 60%;"></img><br>
+                <strong>Muhammad Aufa Husen</strong><br>
+                Back-end Team
+            </div>
+            <div class="col-4">
+                <img src="collaborators/img/Umar.PNG" style="width: 60%;"></img><br>
+                <strong>Muhammad Umar Farisi</strong><br>
+                Back-end Team
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="collaborators/img/Intan.PNG" style="width: 60%;"></img><br>
+                <strong>Nur Intan Alatas</strong><br>
+                Front-end Team
+            </div>
+            <div class="col-4">
+                <img src="collaborators/img/Rakha.PNG" style="width: 60%;"></img><br>
+                <strong>Rakha Kanz Kautsar</strong><br>
+                Front-end Team
+            </div>
+            <div class="col-4">
+                <img src="collaborators/img/Sarah.PNG" style="width: 60%;"></img><br>
+                <strong>Sarah Dewi</strong><br>
+                Front-end Team
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="collaborators/img/Wibi.PNG" style="width: 60%;"></img><br>
+                <strong>Wibisana Bramawidya</strong><br>
+                Back-end Team
+            </div>
+            <div class="col-4">
+                <img src="collaborators/img/Wisnu.PNG" style="width: 60%;"></img><br>
+                <strong>Wisnu T. Wicaksono</strong><br>
+                Back-end Team
+            </div>
+            <div class="col-4">
+                <img src="collaborators/img/Round.PNG" style="width: 60%;"></img><br>
+                <strong>Ibrahim</strong><br>
+                Ketua Angkatan
             </div>
         </div>
     </div>

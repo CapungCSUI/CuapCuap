@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Announcement')
+
 @section('internal-css')
     @parent
     

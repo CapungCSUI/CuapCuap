@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->paginate(3);
+        $users = DB::table('users')->paginate(8);
 
         foreach ($users as &$user) {
             $user->profile_picture = Helper::getUserResource($user->profile_picture, $user->id);

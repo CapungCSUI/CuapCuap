@@ -30,8 +30,7 @@ class SSOAuthenticate
             catch (Exception $e) {
                 SSO::logout();
             }
-            //if (substr($userData->npm, 0, 2) === "15" && $userData->faculty === "ILMU KOMPUTER") {
-            if ($userData->faculty === "ILMU KOMPUTER") {
+            if (substr($userData->npm, 0, 2) === "15" && $userData->faculty === "ILMU KOMPUTER") {
                 $request->session()->put('sso', json_encode(SSO::getUser()));
 
                 if (Auth::guard($guard)->attempt(['username' => $userData->username, 'password' => ''])) {

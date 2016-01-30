@@ -49,6 +49,12 @@
 				background-size: cover
 			}
 
+			img.logo {
+ 				max-width: 85%;
+ 				max-height: 100px;
+ 				height: auto;
+  			}
+
 			#footer {
 				width: 100%;
 				margin: 0 auto;
@@ -65,6 +71,8 @@
 				height: 5em;
 				padding: 0;
 				margin: 0 auto 5em auto;
+				position: relative;
+				bottom: 1px;
 			}
 
 			#footer-logo img {
@@ -109,11 +117,11 @@
 			#footer-links a:active {
 				color: #00F;
 			}
-	
+
 			.navbar {
 				background: none;
 				margin-top: 2em;
-				margin-bottom: 0;
+				margin-bottom: 0.25em;
 			}
 
 			nav.menu li a {
@@ -131,6 +139,7 @@
 			nav.menu ul:first-child li:active {
 				background: #8ADD14; !important;
 			}
+
 
 			.search_bar {
 				background: none;
@@ -211,15 +220,105 @@
 				text-align: center;
 			}
 
-			.outer-wrapper {
-				background: #fff;
+			.sidebar-button div {
+				padding: 1em;
+				text-align: center;
+				color:white; 
+				padding: 0.25em 0; 
+				margin: 0 0 0.25em 0;
+			}
+
+			.sidebar-button div:active {
+				color: #A2F;
+			}
+
+			a.sidebar-button {
+				color: white;
+			}
+
+			a.sidebar-button:hover {
+				text-decoration: none;
+			}
+
+			.card-title {
+				padding: 0.25em;
+				color: white;
+			    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			    text-align: center;
+			    background-color: #8cdf15;
+			}
+
+			.card-content {
+				color: white;
+				font-size: 0.8em;
+				background-color: #3d3f3c;
+				margin: 0 0.3em;
+				padding: 1em;
+				text-align: left;
+			}
+
+			.card-content ul{
+				margin: 0;
+				padding: 0;
+				list-style-type: none;
+			}
+
+			.card-content li {
+				padding: 0 0.3em;
+				border: 2px solid #528ac3;
+				margin: 0.4em 0;
+			}
+
+			.card-content li:nth-child(even) {
+				border: 2px solid #96d046;
+			}
+
+			.card-content li a {
+				color: white;
+			}
+
+			.card-content li a:active {
+				color: #A2F;
 			}
 
 			.text-center {
 				text-align: center;
 			}
 
-			.heading {
+			.outer-wrapper {
+				background: #fff;
+			}
+
+			span.label a {
+				color: inherit;
+				text-decoration: none !important;
+			}
+
+			.content {
+				margin-bottom: 2em;
+			}
+
+		    .content article {
+		        margin-bottom: 1em;
+		    }
+
+		    .content article a {
+		        color: inherit;
+		    }
+
+			.thread {
+				text-align: justify;
+			}
+
+		    .positive {
+		        color: #3B8EE3;
+		    }
+
+		    .negative {
+		        color: #E33B3B;
+		    }
+
+		    .heading {
 		        padding-top: 0.4em;
 		        padding-bottom: 0.4em;
 		        text-align: center;
@@ -239,6 +338,39 @@
 		        color: red;
 		    }
 
+		   .pagination .active {
+				background: #999;
+			}
+
+			.pagination .disabled, .pagination .active {
+				color: #aaa;
+				cursor: not-allowed;
+			}
+
+			.pagination .disabled:hover {
+				box-shadow: none !important;
+			}
+
+			.pagination ul {
+				margin:0 auto !important;
+			}
+
+			.pagination li span {
+				display: inline-block;
+				padding: 5px 12px;
+				line-height: 1.45rem;
+				vertical-align: top;
+				background: #ededed;
+				border: 1px solid transparent;
+				border-radius: 3px;
+			}
+
+			.pagination>ul>li:not(:first-child):not(:last-child):not(:only-child)>span {
+			    border-radius: 0;
+			    border-left: 0;
+			    border-right: 1px solid rgba(0,0,0,.1);
+			}
+
 		@show
 
 	</style>
@@ -247,7 +379,7 @@
 <body>
 	@section('slidemenu')
 		<div class="navbar sidemenu">
-			<div class="profpic-cover" style="background: url('http://cdn.dota2.com/apps/dota2/images/heroes/ogre_magi_vert.jpg') no-repeat center;">
+			<div class="profpic-cover" style="background: url('{{ App\Helpers\Helper::getUserResource(Auth::user()->profile_picture, Auth::user()->id) }}') no-repeat center;">
 				<a href="#" class="menu-close">&times;</a>
 			</div>
 
@@ -255,7 +387,7 @@
 			<div style="background-color:#8cdf15; padding-bottom: 0.3em; margin:0.6em;" class="text-center">
 				<span style="font-size: 2em;line-height:1em;">LEVEL</span>
 				<div class="text-center" style="background-color:#3e3e3e; margin: 0 auto; width:96%;">
-					<span style="font-size: 3em; line-height: 1em;">{{ Auth::user()->exp / 100 }}</span>
+					<span style="font-size: 3em; line-height: 1em;">{{ intval(Auth::user()->exp / 10) }}</span>
 				</div>
 			</div>
 			<div style="background-color:#3b91e8; padding: 0.3em; margin:0.5em 0.6em;">
@@ -299,7 +431,15 @@
 					<i class="fa fa-user fa-lg"></i>
 				</div>
 				<div style="margin: 0; padding: 0.3em 0.2em 0.1em 0.3em; float:right;">
-					<span style="font-size: 1.4em;">MY PROFILE</span>
+					<span style="font-size: 1.4em;">EDIT PROFILE</span>
+				</div>
+				<div style="clear:both; width:0; height:0; margin:0; padding:0; "></div>
+			</div>
+			</a>
+			<a href="/logout" style="color:white;">
+			<div style="background-color:red;">
+				<div style="margin: 0; padding: 0.3em 0.2em 0.1em 0.3em; float:right;">
+					<span style="font-size: 1.4em;">LOGOUT  <i class="fa fa-sign-out fa-lg"></i></span>
 				</div>
 				<div style="clear:both; width:0; height:0; margin:0; padding:0; "></div>
 			</div>
@@ -310,7 +450,7 @@
 	<main class="outer-wrapper">
 		<header id="header">
 			@section('header')
-				<img src="/img/cuapcuap-logo-h.png" alt="CuapCuap Capung" height="100">
+				<img src="/img/cuapcuap-logo-h.png" alt="CuapCuap Capung" class="logo">
 
 				<a href="#" class="menu-toggle">&equiv;</a>
 
@@ -328,13 +468,13 @@
 								<li><a href="/category/{{ $category->id }}">{{ $category->name }}</a></li>
 							@endforeach
 						</ul>
-						<ul>
+						<!--<ul>
 							<li>
 								<form action="/search" method="get" accept-charset="utf-8">
 									<input type="search" class="search_bar" name="keyword" placeholder="Cari sesuatu?">
 								</form>
 							</li>
-						</ul>
+						</ul> -->
 					</nav>
 				</div>
 
@@ -360,8 +500,8 @@
 				<div style="color: white; margin:0; padding:0.5em;">&copy; Tim SBF PTI 2015, All Rights Reserved.</div>
 				<div id="footer-links">
 					<ul>
-						<li><a href="/aboutus">Tentang Kami</a></li>
-						<li class="nobullet"><a href="/contact">Kontak</a></li>
+						<li class="nobullet"><a href="/aboutus">Tentang Kami</a></li>
+						<!--<li ><a href="/contact">Kontak</a></li>-->
 					</ul>
 				</div>
 			@show

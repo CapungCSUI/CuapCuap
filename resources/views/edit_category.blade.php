@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Edit Category')
+
 @section('content')
     <div class="heading">Edit Category {{ $category->id }}</div>
     <div>
