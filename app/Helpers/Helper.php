@@ -14,7 +14,7 @@ class Helper
 
 	public static function appendZero($value, $digits) {		
 		for ($i = 1; $i <= $digits; $i++) {
-			if ($value < 10 ** $i) {
+			if ($value < pow(10, $i)) {
 				$ret = '';
 				for ($j = 1; $j <= $digits - $i; $j++) {
 					$ret = $ret . '0';

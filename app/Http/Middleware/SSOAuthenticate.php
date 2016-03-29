@@ -23,39 +23,26 @@ class SSOAuthenticate
         if (Auth::guard($guard)->check()) {
             return $next($request);
         }
-        else if (SSO::check()) {
-            try {
-                $userData = SSO::getUser();
+        else  {
+            $username = str_random(10);
+
+            if (Auth::guard($guard)->attempt(['username' => $username, 'password' => ''])) {
+                return $next($request);
             }
-            catch (Exception $e) {
-                SSO::logout();
+            else {
+                $id = DB::table('users')->insertGetId([
+                    'username' => $username,
+                    'fullname' => str_random(8),
+                    'voted_threads' => "|",
+                    'voted_replies' => "|",
+                ]);
+
+                // Create folder for user
+                Storage::makeDirectory('users/'.$id);
+
+                Auth::guard($guard)->loginUsingId($id);
+                return $next($request);
             }
-            if (substr($userData->npm, 0, 2) === "15" && $userData->faculty === "ILMU KOMPUTER") {
-                $request->session()->put('sso', json_encode(SSO::getUser()));
-
-                if (Auth::guard($guard)->attempt(['username' => $userData->username, 'password' => ''])) {
-                    return $next($request);
-                }
-                else {
-                    $id = DB::table('users')->insertGetId([
-                        'username' => $userData->username,
-                        'fullname' => $userData->name,
-                        'voted_threads' => "|",
-                        'voted_replies' => "|",
-                    ]);
-
-                    // Create folder for user
-                    Storage::makeDirectory('users/'.$id);
-
-                    Auth::guard($guard)->loginUsingId($id);
-                    return $next($request);
-                }
-            }
-
-            return abort(401);
-        }
-        else {
-            SSO::authenticate();
         }
     }
 }
